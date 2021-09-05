@@ -460,7 +460,56 @@
 <h1 id="五、报文分析"><a href="#五、报文分析" class="headerlink" title="五、报文分析"></a>五、报文分析</h1><h2 id="1-SCTP报文格式"><a href="#1-SCTP报文格式" class="headerlink" title="1.SCTP报文格式"></a>1.SCTP报文格式</h2><p><img src="https://img-blog.csdnimg.cn/20210710202226325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/2021071020224385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
 <h2 id="2-SCTP四次握手"><a href="#2-SCTP四次握手" class="headerlink" title="2.SCTP四次握手"></a>2.SCTP四次握手</h2><p><img src="https://img-blog.csdnimg.cn/20210710202309221.png"><br><img src="https://img-blog.csdnimg.cn/20210710202313576.png"></p>
 <h2 id="3-SCTP-INIT报文"><a href="#3-SCTP-INIT报文" class="headerlink" title="3.SCTP INIT报文"></a>3.SCTP INIT报文</h2><h2 id="4-SCTP-INIT-ACK-数据报"><a href="#4-SCTP-INIT-ACK-数据报" class="headerlink" title="4.SCTP INIT-ACK 数据报"></a>4.SCTP INIT-ACK 数据报</h2><p>注：INIT中的验证标志位，因为还未接收到对方ACK中的初始标志，默认为0</p>
-<p><img src="https://img-blog.csdnimg.cn/20210710202938674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>| 字段                                                   | 长度 | 意义                                                         |<br>| —————————————————— | —- | ———————————————————— |<br>| 初始标志                                               | 4    | 用于确定一对连接的值。这个值必须被放置到INIT的接收方发送的与该连接相关的每个SCTP分组中的验证标签字段中。初始标签允许除0以外的的任何值。如果在收到的INIT数据块中的启动标签为0，则接收方发送ABORT数据块中止该连接。 |<br>| 窗口大小                                               | 4    | 表示指定的缓冲区的容量，用字节数表示，为INIT发送方为连接预留的窗口大小。 |<br>| 输出流                                                 | 2    | 表示发送方希望数据输出流的数量                               |<br>| 输入流                                                 | 2    | 表示发送方允许接收数据流的数量                               |<br>| 初始TSN                                                | 4    | 定义发送方的初始TSN，类似于TCP中的序号                       |<br>| 可变长参数                                             | 可变 | 参见以下                                                     |<br>| 可变长参数：IPv4地址参数(5)                            |      |                                                              |<br>| <img src="https://img-blog.csdnimg.cn/20210710203718167.png"> |      |                                                              |</p>
+<p><img src="https://img-blog.csdnimg.cn/20210710202938674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>长度</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初始标志</td>
+<td>4</td>
+<td>用于确定一对连接的值。这个值必须被放置到INIT的接收方发送的与该连接相关的每个SCTP分组中的验证标签字段中。初始标签允许除0以外的的任何值。如果在收到的INIT数据块中的启动标签为0，则接收方发送ABORT数据块中止该连接。</td>
+</tr>
+<tr>
+<td>窗口大小</td>
+<td>4</td>
+<td>表示指定的缓冲区的容量，用字节数表示，为INIT发送方为连接预留的窗口大小。</td>
+</tr>
+<tr>
+<td>输出流</td>
+<td>2</td>
+<td>表示发送方希望数据输出流的数量</td>
+</tr>
+<tr>
+<td>输入流</td>
+<td>2</td>
+<td>表示发送方允许接收数据流的数量</td>
+</tr>
+<tr>
+<td>初始TSN</td>
+<td>4</td>
+<td>定义发送方的初始TSN，类似于TCP中的序号</td>
+</tr>
+<tr>
+<td>可变长参数</td>
+<td>可变</td>
+<td>参见以下</td>
+</tr>
+<tr>
+<td>可变长参数：IPv4地址参数(5)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><img src="https://img-blog.csdnimg.cn/20210710203718167.png"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <p>IPv4地址（32bit无符号整数）：包含发送方端点的IPv4地址，采用二进制编码。<br>IPv6地址参数(6)<br> <img src="https://img-blog.csdnimg.cn/20210710203721988.png"></p>
 <p>IPv6地址(128bit的无符号整数)：包含发送方端点的IPv6地址，采用二进制编码。<br>注：多个地址参数体现SCTP的多宿主特点</p>
 <p>防止Cookie过期参数(9)<br>INIT的发送方应使用这个参数来建议INIT的接收方提供较长存活跨度的状态Cookie。<br> <img src="https://img-blog.csdnimg.cn/20210710203731358.png"></p>
@@ -474,7 +523,66 @@
 <h2 id="5-SCTP-INIT-ACK-数据报"><a href="#5-SCTP-INIT-ACK-数据报" class="headerlink" title="5.SCTP INIT_ACK 数据报"></a>5.SCTP INIT_ACK 数据报</h2><p><img src="https://img-blog.csdnimg.cn/20210710204019396.png"><br><img src="https://img-blog.csdnimg.cn/20210710204031820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204044988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204055303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
 <h2 id="6-SCTP-COOKIE-ECHO数据报"><a href="#6-SCTP-COOKIE-ECHO数据报" class="headerlink" title="6.SCTP COOKIE_ECHO数据报"></a>6.SCTP COOKIE_ECHO数据报</h2><p><img src="https://img-blog.csdnimg.cn/20210710204120175.png"><br><img src="https://img-blog.csdnimg.cn/20210710204126771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204138482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204200538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
 <h2 id="7-SCTP-COOKIE-ACK-数据报"><a href="#7-SCTP-COOKIE-ACK-数据报" class="headerlink" title="7.SCTP COOKIE_ACK 数据报"></a>7.SCTP COOKIE_ACK 数据报</h2><p><img src="https://img-blog.csdnimg.cn/20210710204259953.png"><br><img src="https://img-blog.csdnimg.cn/20210710204304558.png"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204316753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204321868.png"></p>
-<h2 id="8-SCTP-SACK数据报"><a href="#8-SCTP-SACK数据报" class="headerlink" title="8.SCTP SACK数据报"></a>8.SCTP SACK数据报</h2><p><img src="https://img-blog.csdnimg.cn/20210710204330137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>| 字段                | 长度 | 意义                                                         |<br>| ——————- | —- | ———————————————————— |<br>| 类型                | 1    |                                                              |<br>| 标志                | 2    | 设为全0并由接收方忽略                                        |<br>| 长度                | 4    |                                                              |<br>| 累积TSN确认         | 4    | 该参数包含了在收到TSN序列的间隔前的最后一个TSN值             |<br>| 窗口大小            | 2    | 规定了SACK的发送方的接收缓冲容量的字节数。                   |<br>| 间隔ACK块数         | 2    | 用来指示SACK数据块中包含的间隔证实块的数目                   |<br>|                     |      |                                                              |<br>| 重复TSN数           | 2    | 该字段包含了该端点收到的重复的TSN的数目                      |<br>| 间隔ACK块结束偏移量 | 2    | 该字段用来指示这个间隔整数块的起始TSN偏移，为了计算实际的TSN号码必须要用累积TSN证实加上偏移号码。 |<br>| 重复TSN             | 4    | 用来指示一个在上一个SACK发送后收到的TSN重复的个数。每次一个接收者收到一个重复的TSN(在发送SACK前)，则把这个TSN加到重复的TSN列表中。 |</p>
+<h2 id="8-SCTP-SACK数据报"><a href="#8-SCTP-SACK数据报" class="headerlink" title="8.SCTP SACK数据报"></a>8.SCTP SACK数据报</h2><p><img src="https://img-blog.csdnimg.cn/20210710204330137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>长度</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>标志</td>
+<td>2</td>
+<td>设为全0并由接收方忽略</td>
+</tr>
+<tr>
+<td>长度</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>累积TSN确认</td>
+<td>4</td>
+<td>该参数包含了在收到TSN序列的间隔前的最后一个TSN值</td>
+</tr>
+<tr>
+<td>窗口大小</td>
+<td>2</td>
+<td>规定了SACK的发送方的接收缓冲容量的字节数。</td>
+</tr>
+<tr>
+<td>间隔ACK块数</td>
+<td>2</td>
+<td>用来指示SACK数据块中包含的间隔证实块的数目</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>重复TSN数</td>
+<td>2</td>
+<td>该字段包含了该端点收到的重复的TSN的数目</td>
+</tr>
+<tr>
+<td>间隔ACK块结束偏移量</td>
+<td>2</td>
+<td>该字段用来指示这个间隔整数块的起始TSN偏移，为了计算实际的TSN号码必须要用累积TSN证实加上偏移号码。</td>
+</tr>
+<tr>
+<td>重复TSN</td>
+<td>4</td>
+<td>用来指示一个在上一个SACK发送后收到的TSN重复的个数。每次一个接收者收到一个重复的TSN(在发送SACK前)，则把这个TSN加到重复的TSN列表中。</td>
+</tr>
+</tbody></table>
 <h2 id="9-SCTP-DATA块"><a href="#9-SCTP-DATA块" class="headerlink" title="9.SCTP DATA块"></a>9.SCTP DATA块</h2><p><img src="https://img-blog.csdnimg.cn/20210710204802405.png"><br><img src="https://img-blog.csdnimg.cn/20210710204824651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204832695.png"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204843818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204853199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>注：该SACK+DATA中的DATA未发生分片，且按序。</p>
 <p>注：以下两个报文为另一次连接建立所抓到的，所以固定首部中的验证标志位与上面不同。</p>
 <h2 id="10-SCTP-HEARTBEAT块"><a href="#10-SCTP-HEARTBEAT块" class="headerlink" title="10.SCTP HEARTBEAT块"></a>10.SCTP HEARTBEAT块</h2><p><img src="https://img-blog.csdnimg.cn/2021071020490499.png"><br><img src="https://img-blog.csdnimg.cn/2021071020491226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>（意义：用于检测连接对象是否已经断开）<br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204923861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204930330.png"></p>
