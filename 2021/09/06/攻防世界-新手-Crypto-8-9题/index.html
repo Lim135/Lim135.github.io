@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="攻防世界-新手-Crypto-6~7题, Lim_XuK">
+    <meta name="keywords" content="攻防世界-新手-Crypto-8~9题, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>攻防世界-新手-Crypto-6~7题 | Lim_XuK</title>
+    <title>攻防世界-新手-Crypto-8~9题 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-6~7题</h1>
+                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-8~9题</h1>
                 </div>
             </div>
         </div>
@@ -374,53 +374,92 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="5-不仅仅是Morse"><a href="#5-不仅仅是Morse" class="headerlink" title="5.不仅仅是Morse"></a>5.不仅仅是Morse</h2><blockquote>
-<p><strong>题目：–/.-/-.–/..–.-/-…/./..–.-/…./.-/…-/./..–.-/.-/-./—/-/…././.-./..–.-/-.././-.-./—/-.././…./…./…./…./.-/.-/.-/.-/.-/-…/.-/.-/-…/-…/-…/.-/.-/-…/-…/.-/.-/.-/.-/.-/.-/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/.-/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/-…/.-/.-/.-/-…/-…/.-/.-/-…/.-/.-/.-/.-/-…/.-/-…/.-/.-/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/-…/-…/.-/.-/-…/-…/-…/.-/-…/.-/.-/.-/-…/.-/-…/.-/-…/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/-…/.-/.-/-…/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/-…/-…/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/-…/-…/.-</strong></p>
+                <h2 id="easy-RSA"><a href="#easy-RSA" class="headerlink" title="easy_RSA"></a>easy_RSA</h2><blockquote>
+<p>题目：<br>在一次RSA密钥对生成中，假设p=473398607161，q=4511491，e=17<br>求解出d</p>
 </blockquote>
 <blockquote>
-<p><strong>题目描述：</strong>“这个题目和我们刚刚做的那个好像啊但是为什么按照刚刚的方法做出来答案却不对呢” ，你奇怪的问了问小鱼，“可能是因为还有一些奇怪的加密方式在里面吧，我们在仔细观察观察”。两个人 安安静静的坐下来开始思考，很耐心的把自己可以想到的加密方式一种种的过了一遍，十多分钟后两个人 异口同声的说“我想到了！”。<strong>一种食物</strong>,格式为cyberpeace{小写的你解出的答案}</p>
+<p>题目描述：没用，就硬做</p>
 </blockquote>
-<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
-<li>不难看出第一层解码是用<strong>摩尔斯电码</strong>进行解码，得出结果：</li>
+<h3 id="RSA介绍"><a href="#RSA介绍" class="headerlink" title="RSA介绍"></a>RSA介绍</h3><blockquote>
+<p>前置知识储备：质数、互质、模反元素、欧拉函数、欧拉定理、费马小定理（欧拉特殊情况），具体后续在进行介绍</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>找出质数</td>
+<td>P、Q</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2</td>
+<td>计算公共模数</td>
+<td>N=P * Q</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3</td>
+<td>欧拉函数</td>
+<td>φ(N) = (P-1)(Q-1)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4</td>
+<td>计算公钥E</td>
+<td>1 &lt; E &lt; φ(N)</td>
+<td>E的取值必须是整数<br>E 和 φ(N) 必须是互质数</td>
+</tr>
+<tr>
+<td>5</td>
+<td>计算私钥D</td>
+<td>E * D % φ(N) = 1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6</td>
+<td>加密</td>
+<td>C = M^E^ mod N</td>
+<td>C：密文 M：明文</td>
+</tr>
+<tr>
+<td>7</td>
+<td>解密</td>
+<td>M = C^D^ mod N</td>
+<td>C：密文 M：明文</td>
+</tr>
+</tbody></table>
+<p>公钥＝(E , N)<br>私钥＝(D, N)<br>对外，我们只暴露公钥。</p>
+<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><p>由于本题数值太大，不方便使用上述方法手算，所以考虑使用python代码</p>
+<p>编写python：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2 </span><br><span class="line"></span><br><span class="line">p = <span class="number">473398607161</span> </span><br><span class="line">q = <span class="number">4511491</span> </span><br><span class="line">e = <span class="number">17</span> </span><br><span class="line">phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>) </span><br><span class="line">d = gmpy2.invert(e, phi)  <span class="comment">##求逆元，d^e = 1 mod phi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+
+<p>得出结果：<strong>125631357777427553</strong></p>
+<h2 id="easychallenge"><a href="#easychallenge" class="headerlink" title="easychallenge"></a>easychallenge</h2><blockquote>
+<p>题目： 一个.pyc文件</p>
+</blockquote>
+<blockquote>
+<p>题目描述： 没有意义的一串文字</p>
+</blockquote>
+<p>因为没有任何提示，所以走一步看一步</p>
+<h3 id="解题步骤-1"><a href="#解题步骤-1" class="headerlink" title="解题步骤"></a>解题步骤</h3><ol>
+<li> .pyc为.py的编译过后的文件，所以我们需要对.pyc文件进行反编译，得到原文</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125349.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode1</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = <span class="built_in">ord</span>(i) ^ <span class="number">36</span></span><br><span class="line">        x = x + <span class="number">25</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode2</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = <span class="built_in">ord</span>(i) + <span class="number">36</span></span><br><span class="line">        x = x ^ <span class="number">36</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode3</span>(<span class="params">ans</span>):</span></span><br><span class="line">    <span class="keyword">return</span> base64.b32encode(ans)</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27; &#x27;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Please Input your flag:&#x27;</span></span><br><span class="line">flag = raw_input()</span><br><span class="line">final = <span class="string">&#x27;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E===&#x27;</span></span><br><span class="line"><span class="keyword">if</span> encode3(encode2(encode1(flag))) == final:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;correct&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;wrong&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>由题目不难看出，这个文件给出了<strong>final</strong>，需要通过<strong>final</strong>逆推出本题的<strong>flag</strong></p>
 <ol start="2">
-<li>由所得的一层密文不难看出，要使用的是<strong>培根密码</strong>，再加上题目描述中的<strong>一种食物</strong>，在古典密码中名字为食物的密码在我的认知中也只有一个，那就是<strong>培根密码</strong>。</li>
+<li>修改代码顺序，加密过程<strong>上下顺序颠倒，运算逆置，加密解密顺序逆置</strong>，得到代码如下：</li>
 </ol>
-<ol start="3">
-<li>删去一层密文中不必要前缀<strong>may_be_have_another_decodehhhh</strong>，解密得：<strong>ATTACKANDDEFENCEWORLDISINTERESTING</strong></li>
-</ol>
-<h2 id="6-混合编码"><a href="#6-混合编码" class="headerlink" title="6.混合编码"></a>6.混合编码</h2><blockquote>
-<p><strong>题目:</strong></p>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125755.png"></p>
-</blockquote>
-<blockquote>
-<p><strong>题目描述中没有任何意义，所以就不提取了</strong></p>
-</blockquote>
-<h3 id="解题过程-1"><a href="#解题过程-1" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
-<li>从码形不难看出<strong>（==结尾）</strong>，第一层解密是要用<strong>Base64</strong>进行，解码为：</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125329.png"></p>
-<ol start="2">
-<li><p>从码形不难看出<strong>（&amp;#XX）</strong>，第二层解密要使用<strong>Unicode</strong>进行,解码为：</p>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125409.png"></p>
-</li>
-</ol>
-<blockquote>
-<p>我是分隔符</p>
-</blockquote>
-<p>到这里先停一下，首先我们能保证前两个解密的思路是对的，但是两层解密后的东西依然是乱码，所以我们再往回看看前面的题目描述，我们看到描述中有说<strong>经过了前面那么多题目的历练</strong>，所以我们推断，解密方法仍然是前面几个密码中的一个，根据排除，我们最后选择使用<strong>Base64</strong></p>
-<blockquote>
-<p>我是分隔符</p>
-</blockquote>
-<ol start="3">
-<li><p>使用<strong>Base64</strong>再次进行解密，结果为：</p>
-<p><strong>/119/101/108/99/111/109/101/116/111/97/116/116/97/99/107/97/110/100/100/101/102/101/110/99/101/119/111/114/108/100</strong></p>
-</li>
-<li><p>根据码形不难得出下一层的解密使用<strong>ASCII</strong>进行，得出结果：<strong>welcometoattackanddefenceworld</strong></p>
-</li>
-</ol>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在解题时偶然发现Unicode的与ASCII进行解密，所得结果相同，最后发现，Unicode的编码是ASCII码晋升而来的，他对其编码的范围进行了拓展，所以ASCII能解的，Unicode同样也可以，甚至能解的范围更广</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode1</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = <span class="built_in">ord</span>(i) - <span class="number">25</span></span><br><span class="line">        x = x ^ <span class="number">36</span>  <span class="comment"># ^为异或运算，异或运算的逆运算还是异或运算</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode2</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = i ^ <span class="number">36</span> <span class="comment">#ord()这个函数接受的类型是一个长度为1的字符串，而在python3当中传入的i已经是一个整型数了，直接用i^36就可以完成操作</span></span><br><span class="line">        x = x - <span class="number">36</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode3</span>(<span class="params">ans</span>):</span></span><br><span class="line">    <span class="keyword">return</span> base64.b32decode (ans)  <span class="comment">#用 Base32 编码字节类对象（bytes-like object）ans，并返回编码过的字节（bytes），encode为加密，decode为解密</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27; &#x27;</span></span><br><span class="line">final = <span class="string">&#x27;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E===&#x27;</span></span><br><span class="line">flag = encode1(encode2(encode3(final)))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<p>得出结果：<strong>cyberpeace{interestinghhhhh}</strong></p>
 
                 
             </div>
@@ -447,7 +486,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/">http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/</a>
+                    <a href="http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/">http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,9 +575,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/">
                     <div class="card-image">
@@ -556,9 +596,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -571,6 +611,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -593,24 +634,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/05/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-1-5%E9%A2%98/">
+                <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-1~5题">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-6~7题">
                         
-                        <span class="card-title">攻防世界-新手-Crypto-1~5题</span>
+                        <span class="card-title">攻防世界-新手-Crypto-6~7题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            攻防世界Crypto新手区的前几题，因为密钥比较直，所以放在一起写
+                            开始出现多重加密，不过也都是基于对密码形式的熟悉而得出的解密方法
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
                             </span>
                         <span class="publish-author">
                             
