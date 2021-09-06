@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="攻防世界-新手-Crypto-1~5题, Lim_XuK">
+    <meta name="keywords" content="攻防世界-新手-Crypto-6~7题, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>攻防世界-新手-Crypto-1~5题 | Lim_XuK</title>
+    <title>攻防世界-新手-Crypto-6~7题 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-1~5题</h1>
+                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-6~7题</h1>
                 </div>
             </div>
         </div>
@@ -353,7 +353,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-05
+                    2021-09-06
                 </div>
                 
 
@@ -374,58 +374,39 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-Base64"><a href="#1-Base64" class="headerlink" title="1.Base64"></a>1.Base64</h2><p><strong>题目：Y3liZXJwZWFjZXtXZWxjb21lX3RvX25ld19Xb3JsZCF9</strong></p>
+                <h2 id="5-不仅仅是Morse"><a href="#5-不仅仅是Morse" class="headerlink" title="5.不仅仅是Morse"></a>5.不仅仅是Morse</h2><blockquote>
+<p><strong>题目：–/.-/-.–/..–.-/-…/./..–.-/…./.-/…-/./..–.-/.-/-./—/-/…././.-./..–.-/-.././-.-./—/-.././…./…./…./…./.-/.-/.-/.-/.-/-…/.-/.-/-…/-…/-…/.-/.-/-…/-…/.-/.-/.-/.-/.-/.-/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/.-/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/-…/.-/.-/.-/-…/-…/.-/.-/-…/.-/.-/.-/.-/-…/.-/-…/.-/.-/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/-…/-…/.-/.-/-…/-…/-…/.-/-…/.-/.-/.-/-…/.-/-…/.-/-…/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/-…/.-/.-/-…/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/-…/-…/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/-…/-…/.-</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>题目描述：</strong>“这个题目和我们刚刚做的那个好像啊但是为什么按照刚刚的方法做出来答案却不对呢” ，你奇怪的问了问小鱼，“可能是因为还有一些奇怪的加密方式在里面吧，我们在仔细观察观察”。两个人 安安静静的坐下来开始思考，很耐心的把自己可以想到的加密方式一种种的过了一遍，十多分钟后两个人 异口同声的说“我想到了！”。<strong>一种食物</strong>,格式为cyberpeace{小写的你解出的答案}</p>
+</blockquote>
+<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
+<li>不难看出第一层解码是用<strong>摩尔斯电码</strong>进行解码，得出结果：may_be_have_another_decodehhhhaaaaabaabbbaabbaaaaaaaabaababaaaaaaabbabaaabbaaabbaabaaaababaabaaabbabaaabaaabaababbaabbbabaaabababbaaabbabaaabaabaabaaaabbabbaabbaabaabaaabaabaabaababaabbabaaaabbabaabba</li>
+<li>由所得的一层密文不难看出，要使用的是<strong>培根密码</strong>，再加上题目描述中的<strong>一种食物</strong>，在古典密码中名字为食物的密码在我的认知中也只有一个，那就是<strong>培根密码</strong>。</li>
+<li>删去一层密文中不必要前缀<strong>may_be_have_another_decodehhhh</strong>，解密得：<strong>ATTACKANDDEFENCEWORLDISINTERESTING</strong></li>
+</ol>
+<h2 id="6-混合编码"><a href="#6-混合编码" class="headerlink" title="6.混合编码"></a>6.混合编码</h2><blockquote>
+<p><strong>题目：JiM3NjsmIzEyMjsmIzY5OyYjMTIwOyYjNzk7JiM4MzsmIzU2OyYjMTIwOyYjNzc7JiM2ODsmIzY5OyYjMTE4OyYjNzc7JiM4NDsmIzY1OyYjNTI7JiM3NjsmIzEyMjsmIzEwNzsmIzUzOyYjNzY7JiMxMjI7JiM2OTsmIzEyMDsmIzc3OyYjODM7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiMxMDc7JiMxMTg7JiM3NzsmIzg0OyYjNjU7JiMxMjA7JiM3NjsmIzEyMjsmIzY5OyYjMTIwOyYjNzg7JiMxMDU7JiM1NjsmIzEyMDsmIzc3OyYjODQ7JiM2OTsmIzExODsmIzc5OyYjODQ7JiM5OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzUwOyYjNzY7JiMxMjI7JiM2OTsmIzEyMDsmIzc4OyYjMTA1OyYjNTY7JiM1MzsmIzc4OyYjMTIxOyYjNTY7JiM1MzsmIzc5OyYjODM7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiM5OTsmIzExODsmIzc5OyYjODQ7JiM5OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzExOTsmIzc2OyYjMTIyOyYjNjk7JiMxMTk7JiM3NzsmIzY3OyYjNTY7JiMxMjA7JiM3NzsmIzY4OyYjNjU7JiMxMTg7JiM3NzsmIzg0OyYjNjU7JiMxMjA7JiM3NjsmIzEyMjsmIzY5OyYjMTE5OyYjNzc7JiMxMDU7JiM1NjsmIzEyMDsmIzc3OyYjNjg7JiM2OTsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzExOTsmIzc2OyYjMTIyOyYjMTA3OyYjNTM7JiM3NjsmIzEyMjsmIzY5OyYjMTE5OyYjNzc7JiM4MzsmIzU2OyYjMTIwOyYjNzc7JiM4NDsmIzEwNzsmIzExODsmIzc3OyYjODQ7JiM2OTsmIzEyMDsmIzc2OyYjMTIyOyYjNjk7JiMxMjA7JiM3ODsmIzY3OyYjNTY7JiMxMjA7JiM3NzsmIzY4OyYjMTAzOyYjMTE4OyYjNzc7JiM4NDsmIzY1OyYjMTE5Ow==</strong></p>
+</blockquote>
+<blockquote>
 <p><strong>题目描述中没有任何意义，所以就不提取了</strong></p>
-<h3 id="Base64的特点"><a href="#Base64的特点" class="headerlink" title="Base64的特点"></a>Base64的特点</h3><p><strong>经过base64编码后的字符串长度一定会被4整除：</strong></p>
-<ol>
-<li>标准base64只有64个字符（英文大小写、数字和+、/）以及用作后缀等号=；</li>
-<li>base64是把3个字节变成4个可打印字符，所以base64编码后的字符串一定能被4整除（不算用作后缀的等号）；</li>
-<li><strong>等号（=）一定用作后缀</strong>，且数目一定是0个、1个或2个。这是因为如果原文长度不能被3整除，base64要在后面添加\0凑齐3n位。为了正确还原，添加了几个\0就加上几个等号。显然添加等号的数目只能是0、1或2；</li>
-<li>严格来说base64不能算是一种加密，只能说是编码转换。使用base64的初衷。是为了方便把含有不可见字符串的信息用可见字符串表示出来，以便复制粘贴；</li>
-</ol>
-<p><strong>解码器网址 <a target="_blank" rel="noopener" href="https://tool.oschina.net/encrypt?type=3">https://tool.oschina.net/encrypt?type=3</a></strong></p>
-<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><p><del>也没什么结题过程</del><br>直接把题目复制黏贴进解码器中就可以得出结果：<br><strong>cyberpeace{Welcome_to_new_World!}</strong></p>
-<h2 id="2-Caesar"><a href="#2-Caesar" class="headerlink" title="2.Caesar"></a>2.Caesar</h2><p><strong>题目：oknqdbqmoq{kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz}</strong></p>
-<p><strong>题目描述中又没有任何意义，所以还是不提取了</strong></p>
-<h3 id="Casear——凯撒密码的最大特点"><a href="#Casear——凯撒密码的最大特点" class="headerlink" title="Casear——凯撒密码的最大特点"></a>Casear——凯撒密码的最大特点</h3><p><strong>基本的格式是在的，比如说这个题目中，明显能看出答题的格式： xxxxxxx{xxxxxxxxxxxxxxxx}</strong></p>
-<p><strong>解码器网址 <a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/kaisamima.php">https://www.qqxiuzi.cn/bianma/kaisamima.php</a></strong></p>
-<h3 id="解题过程-1"><a href="#解题过程-1" class="headerlink" title="解题过程"></a>解题过程</h3><p>  凯撒密码的密钥有几个得出的方法：</p>
-<ol>
-<li><p>对齐： 已知题目中的flag格式第一个字母是c，则直接计算c与o之间的距离，不难得出是12</p>
-</li>
-<li><p>题目描述： 由于本题题目讲的<del>都是废话</del> 没有任何提示信息，所以没有例子</p>
+</blockquote>
+<h3 id="解题过程-1"><a href="#解题过程-1" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
+<li>从码形不难看出<strong>（==结尾）</strong>，第一层解密是要用<strong>Base64</strong>进行，解码为：**&#76;&#122;&#69;&#120;&#79;&#83;&#56;&#120;&#77;&#68;&#69;&#118;&#77;&#84;&#65;&#52;&#76;&#122;&#107;&#53;&#76;&#122;&#69;&#120;&#77;&#83;&#56;&#120;&#77;&#68;&#107;&#118;&#77;&#84;&#65;&#120;&#76;&#122;&#69;&#120;&#78;&#105;&#56;&#120;&#77;&#84;&#69;&#118;&#79;&#84;&#99;&#118;&#77;&#84;&#69;&#50;&#76;&#122;&#69;&#120;&#78;&#105;&#56;&#53;&#78;&#121;&#56;&#53;&#79;&#83;&#56;&#120;&#77;&#68;&#99;&#118;&#79;&#84;&#99;&#118;&#77;&#84;&#69;&#119;&#76;&#122;&#69;&#119;&#77;&#67;&#56;&#120;&#77;&#68;&#65;&#118;&#77;&#84;&#65;&#120;&#76;&#122;&#69;&#119;&#77;&#105;&#56;&#120;&#77;&#68;&#69;&#118;&#77;&#84;&#69;&#119;&#76;&#122;&#107;&#53;&#76;&#122;&#69;&#119;&#77;&#83;&#56;&#120;&#77;&#84;&#107;&#118;&#77;&#84;&#69;&#120;&#76;&#122;&#69;&#120;&#78;&#67;&#56;&#120;&#77;&#68;&#103;&#118;&#77;&#84;&#65;&#119;**</li>
+<li>从码形不难看出<strong>（&amp;#XX）</strong>，第二层解密要使用<strong>Unicode</strong>进行，解码为：<strong>LzExOS8xMDEvMTA4Lzk5LzExMS8xMDkvMTAxLzExNi8xMTEvOTcvMTE2LzExNi85Ny85OS8xMDcvOTcvMTEwLzEwMC8xMDAvMTAxLzEwMi8xMDEvMTEwLzk5LzEwMS8xMTkvMTExLzExNC8xMDgvMTAw</strong><blockquote>
+<p>我是分隔符</p>
+</blockquote>
 </li>
 </ol>
-<p>  之后直接将密文丢到解码器中，密钥设置12，即可得出结果：<br>  <strong>cyberpeace{you_have_learned_caesar_encryption}</strong></p>
-<h2 id="3-Morse"><a href="#3-Morse" class="headerlink" title="3.Morse"></a>3.Morse</h2><p><strong>题目：11 111 010 000 0 1010 111 100 0 00 000 000 111 00 10 1 0 010 0 000 1 00 10 110</strong></p>
-<p><strong>题目描述中依然没有任何意义，还是不提取</strong></p>
-<h3 id="Morse——摩尔斯电码的特点"><a href="#Morse——摩尔斯电码的特点" class="headerlink" title="Morse——摩尔斯电码的特点"></a>Morse——摩尔斯电码的特点</h3><ol>
-<li>最开始的摩尔斯电码是由<strong>“滴  嗒”</strong>组成的，而在纸上的体现一般为**- .<strong>，变种可有多种，常见的有本题的</strong>1  0<strong>，</strong>-  * **,或是其他只表示两种状态的字符都有可能是摩尔斯电码</li>
-<li>摩尔斯电码中间的空隙可由<strong>空格、|、/</strong> 等符号对等</li>
+<p>到这里先停一下，首先我们能保证前两个解密的思路是对的，但是两层解密后的东西依然是乱码，所以我们再往回看看前面的题目描述，我们看到描述中有说<strong>经过了前面那么多题目的历练</strong>，所以我们推断，解密方法仍然是前面几个密码中的一个，根据排除，我们最后选择使用<strong>Base64</strong></p>
+<blockquote>
+<p>我是分隔符</p>
+</blockquote>
+<ol start="3">
+<li>使用<strong>Base64</strong>再次进行解密，结果为：** /119/101/108/99/111/109/101/116/111/97/116/116/97/99/107/97/110/100/100/101/102/101/110/99/101/119/111/114/108/100**</li>
+<li>根据码形不难得出下一层的解密使用<strong>ASCII</strong>进行，得出结果：<strong>welcometoattackanddefenceworld</strong></li>
 </ol>
-<p><strong>解码器网址 <a target="_blank" rel="noopener" href="http://www.txttool.com/wenben_morse.asp">http://www.txttool.com/wenben_morse.asp</a></strong></p>
-<h3 id="解题过程-2"><a href="#解题过程-2" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
-<li>由于1和0可以是嘀嗒的任意一个，所以尝试1为嘀，0位嗒，得出结果为：iskot  swtmoosmaetktoemau，明显不对</li>
-<li>尝试0为嘀，1为嗒，得出结果：<strong>morsecodeissointeresting</strong></li>
-</ol>
-<p>故，最后题目的flag为：<br><strong>cyberpeace{morsecodeissointeresting}</strong></p>
-<h2 id="4-幂数加密"><a href="#4-幂数加密" class="headerlink" title="4.幂数加密"></a>4.幂数加密</h2><p><strong>题目：8842101220480224404014224202480122</strong></p>
-<p><strong>题目描述中仍然没有任何意义，还是不提取</strong></p>
-<h3 id="二进制幂数的定义"><a href="#二进制幂数的定义" class="headerlink" title="二进制幂数的定义"></a>二进制幂数的定义</h3><p>  二进制幂数加密通过二的几次方表示字母的序号来对信息加密。由二进制转换成十进制的时候，  还可以表示成2的N次方的形式。<br>例如：<br>  以<strong>d o</strong>作为例子，d对应4，o对应15<br>  4=2^2^,15=2^0^+2^1^+2^2^+2^3^<br>  所以<strong>d</strong>加密后为<strong>2</strong>，<strong>o</strong>加密后为<strong>0123</strong>，最后的密文为<strong>2 0123</strong><br>因此我们称这种加密方法为<strong>“二进制”的幂数加密</strong>。</p>
-<p>  下面介绍<strong>解密</strong><br>以上面的密文为例子：2^2^=4=d，2^0^ +2^1^ +2^2^ +2^3^=15=o,解得为d o</p>
-<h3 id="解题过程-3"><a href="#解题过程-3" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
-<li>由于flag为<strong>8位</strong>大写字母，而本题的密文中没有明显的间隔符，所以考虑<strong>0</strong>作为间隔符进行尝试，得出结果<strong>welldone</strong></li>
-<li>注意本题结果要为<strong>大写</strong><br>故，最后的flag为：<br> <strong>cyberpeace{WELLDOWN}</strong></li>
-</ol>
-<h2 id="5-Railfence"><a href="#5-Railfence" class="headerlink" title="5.Railfence"></a>5.Railfence</h2><p> <strong>题目： ccehgyaefnpeoobe{lcirg}epriec_ora_g</strong></p>
-<p> <strong>题目描述：<del>哔哔哔哔哔哔</del>，栅栏里面喂5只小鸡，<del>哔哔哔哔哔哔</del></strong></p>
-<h3 id="Railfence——栅栏密码"><a href="#Railfence——栅栏密码" class="headerlink" title="Railfence——栅栏密码"></a>Railfence——栅栏密码</h3><p>  一般的栅栏密码是<strong>“田字形”</strong>排列。我们把明文分成<strong>N个一组</strong>，然后每组一列，<strong>横向</strong>铺开，取<strong>每列第一个</strong>（也就是最上面）的元素，构成我们的密文。<br>  还有一种比较特殊的形状是<strong>“W型”</strong>排列。想象现在地上有一些W型构成的洞，你要在<strong>每个洞里插上一根木棍</strong>，以此来搭建你的栅栏，而这个木棍就是你要加密的信息。</p>
-<p><strong>解码器网址 <a target="_blank" rel="noopener" href="http://www.metools.info/code/fence154.html">http://www.metools.info/code/fence154.html</a></strong></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
-<li>首先从题目描述中得知，栅栏数位<strong>5</strong></li>
-<li>考虑使用最常见的<strong>田字</strong>栅栏，得出结果为：<strong>cebgccfe}_en{eohplprgecrayoii_aoreg</strong>，明显不对</li>
-<li>使用<strong>W型</strong>，得出结果为：<strong>cyberpeace{railfence-cipher-gogogo}</strong></li>
-</ol>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在解题时偶然发现Unicode的与ASCII进行解密，所得结果相同，最后发现，Unicode的编码是ASCII码晋升而来的，他对其编码的范围进行了拓展，所以ASCII能解的，Unicode同样也可以，甚至能解的范围更广</p>
 
                 
             </div>
@@ -452,7 +433,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/05/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-1-5%E9%A2%98/">http://Lim135.github.io/2021/09/05/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-1-5%E9%A2%98/</a>
+                    <a href="http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/">http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,9 +522,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/">
                     <div class="card-image">
@@ -561,9 +543,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -576,6 +558,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -598,31 +581,31 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/04/Windows%E4%B8%8B%E5%AE%8C%E6%88%90SCTP%E7%AE%80%E5%8D%95%E6%8A%93%E5%8C%85/">
+                <a href="/2021/09/05/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-1-5%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Windows下完成SCTP简单抓包">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-1~5题">
                         
-                        <span class="card-title">Windows下完成SCTP简单抓包</span>
+                        <span class="card-title">攻防世界-新手-Crypto-1~5题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            一种基于多年前Windows系统下的SCTP发包软件进行的抓包分析
+                            攻防世界Crypto新手区的前几题，因为密钥比较直，所以放在一起写
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9A%8F%E6%89%8B%E5%86%99%E5%86%99/" class="post-category">
-                                    随手写写
+                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
+                                    攻防
                                 </a>
                             
                             
@@ -632,12 +615,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/SCTP/">
-                        <span class="chip bg-color">SCTP</span>
+                    <a href="/tags/Crypto/">
+                        <span class="chip bg-color">Crypto</span>
                     </a>
                     
-                    <a href="/tags/Windows/">
-                        <span class="chip bg-color">Windows</span>
+                    <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">做题记录</span>
                     </a>
                     
                 </div>
