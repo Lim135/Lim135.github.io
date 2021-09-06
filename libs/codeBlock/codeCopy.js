@@ -56,7 +56,6 @@
 //     })
 // });
 // 代码块一键复制
-// 代码块一键复制
 $(function () {
     var $copyIcon = $('<i class="fa fa-copy code_copy" title="复制代码" aria-hidden="true"></i>')
     var $notice = $('<div class="codecopy_notice"></div>')
