@@ -369,6 +369,9 @@
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -438,7 +441,15 @@
 <p>公钥＝(E , N)<br>私钥＝(D, N)<br>对外，我们只暴露公钥。</p>
 <h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><p>由于本题数值太大，不方便使用上述方法手算，所以考虑使用python代码</p>
 <p>编写python：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2 </span><br><span class="line"></span><br><span class="line">p = <span class="number">473398607161</span> </span><br><span class="line">q = <span class="number">4511491</span> </span><br><span class="line">e = <span class="number">17</span> </span><br><span class="line">phi = (p - <span class="number">1</span>) * (q - <span class="number">1</span>) </span><br><span class="line">d = gmpy2.invert(e, phi)  <span class="comment">##求逆元，d^e = 1 mod phi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import gmpy2 
+
+p &#x3D; 473398607161 
+q &#x3D; 4511491 
+e &#x3D; 17 
+phi &#x3D; (p - 1) * (q - 1) 
+d &#x3D; gmpy2.invert(e, phi)  ##求逆元，d^e &#x3D; 1 mod phi
+
+print(d)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>得出结果：<strong>125631357777427553</strong></p>
 <h2 id="easychallenge"><a href="#easychallenge" class="headerlink" title="easychallenge"></a>easychallenge</h2><blockquote>
@@ -451,13 +462,74 @@
 <h3 id="解题步骤-1"><a href="#解题步骤-1" class="headerlink" title="解题步骤"></a>解题步骤</h3><ol>
 <li> .pyc为.py的编译过后的文件，所以我们需要对.pyc文件进行反编译，得到原文</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode1</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = <span class="built_in">ord</span>(i) ^ <span class="number">36</span></span><br><span class="line">        x = x + <span class="number">25</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode2</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = <span class="built_in">ord</span>(i) + <span class="number">36</span></span><br><span class="line">        x = x ^ <span class="number">36</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode3</span>(<span class="params">ans</span>):</span></span><br><span class="line">    <span class="keyword">return</span> base64.b32encode(ans)</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27; &#x27;</span></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;Please Input your flag:&#x27;</span></span><br><span class="line">flag = raw_input()</span><br><span class="line">final = <span class="string">&#x27;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E===&#x27;</span></span><br><span class="line"><span class="keyword">if</span> encode3(encode2(encode1(flag))) == final:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;correct&#x27;</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;wrong&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">import base64
+
+def encode1(ans):
+    s &#x3D; &#39;&#39;
+    for i in ans:
+        x &#x3D; ord(i) ^ 36
+        x &#x3D; x + 25
+        s +&#x3D; chr(x)
+    
+    return s
+
+
+def encode2(ans):
+    s &#x3D; &#39;&#39;
+    for i in ans:
+        x &#x3D; ord(i) + 36
+        x &#x3D; x ^ 36
+        s +&#x3D; chr(x)
+    
+    return s
+
+
+def encode3(ans):
+    return base64.b32encode(ans)
+
+flag &#x3D; &#39; &#39;
+print &#39;Please Input your flag:&#39;
+flag &#x3D; raw_input()
+final &#x3D; &#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E&#x3D;&#x3D;&#x3D;&#39;
+if encode3(encode2(encode1(flag))) &#x3D;&#x3D; final:
+    print &#39;correct&#39;
+else:
+    print &#39;wrong&#39;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>由题目不难看出，这个文件给出了<strong>final</strong>，需要通过<strong>final</strong>逆推出本题的<strong>flag</strong></p>
 <ol start="2">
 <li>修改代码顺序，加密过程<strong>上下顺序颠倒，运算逆置，加密解密顺序逆置</strong>，得到代码如下：</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode1</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = <span class="built_in">ord</span>(i) - <span class="number">25</span></span><br><span class="line">        x = x ^ <span class="number">36</span>  <span class="comment"># ^为异或运算，异或运算的逆运算还是异或运算</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode2</span>(<span class="params">ans</span>):</span></span><br><span class="line">    s = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> ans:</span><br><span class="line">        x = i ^ <span class="number">36</span> <span class="comment">#ord()这个函数接受的类型是一个长度为1的字符串，而在python3当中传入的i已经是一个整型数了，直接用i^36就可以完成操作</span></span><br><span class="line">        x = x - <span class="number">36</span></span><br><span class="line">        s += <span class="built_in">chr</span>(x)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode3</span>(<span class="params">ans</span>):</span></span><br><span class="line">    <span class="keyword">return</span> base64.b32decode (ans)  <span class="comment">#用 Base32 编码字节类对象（bytes-like object）ans，并返回编码过的字节（bytes），encode为加密，decode为解密</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27; &#x27;</span></span><br><span class="line">final = <span class="string">&#x27;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E===&#x27;</span></span><br><span class="line">flag = encode1(encode2(encode3(final)))</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">import base64
+
+def encode1(ans):
+    s &#x3D; &#39;&#39;
+    for i in ans:
+        x &#x3D; ord(i) - 25
+        x &#x3D; x ^ 36  # ^为异或运算，异或运算的逆运算还是异或运算
+        s +&#x3D; chr(x)
+    
+    return s
+
+
+def encode2(ans):
+    s &#x3D; &#39;&#39;
+    for i in ans:
+        x &#x3D; i ^ 36 #ord()这个函数接受的类型是一个长度为1的字符串，而在python3当中传入的i已经是一个整型数了，直接用i^36就可以完成操作
+        x &#x3D; x - 36
+        s +&#x3D; chr(x)
+    
+    return s
+
+
+def encode3(ans):
+    return base64.b32decode (ans)  #用 Base32 编码字节类对象（bytes-like object）ans，并返回编码过的字节（bytes），encode为加密，decode为解密
+
+flag &#x3D; &#39; &#39;
+final &#x3D; &#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E&#x3D;&#x3D;&#x3D;&#39;
+flag &#x3D; encode1(encode2(encode3(final)))
+print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>得出结果：<strong>cyberpeace{interestinghhhhh}</strong></p>
 
