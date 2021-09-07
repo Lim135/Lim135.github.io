@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="攻防世界-新手-Crypto-8~9题, Lim_XuK">
+    <meta name="keywords" content="攻防世界-新手-Crypto-10, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>攻防世界-新手-Crypto-8~9题 | Lim_XuK</title>
+    <title>攻防世界-新手-Crypto-10 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-8~9题</h1>
+                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-10</h1>
                 </div>
             </div>
         </div>
@@ -353,7 +353,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-06
+                    2021-09-07
                 </div>
                 
 
@@ -377,161 +377,23 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="easy-RSA"><a href="#easy-RSA" class="headerlink" title="easy_RSA"></a>easy_RSA</h2><blockquote>
-<p>题目：<br>在一次RSA密钥对生成中，假设p=473398607161，q=4511491，e=17<br>求解出d</p>
+                <h2 id="10-转轮机加密"><a href="#10-转轮机加密" class="headerlink" title="10.转轮机加密"></a>10.转轮机加密</h2><blockquote>
+<p>题目：<br>1:  &lt; ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;<br>2:  &lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt;<br>3:  &lt; BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;<br>4:  &lt; RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;<br>5:  &lt; IHFRLABEUOTSGJVDKCPMNZQWXY &lt;<br>6:  &lt; AMKGHIWPNYCJBFZDRUSLOQXVET &lt;<br>7:  &lt; GWTHSPYBXIZULVKMRAFDCEONJQ &lt;<br>8:  &lt; NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;<br>9:  &lt; XPLTDSRFHENYVUBMCQWAOIKZGJ &lt;<br>10: &lt; UDNAJFBOWTGVRSCZQKELMXYIHP &lt;<br>11：&lt; MNBVCXZQWERTPOIUYALSKDJFHG &lt;<br>12：&lt; LVNCMXZPQOWEIURYTASBKJDFHG &lt;<br>13：&lt; JZQAWSXCDERFVBGTYHNUMKILOP &lt;<br>密钥为：2,3,7,5,13,12,9,1,8,10,4,11,6<br>密文为：NFQKSEVOQOFNP</p>
 </blockquote>
 <blockquote>
-<p>题目描述：没用，就硬做</p>
+<p>题目描述：你俩继续往前走，来到了前面的下一个关卡，这个铺面墙上写了好多奇奇怪怪的 英文字母，排列的的整整齐齐，店面前面还有一个大大的类似于土耳其<strong>旋转</strong>烤肉的架子，上面一圈圈的 也刻着很多英文字母，你是一个小历史迷，对于<strong>二战</strong>时候的历史刚好特别熟悉，一拍大腿：“嗨呀！我知道 是什么东西了！”。提示：<strong>托马斯·杰斐逊</strong>。 flag，是字符串，小写。</p>
 </blockquote>
-<h3 id="RSA介绍"><a href="#RSA介绍" class="headerlink" title="RSA介绍"></a>RSA介绍</h3><blockquote>
-<p>前置知识储备：质数、互质、模反元素、欧拉函数、欧拉定理、费马小定理（欧拉特殊情况），具体后续在进行介绍</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>说明</th>
-<th>描述</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>找出质数</td>
-<td>P、Q</td>
-<td>-</td>
-</tr>
-<tr>
-<td>2</td>
-<td>计算公共模数</td>
-<td>N=P * Q</td>
-<td>-</td>
-</tr>
-<tr>
-<td>3</td>
-<td>欧拉函数</td>
-<td>φ(N) = (P-1)(Q-1)</td>
-<td>-</td>
-</tr>
-<tr>
-<td>4</td>
-<td>计算公钥E</td>
-<td>1 &lt; E &lt; φ(N)</td>
-<td>E的取值必须是整数<br>E 和 φ(N) 必须是互质数</td>
-</tr>
-<tr>
-<td>5</td>
-<td>计算私钥D</td>
-<td>E * D % φ(N) = 1</td>
-<td>-</td>
-</tr>
-<tr>
-<td>6</td>
-<td>加密</td>
-<td>C = M^E^ mod N</td>
-<td>C：密文 M：明文</td>
-</tr>
-<tr>
-<td>7</td>
-<td>解密</td>
-<td>M = C^D^ mod N</td>
-<td>C：密文 M：明文</td>
-</tr>
-</tbody></table>
-<p>公钥＝(E , N)<br>私钥＝(D, N)<br>对外，我们只暴露公钥。</p>
-<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><p>由于本题数值太大，不方便使用上述方法手算，所以考虑使用python代码</p>
-<p>编写python：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import gmpy2 
-
-p &#x3D; 473398607161 
-q &#x3D; 4511491 
-e &#x3D; 17 
-phi &#x3D; (p - 1) * (q - 1) 
-d &#x3D; gmpy2.invert(e, phi)  ##求逆元，d^e &#x3D; 1 mod phi
-
-print(d)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>得出结果：<strong>125631357777427553</strong></p>
-<h2 id="easychallenge"><a href="#easychallenge" class="headerlink" title="easychallenge"></a>easychallenge</h2><blockquote>
-<p>题目： 一个.pyc文件</p>
-</blockquote>
+<p>由题目和描述不难看出，本题是需要使用<strong>托马斯·杰斐逊</strong>在<strong>二战</strong>发明的<strong>转轮机密码</strong></p>
+<h3 id="转轮机密码解密方法"><a href="#转轮机密码解密方法" class="headerlink" title="转轮机密码解密方法"></a>转轮机密码解密方法</h3><h4 id="Step1：归位。"><a href="#Step1：归位。" class="headerlink" title="Step1：归位。"></a>Step1：归位。</h4><p><strong>密文的每一个字符是每一行的首字符</strong>，则根据密钥的顺位把轮子顺序旋转（循环移位）到对应的密文字符上，如第一个字符（2，N），</p>
+<p>把第2行&lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt; 的N移到第一位，将其余的放在原来所在行的后面</p>
+<p>得到“NACZDTRXMJQOYHGVSFUWIKPBEL”。</p>
+<h4 id="Step2：读取。"><a href="#Step2：读取。" class="headerlink" title="Step2：读取。"></a>Step2：读取。</h4><p>每个轮子的取一位，对应明文（<strong>即按列读</strong>），哪一列有意义就是明文。</p>
+<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><h4 id="方法一：硬做"><a href="#方法一：硬做" class="headerlink" title="方法一：硬做"></a>方法一：硬做</h4><p>因为笔者见过多次该古典密码，之前的解法都是硬做，所以这里的法一写出硬做的方法<br>由上方解题步骤，<strong>不难</strong>得出明文：</p>
 <blockquote>
-<p>题目描述： 没有意义的一串文字</p>
+<p><strong>&lt; NACZDTRXMJQOYHGVSFUWIKPBEL &lt;<br>&lt; FHTEQGYXPLOCKBDMAIZVRNSJUW &lt;<br>&lt; QGWTHSPYBXIZULVKMRAFDCEONJ &lt;<br>&lt; KCPMNZQWXYIHFRLABEUOTSGJVD &lt;<br>&lt; SXCDERFVBGTYHNUMKILOPJZQAW &lt;<br>&lt; EIURYTASBKJDFHGLVNCMXZPQOW &lt;<br>&lt; VUBMCQWAOIKZGJXPLTDSRFHENY &lt;<br>&lt; OSFEZWAXJGDLUBVIQHKYPNTCRM &lt;<br>&lt; QNOZUTWDCVRJLXKISEFAPMYGHB &lt;<br>&lt; OWTGVRSCZQKELMXYIHPUDNAJFB &lt;<br>&lt; FCUKTEBSXQYIZMJWAORPLNDVHG &lt;<br>&lt; NBVCXZQWERTPOIUYALSKDJFHGM &lt;<br>&lt; PNYCJBFZDRUSLOQXVETAMKGHIW &lt;</strong></p>
 </blockquote>
-<p>因为没有任何提示，所以走一步看一步</p>
-<h3 id="解题步骤-1"><a href="#解题步骤-1" class="headerlink" title="解题步骤"></a>解题步骤</h3><ol>
-<li> .pyc为.py的编译过后的文件，所以我们需要对.pyc文件进行反编译，得到原文</li>
-</ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import base64
-
-def encode1(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; ord(i) ^ 36
-        x &#x3D; x + 25
-        s +&#x3D; chr(x)
-    
-    return s
-
-
-def encode2(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; ord(i) + 36
-        x &#x3D; x ^ 36
-        s +&#x3D; chr(x)
-    
-    return s
-
-
-def encode3(ans):
-    return base64.b32encode(ans)
-
-flag &#x3D; &#39; &#39;
-print &#39;Please Input your flag:&#39;
-flag &#x3D; raw_input()
-final &#x3D; &#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E&#x3D;&#x3D;&#x3D;&#39;
-if encode3(encode2(encode1(flag))) &#x3D;&#x3D; final:
-    print &#39;correct&#39;
-else:
-    print &#39;wrong&#39;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>由题目不难看出，这个文件给出了<strong>final</strong>，需要通过<strong>final</strong>逆推出本题的<strong>flag</strong></p>
-<ol start="2">
-<li>修改代码顺序，加密过程<strong>上下顺序颠倒，运算逆置，加密解密顺序逆置</strong>，得到代码如下：</li>
-</ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import base64
-
-def encode1(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; ord(i) - 25
-        x &#x3D; x ^ 36  # ^为异或运算，异或运算的逆运算还是异或运算
-        s +&#x3D; chr(x)
-    
-    return s
-
-
-def encode2(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; i ^ 36 #ord()这个函数接受的类型是一个长度为1的字符串，而在python3当中传入的i已经是一个整型数了，直接用i^36就可以完成操作
-        x &#x3D; x - 36
-        s +&#x3D; chr(x)
-    
-    return s
-
-
-def encode3(ans):
-    return base64.b32decode (ans)  #用 Base32 编码字节类对象（bytes-like object）ans，并返回编码过的字节（bytes），encode为加密，decode为解密
-
-flag &#x3D; &#39; &#39;
-final &#x3D; &#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E&#x3D;&#x3D;&#x3D;&#39;
-flag &#x3D; encode1(encode2(encode3(final)))
-print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>得出结果：<strong>cyberpeace{interestinghhhhh}</strong></p>
+<p>之后我们按照列去寻找，<strong>不难</strong>发现题目中的<strong>倒数第九列</strong>的信息是有意义的：<strong>fireinthehole</strong>，所以这就是本题的答案</p>
+<h4 id="方法二：写代码"><a href="#方法二：写代码" class="headerlink" title="方法二：写代码"></a>方法二：写代码</h4><p><strong><del>下次一定</del></strong></p>
 
                 
             </div>
@@ -558,7 +420,7 @@ print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/">http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/</a>
+                    <a href="http://Lim135.github.io/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/">http://Lim135.github.io/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -647,9 +509,10 @@ print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/">
                     <div class="card-image">
@@ -667,9 +530,9 @@ print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -682,6 +545,7 @@ print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -704,19 +568,19 @@ print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/">
+                <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-6~7题">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-8~9题">
                         
-                        <span class="card-title">攻防世界-新手-Crypto-6~7题</span>
+                        <span class="card-title">攻防世界-新手-Crypto-8~9题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            开始出现多重加密，不过也都是基于对密码形式的熟悉而得出的解密方法
+                            虽然新手，但是新
                         
                     </div>
                     <div class="publish-info">
