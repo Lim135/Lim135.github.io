@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="攻防世界-新手-Crypto-10, Lim_XuK">
+    <meta name="keywords" content="攻防世界-新手-Crypto-11, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>攻防世界-新手-Crypto-10 | Lim_XuK</title>
+    <title>攻防世界-新手-Crypto-11 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-10</h1>
+                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-11</h1>
                 </div>
             </div>
         </div>
@@ -377,23 +377,131 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="10-转轮机加密"><a href="#10-转轮机加密" class="headerlink" title="10.转轮机加密"></a>10.转轮机加密</h2><blockquote>
-<p>题目：<br>1:  &lt; ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;<br>2:  &lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt;<br>3:  &lt; BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;<br>4:  &lt; RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;<br>5:  &lt; IHFRLABEUOTSGJVDKCPMNZQWXY &lt;<br>6:  &lt; AMKGHIWPNYCJBFZDRUSLOQXVET &lt;<br>7:  &lt; GWTHSPYBXIZULVKMRAFDCEONJQ &lt;<br>8:  &lt; NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;<br>9:  &lt; XPLTDSRFHENYVUBMCQWAOIKZGJ &lt;<br>10: &lt; UDNAJFBOWTGVRSCZQKELMXYIHP &lt;<br>11：&lt; MNBVCXZQWERTPOIUYALSKDJFHG &lt;<br>12：&lt; LVNCMXZPQOWEIURYTASBKJDFHG &lt;<br>13：&lt; JZQAWSXCDERFVBGTYHNUMKILOP &lt;<br>密钥为：2,3,7,5,13,12,9,1,8,10,4,11,6<br>密文为：NFQKSEVOQOFNP</p>
+                <h2 id="Normal-RSA"><a href="#Normal-RSA" class="headerlink" title="Normal_RSA"></a>Normal_RSA</h2><blockquote>
+<p>题目：<img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210907095530.png">两个文件</p>
 </blockquote>
 <blockquote>
-<p>题目描述：你俩继续往前走，来到了前面的下一个关卡，这个铺面墙上写了好多奇奇怪怪的 英文字母，排列的的整整齐齐，店面前面还有一个大大的类似于土耳其<strong>旋转</strong>烤肉的架子，上面一圈圈的 也刻着很多英文字母，你是一个小历史迷，对于<strong>二战</strong>时候的历史刚好特别熟悉，一拍大腿：“嗨呀！我知道 是什么东西了！”。提示：<strong>托马斯·杰斐逊</strong>。 flag，是字符串，小写。</p>
+<p>题目描述：没用</p>
 </blockquote>
-<p>由题目和描述不难看出，本题是需要使用<strong>托马斯·杰斐逊</strong>在<strong>二战</strong>发明的<strong>转轮机密码</strong></p>
-<h3 id="转轮机密码解密方法"><a href="#转轮机密码解密方法" class="headerlink" title="转轮机密码解密方法"></a>转轮机密码解密方法</h3><h4 id="Step1：归位。"><a href="#Step1：归位。" class="headerlink" title="Step1：归位。"></a>Step1：归位。</h4><p><strong>密文的每一个字符是每一行的首字符</strong>，则根据密钥的顺位把轮子顺序旋转（循环移位）到对应的密文字符上，如第一个字符（2，N），</p>
-<p>把第2行&lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt; 的N移到第一位，将其余的放在原来所在行的后面</p>
-<p>得到“NACZDTRXMJQOYHGVSFUWIKPBEL”。</p>
-<h4 id="Step2：读取。"><a href="#Step2：读取。" class="headerlink" title="Step2：读取。"></a>Step2：读取。</h4><p>每个轮子的取一位，对应明文（<strong>即按列读</strong>），哪一列有意义就是明文。</p>
-<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><h4 id="方法一：硬做"><a href="#方法一：硬做" class="headerlink" title="方法一：硬做"></a>方法一：硬做</h4><p>因为笔者见过多次该古典密码，之前的解法都是硬做，所以这里的法一写出硬做的方法<br>由上方解题步骤，<strong>不难</strong>得出明文：</p>
+<p>根据强大的搜索引擎，我们可以知道：.enc文件为RSA加密文件，需要密码；.pem文件是RSA的公钥文件。</p>
+<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
+<li><p>因为.enc文件目前还无法打开，所以我们先打开.pem文件，记事本或者VScode等都可以打开，打开后显示：</p>
 <blockquote>
-<p><strong>&lt; NACZDTRXMJQOYHGVSFUWIKPBEL &lt;<br>&lt; FHTEQGYXPLOCKBDMAIZVRNSJUW &lt;<br>&lt; QGWTHSPYBXIZULVKMRAFDCEONJ &lt;<br>&lt; KCPMNZQWXYIHFRLABEUOTSGJVD &lt;<br>&lt; SXCDERFVBGTYHNUMKILOPJZQAW &lt;<br>&lt; EIURYTASBKJDFHGLVNCMXZPQOW &lt;<br>&lt; VUBMCQWAOIKZGJXPLTDSRFHENY &lt;<br>&lt; OSFEZWAXJGDLUBVIQHKYPNTCRM &lt;<br>&lt; QNOZUTWDCVRJLXKISEFAPMYGHB &lt;<br>&lt; OWTGVRSCZQKELMXYIHPUDNAJFB &lt;<br>&lt; FCUKTEBSXQYIZMJWAORPLNDVHG &lt;<br>&lt; NBVCXZQWERTPOIUYALSKDJFHGM &lt;<br>&lt; PNYCJBFZDRUSLOQXVETAMKGHIW &lt;</strong></p>
+<p>—–BEGIN PUBLIC KEY—–<br>MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAMJjauXD2OQ/+5erCQKPGqxsC/bNPXDr<br>yigb/+l/vjDdAgMBAAE=<br>—–END PUBLIC KEY—–</p>
 </blockquote>
-<p>之后我们按照列去寻找，<strong>不难</strong>发现题目中的<strong>倒数第九列</strong>的信息是有意义的：<strong>fireinthehole</strong>，所以这就是本题的答案</p>
-<h4 id="方法二：写代码"><a href="#方法二：写代码" class="headerlink" title="方法二：写代码"></a>方法二：写代码</h4><p><strong><del>下次一定</del></strong></p>
+</li>
+<li><p>使用在线RSA解密网站解密：</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210907100144.png"></p>
+<p>可知：</p>
+<pre class="line-numbers language-none"><code class="language-none">n &#x3D; 87924348264132406875276140514499937145050893665602592992418171647042491658461
+e &#x3D; 65537<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>使用在线质因数分解网站得出<strong>p与q</strong>：</p>
+<pre class="line-numbers language-none"><code class="language-none">p &#x3D; 319576316814478949870590164193048041239
+q &#x3D; 275127860351348928173285174381581152299<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>已知<strong>q、p、n、e</strong>，即可根据之前的代码算出私钥<strong>d</strong>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import gmpy2 
+
+p &#x3D; 319576316814478949870590164193048041239 
+q &#x3D; 275127860351348928173285174381581152299 
+e &#x3D; 65537 
+phi &#x3D; (p - 1) * (q - 1) 
+d &#x3D; gmpy2.invert(e, phi)  ##求逆元，d^e &#x3D; 1 mod phi
+
+print(d)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>d = 10866948760844599168252082612378495977388271279679231539839049698621994994673</p>
+</blockquote>
+</li>
+<li><p>根据后续工具，不难得出结果：<strong>PCTF{256b_i5_m3dium}</strong></p>
+</li>
+</ol>
+<h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><h3 id="1-前置预备知识"><a href="#1-前置预备知识" class="headerlink" title="1. 前置预备知识"></a>1. 前置预备知识</h3><h4 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h4><blockquote>
+<p>质数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。 </p>
+</blockquote>
+<h4 id="互质"><a href="#互质" class="headerlink" title="互质"></a>互质</h4><blockquote>
+<p>互质是公约数只有1的两个整数，叫做互质整数。</p>
+</blockquote>
+<h4 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h4><blockquote>
+<p>如果两个正整数a和n互质，那么一定可以找到整数b，使得 ab-1 被n整除，或者说ab被n除的余数是1。这时，b就叫做a的“模反元素”</p>
+</blockquote>
+<h4 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h4><blockquote>
+<p>φ（n）：在[0,n)中与n互质的正整数的个数<br>eg：n=23，在[0,23)中，与21互质的正整数有：1、 2、 4 、5 、8、 10、 11 、13、 16 、17、 19、 20这12个数，因此φ（23）=12<br>φ（n）=（p-1）（q-1）<br>eg：23=7*3，φ（23）=（7-1）（3-1）=12</p>
+</blockquote>
+<h4 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h4><blockquote>
+<p>如果两个正整数a，n互质，这n的欧拉函数φ（n）：<strong>a^φ（n）^ ≡ 1(mod n)</strong></p>
+</blockquote>
+<h4 id="费马小定理（欧拉特殊情况）"><a href="#费马小定理（欧拉特殊情况）" class="headerlink" title="费马小定理（欧拉特殊情况）"></a>费马小定理（欧拉特殊情况）</h4><blockquote>
+<p>假设正整数a、p互质，因为质数p的φ（p）等于p-1，所以欧拉定理可以写成：<strong>a^p-1^ ≡ 1(mod n)</strong></p>
+</blockquote>
+<h3 id="2-RSA操作"><a href="#2-RSA操作" class="headerlink" title="2.RSA操作"></a>2.RSA操作</h3><p>1、选择两个大的互质参数p，q，计算出模数n=p*q</p>
+<p>2、计算欧拉函数φ（n）=（p-1)(q-1)。选择一个e（1&lt;e&lt;φ（n)),要求e和φ（n）互质，即gcd(e,φ（n）)=1</p>
+<p>3、计算e的模反数d。计算方法为e*d≡1（mod φ（n））【模反元素：如果存在两个正整数e和φ（n）互质，那么一定存在一个整数d，使得ed-1被φ（n）整除，即ed=kφ（n）+1.这是，d就是e的模反元素。欧拉公式可以证明模反元素必然存在。两个整数a，b，它们除以整数φ（n）所得余数相等，即a≡1(modφ（n）)，b≡1（modφ（n）），根据相乘的性质ab≡1（modφ（n）），所以a和b互为逆元</p>
+<p>4、对明文m加密。密文c=pow（m，e，n），等同于c=m^e^（mod n）</p>
+<p>5、对密文c解密。明文m=pow（c，d，n），等同于m=c^d^（mod n）</p>
+<h3 id="3-解题流程（参考之前的文章）"><a href="#3-解题流程（参考之前的文章）" class="headerlink" title="3.解题流程（参考之前的文章）"></a>3.解题流程（参考之前的文章）</h3><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+<th>描述</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>找出质数</td>
+<td>P、Q</td>
+<td>-</td>
+</tr>
+<tr>
+<td>2</td>
+<td>计算公共模数</td>
+<td>N=P * Q</td>
+<td>-</td>
+</tr>
+<tr>
+<td>3</td>
+<td>欧拉函数</td>
+<td>φ(N) = (P-1)(Q-1)</td>
+<td>-</td>
+</tr>
+<tr>
+<td>4</td>
+<td>计算公钥E（已知或自求）</td>
+<td>1 &lt; E &lt; φ(N)</td>
+<td>E的取值必须是整数<br>E 和 φ(N) 必须是互质数</td>
+</tr>
+<tr>
+<td>5</td>
+<td>计算私钥D（参考上面的py）</td>
+<td>E * D % φ(N) = 1</td>
+<td>-</td>
+</tr>
+<tr>
+<td>6</td>
+<td>加密</td>
+<td>C = M^E^ mod N</td>
+<td>C：密文 M：明文</td>
+</tr>
+<tr>
+<td>7</td>
+<td>解密</td>
+<td>M = C^D^ mod N</td>
+<td>C：密文 M：明文</td>
+</tr>
+</tbody></table>
+<h3 id="4-在线工具介绍"><a href="#4-在线工具介绍" class="headerlink" title="4.在线工具介绍"></a>4.在线工具介绍</h3><p>RSA公钥解密网站：<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/pub_asys.html">http://ctf.ssleye.com/pub_asys.html</a><br>用于已知大数n的质因数拆分网站：<a target="_blank" rel="noopener" href="http://www.factordb.com/">http://www.factordb.com/</a></p>
+<h3 id="5-常见题型"><a href="#5-常见题型" class="headerlink" title="5.常见题型"></a>5.常见题型</h3><h4 id="公钥加密文"><a href="#公钥加密文" class="headerlink" title="公钥加密文"></a>公钥加密文</h4><p>这是CTF中最常见最基础的题型，出题人会给你一个公钥文件（通常是以.pem或.pub结尾的文件）和密文（通常叫做flag.enc之类的），你需要分析公钥，提取出（N，e），通过各种攻击手段恢复私钥，然后去解密密文得到flag。</p>
+<h4 id="文本文档"><a href="#文本文档" class="headerlink" title="文本文档"></a>文本文档</h4><p>对于第一种题型，耿直点的出题人直接给你一个txt文本文档，里面直接写出了（N，e，c）所对应的十进制数值，然后你直接拿去用就行了。当然也不都是给出（N，e，c）的值，有时还会给出其他一些参数，这时就需要思考，这题具体考察的什么攻击方法</p>
+<h3 id="pcap文件"><a href="#pcap文件" class="headerlink" title="pcap文件"></a><strong>pcap文件</strong></h3><p>有时出题人会给你一个流量包，你需要用wireshark等工具分析，然后根据流量包的通信信息，分析题目考察的攻击方法，你可以提取出所有你解题需要用到的参数，然后进行解密，本题似乎就是这种</p>
+<h3 id="本地脚本分析"><a href="#本地脚本分析" class="headerlink" title="本地脚本分析"></a><strong>本地脚本分析</strong></h3><p>题目会给你一个脚本和一段密文，一般为python编写，你需要逆向文件流程，分析脚本的加密过程，写出对应的解密脚本进行解密</p>
+<h3 id="远程脚本利用"><a href="#远程脚本利用" class="headerlink" title="远程脚本利用"></a><strong>远程脚本利用</strong></h3><p>这种题型一般难度较大。题目会给你一个运行在远程服务器上的python脚本和服务器地址，你需要分析脚本存在的漏洞，确定攻击算法，然后编写脚本与服务器交互，得到flag</p>
+<blockquote>
+<p>我是分隔符</p>
+</blockquote>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>本文参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84013522">https://zhuanlan.zhihu.com/p/84013522</a><br>                    <a target="_blank" rel="noopener" href="https://blog.csdn.net/huanghelouzi/article/details/82943615">https://blog.csdn.net/huanghelouzi/article/details/82943615</a></p>
+<p>道阻且长，继续加油！</p>
 
                 
             </div>
@@ -420,7 +528,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/">http://Lim135.github.io/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/</a>
+                    <a href="http://Lim135.github.io/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-11/">http://Lim135.github.io/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-11/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -509,9 +617,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-11/">
                     <div class="card-image">
@@ -529,9 +638,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -544,6 +653,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -566,24 +676,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/">
+                <a href="/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-8~9题">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-10">
                         
-                        <span class="card-title">攻防世界-新手-Crypto-8~9题</span>
+                        <span class="card-title">攻防世界-新手-Crypto-10</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            虽然新手，但是新
+                            说着难度高，其实硬做还好
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
                             </span>
                         <span class="publish-author">
                             
