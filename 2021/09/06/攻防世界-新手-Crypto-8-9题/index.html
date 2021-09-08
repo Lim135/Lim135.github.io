@@ -377,13 +377,17 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="easy-RSA"><a href="#easy-RSA" class="headerlink" title="easy_RSA"></a>easy_RSA</h2><blockquote>
-<p>题目：<br>在一次RSA密钥对生成中，假设p=473398607161，q=4511491，e=17<br>求解出d</p>
+                <h2 id="easy-RSA"><a class="header-anchor" href="#easy-RSA">¶</a>easy_RSA</h2>
+<blockquote>
+<p>题目：<br>
+在一次RSA密钥对生成中，假设p=473398607161，q=4511491，e=17<br>
+求解出d</p>
 </blockquote>
 <blockquote>
 <p>题目描述：没用，就硬做</p>
 </blockquote>
-<h3 id="RSA介绍"><a href="#RSA介绍" class="headerlink" title="RSA介绍"></a>RSA介绍</h3><blockquote>
+<h3 id="RSA介绍"><a class="header-anchor" href="#RSA介绍">¶</a>RSA介绍</h3>
+<blockquote>
 <p>前置知识储备：质数、互质、模反元素、欧拉函数、欧拉定理、费马小定理（欧拉特殊情况），具体后续在进行介绍</p>
 </blockquote>
 <table>
@@ -395,7 +399,8 @@
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1</td>
 <td>找出质数</td>
 <td>P、Q</td>
@@ -428,109 +433,112 @@
 <tr>
 <td>6</td>
 <td>加密</td>
-<td>C = M^E^ mod N</td>
+<td>C = M<sup>E</sup> mod N</td>
 <td>C：密文 M：明文</td>
 </tr>
 <tr>
 <td>7</td>
 <td>解密</td>
-<td>M = C^D^ mod N</td>
+<td>M = C<sup>D</sup> mod N</td>
 <td>C：密文 M：明文</td>
 </tr>
-</tbody></table>
-<p>公钥＝(E , N)<br>私钥＝(D, N)<br>对外，我们只暴露公钥。</p>
-<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><p>由于本题数值太大，不方便使用上述方法手算，所以考虑使用python代码</p>
+</tbody>
+</table>
+<p>公钥＝(E , N)<br>
+私钥＝(D, N)<br>
+对外，我们只暴露公钥。</p>
+<h3 id="解题步骤"><a class="header-anchor" href="#解题步骤">¶</a>解题步骤</h3>
+<p>由于本题数值太大，不方便使用上述方法手算，所以考虑使用python代码</p>
 <p>编写python：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import gmpy2 
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> gmpy2 
 
-p &#x3D; 473398607161 
-q &#x3D; 4511491 
-e &#x3D; 17 
-phi &#x3D; (p - 1) * (q - 1) 
-d &#x3D; gmpy2.invert(e, phi)  ##求逆元，d^e &#x3D; 1 mod phi
+p <span class="token operator">=</span> <span class="token number">473398607161</span> 
+q <span class="token operator">=</span> <span class="token number">4511491</span> 
+e <span class="token operator">=</span> <span class="token number">17</span> 
+phi <span class="token operator">=</span> <span class="token punctuation">(</span>p <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>q <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> 
+d <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>invert<span class="token punctuation">(</span>e<span class="token punctuation">,</span> phi<span class="token punctuation">)</span>  <span class="token comment">##求逆元，d^e = 1 mod phi</span>
 
-print(d)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token keyword">print</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>得出结果：<strong>125631357777427553</strong></p>
-<h2 id="easychallenge"><a href="#easychallenge" class="headerlink" title="easychallenge"></a>easychallenge</h2><blockquote>
+<h2 id="easychallenge"><a class="header-anchor" href="#easychallenge">¶</a>easychallenge</h2>
+<blockquote>
 <p>题目： 一个.pyc文件</p>
 </blockquote>
 <blockquote>
 <p>题目描述： 没有意义的一串文字</p>
 </blockquote>
 <p>因为没有任何提示，所以走一步看一步</p>
-<h3 id="解题步骤-1"><a href="#解题步骤-1" class="headerlink" title="解题步骤"></a>解题步骤</h3><ol>
-<li> .pyc为.py的编译过后的文件，所以我们需要对.pyc文件进行反编译，得到原文</li>
+<h3 id="解题步骤-v2"><a class="header-anchor" href="#解题步骤-v2">¶</a>解题步骤</h3>
+<ol>
+<li>.pyc为.py的编译过后的文件，所以我们需要对.pyc文件进行反编译，得到原文</li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import base64
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> base64
 
-def encode1(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; ord(i) ^ 36
-        x &#x3D; x + 25
-        s +&#x3D; chr(x)
+<span class="token keyword">def</span> <span class="token function">encode1</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
+        x <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token number">36</span>
+        x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">25</span>
+        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
     
-    return s
+    <span class="token keyword">return</span> s
 
 
-def encode2(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; ord(i) + 36
-        x &#x3D; x ^ 36
-        s +&#x3D; chr(x)
+<span class="token keyword">def</span> <span class="token function">encode2</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
+        x <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">36</span>
+        x <span class="token operator">=</span> x <span class="token operator">^</span> <span class="token number">36</span>
+        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
     
-    return s
+    <span class="token keyword">return</span> s
 
 
-def encode3(ans):
-    return base64.b32encode(ans)
+<span class="token keyword">def</span> <span class="token function">encode3</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> base64<span class="token punctuation">.</span>b32encode<span class="token punctuation">(</span>ans<span class="token punctuation">)</span>
 
-flag &#x3D; &#39; &#39;
-print &#39;Please Input your flag:&#39;
-flag &#x3D; raw_input()
-final &#x3D; &#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E&#x3D;&#x3D;&#x3D;&#39;
-if encode3(encode2(encode1(flag))) &#x3D;&#x3D; final:
-    print &#39;correct&#39;
-else:
-    print &#39;wrong&#39;
+flag <span class="token operator">=</span> <span class="token string">' '</span>
+<span class="token keyword">print</span> <span class="token string">'Please Input your flag:'</span>
+flag <span class="token operator">=</span> <span class="token builtin">raw_input</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+final <span class="token operator">=</span> <span class="token string">'UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E==='</span>
+<span class="token keyword">if</span> encode3<span class="token punctuation">(</span>encode2<span class="token punctuation">(</span>encode1<span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> final<span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">'correct'</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">'wrong'</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>由题目不难看出，这个文件给出了<strong>final</strong>，需要通过<strong>final</strong>逆推出本题的<strong>flag</strong></p>
 <ol start="2">
 <li>修改代码顺序，加密过程<strong>上下顺序颠倒，运算逆置，加密解密顺序逆置</strong>，得到代码如下：</li>
 </ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import base64
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> base64
 
-def encode1(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; ord(i) - 25
-        x &#x3D; x ^ 36  # ^为异或运算，异或运算的逆运算还是异或运算
-        s +&#x3D; chr(x)
+<span class="token keyword">def</span> <span class="token function">encode1</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
+        x <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">25</span>
+        x <span class="token operator">=</span> x <span class="token operator">^</span> <span class="token number">36</span>  <span class="token comment"># ^为异或运算，异或运算的逆运算还是异或运算</span>
+        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
     
-    return s
+    <span class="token keyword">return</span> s
 
 
-def encode2(ans):
-    s &#x3D; &#39;&#39;
-    for i in ans:
-        x &#x3D; i ^ 36 #ord()这个函数接受的类型是一个长度为1的字符串，而在python3当中传入的i已经是一个整型数了，直接用i^36就可以完成操作
-        x &#x3D; x - 36
-        s +&#x3D; chr(x)
+<span class="token keyword">def</span> <span class="token function">encode2</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
+        x <span class="token operator">=</span> i <span class="token operator">^</span> <span class="token number">36</span> <span class="token comment">#ord()这个函数接受的类型是一个长度为1的字符串，而在python3当中传入的i已经是一个整型数了，直接用i^36就可以完成操作</span>
+        x <span class="token operator">=</span> x <span class="token operator">-</span> <span class="token number">36</span>
+        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
     
-    return s
+    <span class="token keyword">return</span> s
 
 
-def encode3(ans):
-    return base64.b32decode (ans)  #用 Base32 编码字节类对象（bytes-like object）ans，并返回编码过的字节（bytes），encode为加密，decode为解密
+<span class="token keyword">def</span> <span class="token function">encode3</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> base64<span class="token punctuation">.</span>b32decode <span class="token punctuation">(</span>ans<span class="token punctuation">)</span>  <span class="token comment">#用 Base32 编码字节类对象（bytes-like object）ans，并返回编码过的字节（bytes），encode为加密，decode为解密</span>
 
-flag &#x3D; &#39; &#39;
-final &#x3D; &#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E&#x3D;&#x3D;&#x3D;&#39;
-flag &#x3D; encode1(encode2(encode3(final)))
-print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+flag <span class="token operator">=</span> <span class="token string">' '</span>
+final <span class="token operator">=</span> <span class="token string">'UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E==='</span>
+flag <span class="token operator">=</span> encode1<span class="token punctuation">(</span>encode2<span class="token punctuation">(</span>encode3<span class="token punctuation">(</span>final<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>得出结果：<strong>cyberpeace{interestinghhhhh}</strong></p>
 
                 

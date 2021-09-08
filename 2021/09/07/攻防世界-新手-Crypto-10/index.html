@@ -377,23 +377,58 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="10-转轮机加密"><a href="#10-转轮机加密" class="headerlink" title="10.转轮机加密"></a>10.转轮机加密</h2><blockquote>
-<p>题目：<br>1:  &lt; ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;<br>2:  &lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt;<br>3:  &lt; BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;<br>4:  &lt; RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;<br>5:  &lt; IHFRLABEUOTSGJVDKCPMNZQWXY &lt;<br>6:  &lt; AMKGHIWPNYCJBFZDRUSLOQXVET &lt;<br>7:  &lt; GWTHSPYBXIZULVKMRAFDCEONJQ &lt;<br>8:  &lt; NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;<br>9:  &lt; XPLTDSRFHENYVUBMCQWAOIKZGJ &lt;<br>10: &lt; UDNAJFBOWTGVRSCZQKELMXYIHP &lt;<br>11：&lt; MNBVCXZQWERTPOIUYALSKDJFHG &lt;<br>12：&lt; LVNCMXZPQOWEIURYTASBKJDFHG &lt;<br>13：&lt; JZQAWSXCDERFVBGTYHNUMKILOP &lt;<br>密钥为：2,3,7,5,13,12,9,1,8,10,4,11,6<br>密文为：NFQKSEVOQOFNP</p>
+                <h2 id="10-转轮机加密"><a class="header-anchor" href="#10-转轮机加密">¶</a>10.转轮机加密</h2>
+<blockquote>
+<p>题目：<br>
+1:  &lt; ZWAXJGDLUBVIQHKYPNTCRMOSFE &lt;<br>
+2:  &lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt;<br>
+3:  &lt; BDMAIZVRNSJUWFHTEQGYXPLOCK &lt;<br>
+4:  &lt; RPLNDVHGFCUKTEBSXQYIZMJWAO &lt;<br>
+5:  &lt; IHFRLABEUOTSGJVDKCPMNZQWXY &lt;<br>
+6:  &lt; AMKGHIWPNYCJBFZDRUSLOQXVET &lt;<br>
+7:  &lt; GWTHSPYBXIZULVKMRAFDCEONJQ &lt;<br>
+8:  &lt; NOZUTWDCVRJLXKISEFAPMYGHBQ &lt;<br>
+9:  &lt; XPLTDSRFHENYVUBMCQWAOIKZGJ &lt;<br>
+10: &lt; UDNAJFBOWTGVRSCZQKELMXYIHP &lt;<br>
+11：&lt; MNBVCXZQWERTPOIUYALSKDJFHG &lt;<br>
+12：&lt; LVNCMXZPQOWEIURYTASBKJDFHG &lt;<br>
+13：&lt; JZQAWSXCDERFVBGTYHNUMKILOP &lt;<br>
+密钥为：2,3,7,5,13,12,9,1,8,10,4,11,6<br>
+密文为：NFQKSEVOQOFNP</p>
 </blockquote>
 <blockquote>
 <p>题目描述：你俩继续往前走，来到了前面的下一个关卡，这个铺面墙上写了好多奇奇怪怪的 英文字母，排列的的整整齐齐，店面前面还有一个大大的类似于土耳其<strong>旋转</strong>烤肉的架子，上面一圈圈的 也刻着很多英文字母，你是一个小历史迷，对于<strong>二战</strong>时候的历史刚好特别熟悉，一拍大腿：“嗨呀！我知道 是什么东西了！”。提示：<strong>托马斯·杰斐逊</strong>。 flag，是字符串，小写。</p>
 </blockquote>
 <p>由题目和描述不难看出，本题是需要使用<strong>托马斯·杰斐逊</strong>在<strong>二战</strong>发明的<strong>转轮机密码</strong></p>
-<h3 id="转轮机密码解密方法"><a href="#转轮机密码解密方法" class="headerlink" title="转轮机密码解密方法"></a>转轮机密码解密方法</h3><h4 id="Step1：归位。"><a href="#Step1：归位。" class="headerlink" title="Step1：归位。"></a>Step1：归位。</h4><p><strong>密文的每一个字符是每一行的首字符</strong>，则根据密钥的顺位把轮子顺序旋转（循环移位）到对应的密文字符上，如第一个字符（2，N），</p>
+<h3 id="转轮机密码解密方法"><a class="header-anchor" href="#转轮机密码解密方法">¶</a>转轮机密码解密方法</h3>
+<h4 id="Step1：归位。"><a class="header-anchor" href="#Step1：归位。">¶</a>Step1：归位。</h4>
+<p><strong>密文的每一个字符是每一行的首字符</strong>，则根据密钥的顺位把轮子顺序旋转（循环移位）到对应的密文字符上，如第一个字符（2，N），</p>
 <p>把第2行&lt; KPBELNACZDTRXMJQOYHGVSFUWI &lt; 的N移到第一位，将其余的放在原来所在行的后面</p>
 <p>得到“NACZDTRXMJQOYHGVSFUWIKPBEL”。</p>
-<h4 id="Step2：读取。"><a href="#Step2：读取。" class="headerlink" title="Step2：读取。"></a>Step2：读取。</h4><p>每个轮子的取一位，对应明文（<strong>即按列读</strong>），哪一列有意义就是明文。</p>
-<h3 id="解题步骤"><a href="#解题步骤" class="headerlink" title="解题步骤"></a>解题步骤</h3><h4 id="方法一：硬做"><a href="#方法一：硬做" class="headerlink" title="方法一：硬做"></a>方法一：硬做</h4><p>因为笔者见过多次该古典密码，之前的解法都是硬做，所以这里的法一写出硬做的方法<br>由上方解题步骤，<strong>不难</strong>得出明文：</p>
+<h4 id="Step2：读取。"><a class="header-anchor" href="#Step2：读取。">¶</a>Step2：读取。</h4>
+<p>每个轮子的取一位，对应明文（<strong>即按列读</strong>），哪一列有意义就是明文。</p>
+<h3 id="解题步骤"><a class="header-anchor" href="#解题步骤">¶</a>解题步骤</h3>
+<h4 id="方法一：硬做"><a class="header-anchor" href="#方法一：硬做">¶</a>方法一：硬做</h4>
+<p>因为笔者见过多次该古典密码，之前的解法都是硬做，所以这里的法一写出硬做的方法<br>
+由上方解题步骤，<strong>不难</strong>得出明文：</p>
 <blockquote>
-<p><strong>&lt; NACZDTRXMJQOYHGVSFUWIKPBEL &lt;<br>&lt; FHTEQGYXPLOCKBDMAIZVRNSJUW &lt;<br>&lt; QGWTHSPYBXIZULVKMRAFDCEONJ &lt;<br>&lt; KCPMNZQWXYIHFRLABEUOTSGJVD &lt;<br>&lt; SXCDERFVBGTYHNUMKILOPJZQAW &lt;<br>&lt; EIURYTASBKJDFHGLVNCMXZPQOW &lt;<br>&lt; VUBMCQWAOIKZGJXPLTDSRFHENY &lt;<br>&lt; OSFEZWAXJGDLUBVIQHKYPNTCRM &lt;<br>&lt; QNOZUTWDCVRJLXKISEFAPMYGHB &lt;<br>&lt; OWTGVRSCZQKELMXYIHPUDNAJFB &lt;<br>&lt; FCUKTEBSXQYIZMJWAORPLNDVHG &lt;<br>&lt; NBVCXZQWERTPOIUYALSKDJFHGM &lt;<br>&lt; PNYCJBFZDRUSLOQXVETAMKGHIW &lt;</strong></p>
+<p><strong>&lt; NACZDTRXMJQOYHGVSFUWIKPBEL &lt;<br>
+&lt; FHTEQGYXPLOCKBDMAIZVRNSJUW &lt;<br>
+&lt; QGWTHSPYBXIZULVKMRAFDCEONJ &lt;<br>
+&lt; KCPMNZQWXYIHFRLABEUOTSGJVD &lt;<br>
+&lt; SXCDERFVBGTYHNUMKILOPJZQAW &lt;<br>
+&lt; EIURYTASBKJDFHGLVNCMXZPQOW &lt;<br>
+&lt; VUBMCQWAOIKZGJXPLTDSRFHENY &lt;<br>
+&lt; OSFEZWAXJGDLUBVIQHKYPNTCRM &lt;<br>
+&lt; QNOZUTWDCVRJLXKISEFAPMYGHB &lt;<br>
+&lt; OWTGVRSCZQKELMXYIHPUDNAJFB &lt;<br>
+&lt; FCUKTEBSXQYIZMJWAORPLNDVHG &lt;<br>
+&lt; NBVCXZQWERTPOIUYALSKDJFHGM &lt;<br>
+&lt; PNYCJBFZDRUSLOQXVETAMKGHIW &lt;</strong></p>
 </blockquote>
 <p>之后我们按照列去寻找，<strong>不难</strong>发现题目中的<strong>倒数第九列</strong>的信息是有意义的：<strong>fireinthehole</strong>，所以这就是本题的答案</p>
-<h4 id="方法二：写代码"><a href="#方法二：写代码" class="headerlink" title="方法二：写代码"></a>方法二：写代码</h4><p><strong><del>下次一定</del></strong></p>
+<h4 id="方法二：写代码"><a class="header-anchor" href="#方法二：写代码">¶</a>方法二：写代码</h4>
+<p><strong><s>下次一定</s></strong></p>
 
                 
             </div>

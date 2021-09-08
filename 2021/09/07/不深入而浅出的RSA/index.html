@@ -377,28 +377,47 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><h3 id="1-前置预备知识"><a href="#1-前置预备知识" class="headerlink" title="1. 前置预备知识"></a>1. 前置预备知识</h3><h4 id="质数"><a href="#质数" class="headerlink" title="质数"></a>质数</h4><blockquote>
-<p>质数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。 </p>
+                <h2 id="RSA"><a class="header-anchor" href="#RSA">¶</a>RSA</h2>
+<h3 id="1-前置预备知识"><a class="header-anchor" href="#1-前置预备知识">¶</a>1. 前置预备知识</h3>
+<h4 id="质数"><a class="header-anchor" href="#质数">¶</a>质数</h4>
+<blockquote>
+<p>质数是指在大于1的自然数中，除了1和它本身以外不再有其他因数的自然数。</p>
 </blockquote>
-<h4 id="互质"><a href="#互质" class="headerlink" title="互质"></a>互质</h4><blockquote>
+<h4 id="互质"><a class="header-anchor" href="#互质">¶</a>互质</h4>
+<blockquote>
 <p>互质是公约数只有1的两个整数，叫做互质整数。</p>
 </blockquote>
-<h4 id="模反元素"><a href="#模反元素" class="headerlink" title="模反元素"></a>模反元素</h4><blockquote>
+<h4 id="模反元素"><a class="header-anchor" href="#模反元素">¶</a>模反元素</h4>
+<blockquote>
 <p>如果两个正整数a和n互质，那么一定可以找到整数b，使得 ab-1 被n整除，或者说ab被n除的余数是1。这时，b就叫做a的“模反元素”</p>
 </blockquote>
-<h4 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h4><blockquote>
-<p>φ（n）：在[0,n)中与n互质的正整数的个数<br>eg：n=23，在[0,23)中，与21互质的正整数有：1、 2、 4 、5 、8、 10、 11 、13、 16 、17、 19、 20这12个数，因此φ（23）=12<br>φ（n）=（p-1）（q-1）<br>eg：23=7*3，φ（23）=（7-1）（3-1）=12</p>
+<h4 id="欧拉函数"><a class="header-anchor" href="#欧拉函数">¶</a>欧拉函数</h4>
+<blockquote>
+<p>φ（n）：在[0,n)中与n互质的正整数的个数<br>
+eg：n=23，在[0,23)中，与21互质的正整数有：1、 2、 4 、5 、8、 10、 11 、13、 16 、17、 19、 20这12个数，因此φ（23）=12<br>
+φ（n）=（p-1）（q-1）<br>
+eg：23=7*3，φ（23）=（7-1）（3-1）=12</p>
 </blockquote>
-<h4 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h4><blockquote>
-<p>如果两个正整数a，n互质，这n的欧拉函数φ（n）：<strong>a^φ（n）^ ≡ 1(mod n)</strong></p>
+<h4 id="欧拉定理"><a class="header-anchor" href="#欧拉定理">¶</a>欧拉定理</h4>
+<blockquote>
+<p>如果两个正整数a，n互质，这n的欧拉函数φ（n）：<strong>a<sup>φ（n）</sup> ≡ 1(mod n)</strong></p>
 </blockquote>
-<h4 id="同余式"><a href="#同余式" class="headerlink" title="同余式"></a>同余式</h4><blockquote>
-<p>如：<br>23/7=3……2<br>65/7=9……2<br>则可写做：23 ≡ 65 （ mod 7）<br>推广：如果 a ≡ b( mod n)     则   a = b + kn  </p>
+<h4 id="同余式"><a class="header-anchor" href="#同余式">¶</a>同余式</h4>
+<blockquote>
+<p>如：<br>
+23/7=3……2<br>
+65/7=9……2<br>
+则可写做：23 ≡ 65 （ mod 7）<br>
+推广：如果 a ≡ b( mod n)     则   a = b + kn</p>
 </blockquote>
-<h4 id="乘法逆元"><a href="#乘法逆元" class="headerlink" title="乘法逆元"></a>乘法逆元</h4><blockquote>
-<p>ab ≡ 1（ mod m )，则称 a与b为关于m互为乘法逆元。<br>已知a求b的方法： 因为ab ≡ 1（ mod m），则 ab+km =1 ，求这个二元一次方程<br>可利用<strong>扩展欧几里得算法</strong>，求得d（d解不唯一，只求出一个d）</p>
+<h4 id="乘法逆元"><a class="header-anchor" href="#乘法逆元">¶</a>乘法逆元</h4>
+<blockquote>
+<p>ab ≡ 1（ mod m )，则称 a与b为关于m互为乘法逆元。<br>
+已知a求b的方法： 因为ab ≡ 1（ mod m），则 ab+km =1 ，求这个二元一次方程<br>
+可利用<strong>扩展欧几里得算法</strong>，求得d（d解不唯一，只求出一个d）</p>
 </blockquote>
-<h4 id="扩展欧几里得算法——辗转相除法拓展"><a href="#扩展欧几里得算法——辗转相除法拓展" class="headerlink" title="扩展欧几里得算法——辗转相除法拓展"></a>扩展欧几里得算法——辗转相除法拓展</h4><blockquote>
+<h4 id="扩展欧几里得算法——辗转相除法拓展"><a class="header-anchor" href="#扩展欧几里得算法——辗转相除法拓展">¶</a>扩展欧几里得算法——辗转相除法拓展</h4>
+<blockquote>
 <p>不好用文字说明，直接写代码：</p>
 </blockquote>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
@@ -420,40 +439,49 @@ int exgcd(int a,int b,int &amp;x,int &amp;y)&#x2F;&#x2F;扩展欧几里得算法
     x&#x3D;temp;
     return r;     &#x2F;&#x2F;得到a b的最大公因数
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<h3 id="2-简单概括RSA操作"><a href="#2-简单概括RSA操作" class="headerlink" title="2.简单概括RSA操作"></a>2.简单概括RSA操作</h3><blockquote>
+<h3 id="2-简单概括RSA操作"><a class="header-anchor" href="#2-简单概括RSA操作">¶</a>2.简单概括RSA操作</h3>
+<blockquote>
 <p>首先，对整体操作做出概括：接收方计算并保存私钥，然后讲公钥计算出来后发送给需要发送信息的发送方</p>
 </blockquote>
 <ol>
-<li><p>接收方随机生成<strong>两个大质数</strong>p、q</p>
+<li>
+<p>接收方随机生成<strong>两个大质数</strong>p、q</p>
 </li>
-<li><p>计算**n = p * q **  </p>
+<li>
+<p>计算<strong>n = p * q</strong></p>
 <blockquote>
 <p>注：<strong>n</strong>视为<strong>无法进行质因数分解</strong>，即 无法<strong>单根据 n <strong>进行</strong>质因数分解</strong>得出<strong>p、q</strong>，即 <strong>无法根据公钥得出私钥</strong>，这也是RSA的算法作为<strong>单向陷门函数</strong>的原因，即 <strong>加密过程“很难”求逆</strong>，唯一可逆的方法就是通过<strong>私钥</strong></p>
 </blockquote>
 </li>
-<li><p>计算<strong>φ（n）=（p-1）（q-1）</strong></p>
+<li>
+<p>计算<strong>φ（n）=（p-1）（q-1）</strong></p>
 </li>
-<li><p>构造<strong>e</strong>（e的性质：除1之外，<strong>不能</strong>有任何<strong>整数</strong>可以整除<strong>e和φ（n）</strong>，成为<strong>e与φ（n）</strong>互质</p>
+<li>
+<p>构造<strong>e</strong>（e的性质：除1之外，<strong>不能</strong>有任何<strong>整数</strong>可以整除<strong>e和φ（n）</strong>，成为**e与φ（n）**互质</p>
 </li>
-<li><p>求出私钥<strong>d</strong>（e * d ≡ 1（mod φ（n）） ）⇒ （e * d = K * φ（n）+1）（K为任意正整数）</p>
+<li>
+<p>求出私钥<strong>d</strong>（e * d ≡ 1（mod φ（n）） ）⇒ （e * d = K * φ（n）+1）（K为任意正整数）</p>
 </li>
 </ol>
 <blockquote>
 <p>我是分隔符</p>
 </blockquote>
-<p>对于明文a，其加密过程为：<br>a^φ（n）^     ≡  1( mod  φ（n）)<br>a^kφ（n）^    ≡ (1)^k^ ( mod φ（n）)<br>a^kφ（n）+1^ ≡  a ( mod φ（n） )<br>a^ed^            ≡  a ( mod  φ（n）)</p>
-<p>令：c        ≡ a^e^ ( mod φ（n）)</p>
-<p>得：c^d^      ≡ a^ed^      ≡   a   ( mod φ（n）)</p>
+<p>对于明文a，其加密过程为：<br>
+a<sup>φ(n)</sup>     ≡  1*( mod  φ（n）)<br>
+a<sup>kφ(n)</sup>    ≡ (1)<sup>k</sup> * ( mod φ（n）)<br>
+a<sup>kφ(n)+1</sup> ≡  a *( mod φ（n） )<br>
+a<sup>ed</sup>            ≡  a *( mod  φ（n）)</p>
+<p>令：c        ≡ a<sup>e</sup>  *( mod φ（n）)</p>
+<p>得：c<sup>d</sup>      ≡ a<sup>ed</sup>    ≡  a*( mod φ（n）)</p>
 <p>所以：</p>
-<p>对于加密过程：c ≡  a^e^  ( mod φ（n）)   (注：c为密文，a为明文，（n,e）为公钥)</p>
-<p>对于解密过程：a ≡  c^d^  ( mod φ（n）)   (注：（n,d）为私钥)</p>
+<p>对于加密过程：c ≡  a<sup>e</sup>  *( mod φ（n）)   (注：c为密文，a为明文，（n,e）为公钥)</p>
+<p>对于解密过程：a ≡  c<sup>d</sup>  *( mod φ（n）)   (注：（n,d）为私钥)</p>
 <blockquote>
 <p>我是分隔符</p>
 </blockquote>
 <p>e * d = K * φ（n）+1   的计算可以看做  <strong>加密过程</strong>第3步到第4步的<strong>化简需要</strong></p>
-<h3 id="3-解题流程（参考之前的文章）"><a href="#3-解题流程（参考之前的文章）" class="headerlink" title="3.解题流程（参考之前的文章）"></a>3.解题流程（参考之前的文章）</h3><table>
+<h3 id="3-解题流程（参考之前的文章）"><a class="header-anchor" href="#3-解题流程（参考之前的文章）">¶</a>3.解题流程（参考之前的文章）</h3>
+<table>
 <thead>
 <tr>
 <th>步骤</th>
@@ -462,7 +490,8 @@ int exgcd(int a,int b,int &amp;x,int &amp;y)&#x2F;&#x2F;扩展欧几里得算法
 <th>备注</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1</td>
 <td>找出质数</td>
 <td>P、Q</td>
@@ -495,26 +524,36 @@ int exgcd(int a,int b,int &amp;x,int &amp;y)&#x2F;&#x2F;扩展欧几里得算法
 <tr>
 <td>6</td>
 <td>加密</td>
-<td>C = M^E^ mod N</td>
+<td>C = M<sup>E</sup> mod N</td>
 <td>C：密文 M：明文</td>
 </tr>
 <tr>
 <td>7</td>
 <td>解密</td>
-<td>M = C^D^ mod N</td>
+<td>M = C<sup>D</sup> mod N</td>
 <td>C：密文 M：明文</td>
 </tr>
-</tbody></table>
-<h3 id="4-在线工具介绍"><a href="#4-在线工具介绍" class="headerlink" title="4.在线工具介绍"></a>4.在线工具介绍</h3><p>RSA公钥解密网站：<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/pub_asys.html">http://ctf.ssleye.com/pub_asys.html</a><br>用于已知大数n的质因数拆分网站：<a target="_blank" rel="noopener" href="http://www.factordb.com/">http://www.factordb.com/</a></p>
-<h3 id="5-常见题型"><a href="#5-常见题型" class="headerlink" title="5.常见题型"></a>5.常见题型</h3><h4 id="公钥加密文"><a href="#公钥加密文" class="headerlink" title="公钥加密文"></a>公钥加密文</h4><p>这是CTF中最常见最基础的题型，出题人会给你一个公钥文件（通常是以.pem或.pub结尾的文件）和密文（通常叫做flag.enc之类的），你需要分析公钥，提取出（N，e），通过各种攻击手段恢复私钥，然后去解密密文得到flag。</p>
-<h4 id="文本文档"><a href="#文本文档" class="headerlink" title="文本文档"></a>文本文档</h4><p>对于第一种题型，耿直点的出题人直接给你一个txt文本文档，里面直接写出了（N，e，c）所对应的十进制数值，然后你直接拿去用就行了。当然也不都是给出（N，e，c）的值，有时还会给出其他一些参数，这时就需要思考，这题具体考察的什么攻击方法</p>
-<h3 id="pcap文件"><a href="#pcap文件" class="headerlink" title="pcap文件"></a><strong>pcap文件</strong></h3><p>有时出题人会给你一个流量包，你需要用wireshark等工具分析，然后根据流量包的通信信息，分析题目考察的攻击方法，你可以提取出所有你解题需要用到的参数，然后进行解密，本题似乎就是这种</p>
-<h3 id="本地脚本分析"><a href="#本地脚本分析" class="headerlink" title="本地脚本分析"></a><strong>本地脚本分析</strong></h3><p>题目会给你一个脚本和一段密文，一般为python编写，你需要逆向文件流程，分析脚本的加密过程，写出对应的解密脚本进行解密</p>
-<h3 id="远程脚本利用"><a href="#远程脚本利用" class="headerlink" title="远程脚本利用"></a><strong>远程脚本利用</strong></h3><p>这种题型一般难度较大。题目会给你一个运行在远程服务器上的python脚本和服务器地址，你需要分析脚本存在的漏洞，确定攻击算法，然后编写脚本与服务器交互，得到flag</p>
+</tbody>
+</table>
+<h3 id="4-在线工具介绍"><a class="header-anchor" href="#4-在线工具介绍">¶</a>4.在线工具介绍</h3>
+<p>RSA公钥解密网站：<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/pub_asys.html">http://ctf.ssleye.com/pub_asys.html</a><br>
+用于已知大数n的质因数拆分网站：<a target="_blank" rel="noopener" href="http://www.factordb.com/">http://www.factordb.com/</a></p>
+<h3 id="5-常见题型"><a class="header-anchor" href="#5-常见题型">¶</a>5.常见题型</h3>
+<h4 id="公钥加密文"><a class="header-anchor" href="#公钥加密文">¶</a>公钥加密文</h4>
+<p>这是CTF中最常见最基础的题型，出题人会给你一个公钥文件（通常是以.pem或.pub结尾的文件）和密文（通常叫做flag.enc之类的），你需要分析公钥，提取出（N，e），通过各种攻击手段恢复私钥，然后去解密密文得到flag。</p>
+<h4 id="文本文档"><a class="header-anchor" href="#文本文档">¶</a>文本文档</h4>
+<p>对于第一种题型，耿直点的出题人直接给你一个txt文本文档，里面直接写出了（N，e，c）所对应的十进制数值，然后你直接拿去用就行了。当然也不都是给出（N，e，c）的值，有时还会给出其他一些参数，这时就需要思考，这题具体考察的什么攻击方法</p>
+<h3 id="pcap文件"><a class="header-anchor" href="#pcap文件">¶</a><strong>pcap文件</strong></h3>
+<p>有时出题人会给你一个流量包，你需要用wireshark等工具分析，然后根据流量包的通信信息，分析题目考察的攻击方法，你可以提取出所有你解题需要用到的参数，然后进行解密，本题似乎就是这种</p>
+<h3 id="本地脚本分析"><a class="header-anchor" href="#本地脚本分析">¶</a><strong>本地脚本分析</strong></h3>
+<p>题目会给你一个脚本和一段密文，一般为python编写，你需要逆向文件流程，分析脚本的加密过程，写出对应的解密脚本进行解密</p>
+<h3 id="远程脚本利用"><a class="header-anchor" href="#远程脚本利用">¶</a><strong>远程脚本利用</strong></h3>
+<p>这种题型一般难度较大。题目会给你一个运行在远程服务器上的python脚本和服务器地址，你需要分析脚本存在的漏洞，确定攻击算法，然后编写脚本与服务器交互，得到flag</p>
 <blockquote>
 <p>我是分隔符</p>
 </blockquote>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>本文参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84013522">https://zhuanlan.zhihu.com/p/84013522</a></p>
+<h2 id="后记"><a class="header-anchor" href="#后记">¶</a>后记</h2>
+<p>本文参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84013522">https://zhuanlan.zhihu.com/p/84013522</a></p>
 <p>道阻且长，继续加油！</p>
 
                 

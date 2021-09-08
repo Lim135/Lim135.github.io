@@ -377,36 +377,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="5-不仅仅是Morse"><a href="#5-不仅仅是Morse" class="headerlink" title="5.不仅仅是Morse"></a>5.不仅仅是Morse</h2><blockquote>
-<p><strong>题目：–/.-/-.–/..–.-/-…/./..–.-/…./.-/…-/./..–.-/.-/-./—/-/…././.-./..–.-/-.././-.-./—/-.././…./…./…./…./.-/.-/.-/.-/.-/-…/.-/.-/-…/-…/-…/.-/.-/-…/-…/.-/.-/.-/.-/.-/.-/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/.-/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/-…/.-/.-/.-/-…/-…/.-/.-/-…/.-/.-/.-/.-/-…/.-/-…/.-/.-/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/-…/-…/.-/.-/-…/-…/-…/.-/-…/.-/.-/.-/-…/.-/-…/.-/-…/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/-…/.-/.-/-…/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/-…/-…/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/-…/-…/.-</strong></p>
+                <h2 id="5-不仅仅是Morse"><a class="header-anchor" href="#5-不仅仅是Morse">¶</a>5.不仅仅是Morse</h2>
+<blockquote>
+<p><strong>题目：–/.-/-.–/…–.-/-…/./…–.-/…/.-/…-/./…–.-/.-/-./—/-/…/./.-./…–.-/-…/./-.-./—/-…/./…/…/…/…/.-/.-/.-/.-/.-/-…/.-/.-/-…/-…/-…/.-/.-/-…/-…/.-/.-/.-/.-/.-/.-/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/.-/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/-…/.-/.-/.-/-…/-…/.-/.-/-…/.-/.-/.-/.-/-…/.-/-…/.-/.-/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/-…/-…/.-/.-/-…/-…/-…/.-/-…/.-/.-/.-/-…/.-/-…/.-/-…/-…/.-/.-/.-/-…/-…/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/-…/.-/.-/-…/-…/.-/.-/-…/.-/.-/-…/.-/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/.-/-…/.-/-…/.-/.-/-…/-…/.-/-…/.-/.-/.-/.-/-…/-…/.-/-…/.-/.-/-…/-…/.-</strong></p>
 </blockquote>
 <blockquote>
 <p><strong>题目描述：</strong>“这个题目和我们刚刚做的那个好像啊但是为什么按照刚刚的方法做出来答案却不对呢” ，你奇怪的问了问小鱼，“可能是因为还有一些奇怪的加密方式在里面吧，我们在仔细观察观察”。两个人 安安静静的坐下来开始思考，很耐心的把自己可以想到的加密方式一种种的过了一遍，十多分钟后两个人 异口同声的说“我想到了！”。<strong>一种食物</strong>,格式为cyberpeace{小写的你解出的答案}</p>
 </blockquote>
-<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
+<h3 id="解题过程"><a class="header-anchor" href="#解题过程">¶</a>解题过程</h3>
+<ol>
 <li>不难看出第一层解码是用<strong>摩尔斯电码</strong>进行解码，得出结果：</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125349.png"></p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125349.png" alt=""></p>
 <ol start="2">
-<li>由所得的一层密文不难看出，要使用的是<strong>培根密码</strong>，再加上题目描述中的<strong>一种食物</strong>，在古典密码中名字为食物的密码在我的认知中也只有一个，那就是<strong>培根密码</strong>。</li>
+<li>
+<p>由所得的一层密文不难看出，要使用的是<strong>培根密码</strong>，再加上题目描述中的<strong>一种食物</strong>，在古典密码中名字为食物的密码在我的认知中也只有一个，那就是<strong>培根密码</strong>。</p>
+</li>
+<li>
+<p>删去一层密文中不必要前缀<strong>may_be_have_another_decodehhhh</strong>，解密得：<strong>ATTACKANDDEFENCEWORLDISINTERESTING</strong></p>
+</li>
 </ol>
-<ol start="3">
-<li>删去一层密文中不必要前缀<strong>may_be_have_another_decodehhhh</strong>，解密得：<strong>ATTACKANDDEFENCEWORLDISINTERESTING</strong></li>
-</ol>
-<h2 id="6-混合编码"><a href="#6-混合编码" class="headerlink" title="6.混合编码"></a>6.混合编码</h2><blockquote>
+<h2 id="6-混合编码"><a class="header-anchor" href="#6-混合编码">¶</a>6.混合编码</h2>
+<blockquote>
 <p><strong>题目:</strong></p>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125755.png"></p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125755.png" alt=""></p>
 </blockquote>
 <blockquote>
 <p><strong>题目描述中没有任何意义，所以就不提取了</strong></p>
 </blockquote>
-<h3 id="解题过程-1"><a href="#解题过程-1" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
-<li>从码形不难看出<strong>（==结尾）</strong>，第一层解密是要用<strong>Base64</strong>进行，解码为：</li>
+<h3 id="解题过程-v2"><a class="header-anchor" href="#解题过程-v2">¶</a>解题过程</h3>
+<ol>
+<li>从码形不难看出**（==结尾）<strong>，第一层解密是要用</strong>Base64**进行，解码为：</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125329.png"></p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125329.png" alt=""></p>
 <ol start="2">
-<li><p>从码形不难看出<strong>（&amp;#XX）</strong>，第二层解密要使用<strong>Unicode</strong>进行,解码为：</p>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125409.png"></p>
+<li>
+<p>从码形不难看出**（&amp;#XX）<strong>，第二层解密要使用</strong>Unicode**进行,解码为：</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210906125409.png" alt=""></p>
 </li>
 </ol>
 <blockquote>
@@ -417,13 +424,16 @@
 <p>我是分隔符</p>
 </blockquote>
 <ol start="3">
-<li><p>使用<strong>Base64</strong>再次进行解密，结果为：</p>
+<li>
+<p>使用<strong>Base64</strong>再次进行解密，结果为：</p>
 <p><strong>/119/101/108/99/111/109/101/116/111/97/116/116/97/99/107/97/110/100/100/101/102/101/110/99/101/119/111/114/108/100</strong></p>
 </li>
-<li><p>根据码形不难得出下一层的解密使用<strong>ASCII</strong>进行，得出结果：<strong>welcometoattackanddefenceworld</strong></p>
+<li>
+<p>根据码形不难得出下一层的解密使用<strong>ASCII</strong>进行，得出结果：<strong>welcometoattackanddefenceworld</strong></p>
 </li>
 </ol>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>在解题时偶然发现Unicode的与ASCII进行解密，所得结果相同，最后发现，Unicode的编码是ASCII码晋升而来的，他对其编码的范围进行了拓展，所以ASCII能解的，Unicode同样也可以，甚至能解的范围更广</p>
+<h2 id="后记"><a class="header-anchor" href="#后记">¶</a>后记</h2>
+<p>在解题时偶然发现Unicode的与ASCII进行解密，所得结果相同，最后发现，Unicode的编码是ASCII码晋升而来的，他对其编码的范围进行了拓展，所以ASCII能解的，Unicode同样也可以，甚至能解的范围更广</p>
 
                 
             </div>

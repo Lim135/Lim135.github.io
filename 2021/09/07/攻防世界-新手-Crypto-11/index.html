@@ -377,43 +377,54 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Normal-RSA"><a href="#Normal-RSA" class="headerlink" title="Normal_RSA"></a>Normal_RSA</h2><blockquote>
-<p>题目：<img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210907095530.png">两个文件</p>
+                <h2 id="Normal-RSA"><a class="header-anchor" href="#Normal-RSA">¶</a>Normal_RSA</h2>
+<blockquote>
+<p>题目：<img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210907095530.png" alt="">两个文件</p>
 </blockquote>
 <blockquote>
 <p>题目描述：没用</p>
 </blockquote>
 <p>根据强大的搜索引擎，我们可以知道：.enc文件为RSA加密文件，需要密码；.pem文件是RSA的公钥文件。</p>
-<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
-<li><p>因为.enc文件目前还无法打开，所以我们先打开.pem文件，记事本或者VScode等都可以打开，打开后显示：</p>
+<h3 id="解题过程"><a class="header-anchor" href="#解题过程">¶</a>解题过程</h3>
+<ol>
+<li>
+<p>因为.enc文件目前还无法打开，所以我们先打开.pem文件，记事本或者VScode等都可以打开，打开后显示：</p>
 <blockquote>
-<p>—–BEGIN PUBLIC KEY—–<br>MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAMJjauXD2OQ/+5erCQKPGqxsC/bNPXDr<br>yigb/+l/vjDdAgMBAAE=<br>—–END PUBLIC KEY—–</p>
+<p>-----BEGIN PUBLIC KEY-----<br>
+MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhAMJjauXD2OQ/+5erCQKPGqxsC/bNPXDr<br>
+yigb/+l/vjDdAgMBAAE=<br>
+-----END PUBLIC KEY-----</p>
 </blockquote>
 </li>
-<li><p>使用在线RSA解密网站解密：</p>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210907100144.png"></p>
+<li>
+<p>使用在线RSA解密网站解密：</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210907100144.png" alt=""></p>
 <p>可知：</p>
 <pre class="line-numbers language-none"><code class="language-none">n &#x3D; 87924348264132406875276140514499937145050893665602592992418171647042491658461
-e &#x3D; 65537<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><p>使用在线质因数分解网站得出<strong>p与q</strong>：</p>
+e &#x3D; 65537<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>使用在线质因数分解网站得出<strong>p与q</strong>：</p>
 <pre class="line-numbers language-none"><code class="language-none">p &#x3D; 319576316814478949870590164193048041239
-q &#x3D; 275127860351348928173285174381581152299<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><p>已知<strong>q、p、n、e</strong>，即可根据之前的代码算出私钥<strong>d</strong>：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import gmpy2 
+q &#x3D; 275127860351348928173285174381581152299<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>已知<strong>q、p、n、e</strong>，即可根据之前的代码算出私钥<strong>d</strong>：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> gmpy2 
 
-p &#x3D; 319576316814478949870590164193048041239 
-q &#x3D; 275127860351348928173285174381581152299 
-e &#x3D; 65537 
-phi &#x3D; (p - 1) * (q - 1) 
-d &#x3D; gmpy2.invert(e, phi)  ##求逆元，d^e &#x3D; 1 mod phi
+p <span class="token operator">=</span> <span class="token number">319576316814478949870590164193048041239</span> 
+q <span class="token operator">=</span> <span class="token number">275127860351348928173285174381581152299</span> 
+e <span class="token operator">=</span> <span class="token number">65537</span> 
+phi <span class="token operator">=</span> <span class="token punctuation">(</span>p <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>q <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> 
+d <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>invert<span class="token punctuation">(</span>e<span class="token punctuation">,</span> phi<span class="token punctuation">)</span>  <span class="token comment">##求逆元，d^e = 1 mod phi</span>
 
-print(d)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token keyword">print</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>d = 10866948760844599168252082612378495977388271279679231539839049698621994994673</p>
 </blockquote>
 </li>
-<li><p>根据后续工具，不难得出结果：<strong>PCTF{256b_i5_m3dium}</strong></p>
+<li>
+<p>根据后续工具，不难得出结果：<strong>PCTF{256b_i5_m3dium}</strong></p>
 </li>
 </ol>
 

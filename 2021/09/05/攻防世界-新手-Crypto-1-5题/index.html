@@ -377,9 +377,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-Base64"><a href="#1-Base64" class="headerlink" title="1.Base64"></a>1.Base64</h2><p><strong>题目：Y3liZXJwZWFjZXtXZWxjb21lX3RvX25ld19Xb3JsZCF9</strong></p>
+                <h2 id="1-Base64"><a class="header-anchor" href="#1-Base64">¶</a>1.Base64</h2>
+<p><strong>题目：Y3liZXJwZWFjZXtXZWxjb21lX3RvX25ld19Xb3JsZCF9</strong></p>
 <p><strong>题目描述中没有任何意义，所以就不提取了</strong></p>
-<h3 id="Base64的特点"><a href="#Base64的特点" class="headerlink" title="Base64的特点"></a>Base64的特点</h3><p><strong>经过base64编码后的字符串长度一定会被4整除：</strong></p>
+<h3 id="Base64的特点"><a class="header-anchor" href="#Base64的特点">¶</a>Base64的特点</h3>
+<p><strong>经过base64编码后的字符串长度一定会被4整除：</strong></p>
 <ol>
 <li>标准base64只有64个字符（英文大小写、数字和+、/）以及用作后缀等号=；</li>
 <li>base64是把3个字节变成4个可打印字符，所以base64编码后的字符串一定能被4整除（不算用作后缀的等号）；</li>
@@ -387,44 +389,72 @@
 <li>严格来说base64不能算是一种加密，只能说是编码转换。使用base64的初衷。是为了方便把含有不可见字符串的信息用可见字符串表示出来，以便复制粘贴；</li>
 </ol>
 <p><strong>解码器网址 <a target="_blank" rel="noopener" href="https://tool.oschina.net/encrypt?type=3">https://tool.oschina.net/encrypt?type=3</a></strong></p>
-<h3 id="解题过程"><a href="#解题过程" class="headerlink" title="解题过程"></a>解题过程</h3><p><del>也没什么结题过程</del><br>直接把题目复制黏贴进解码器中就可以得出结果：<br><strong>cyberpeace{Welcome_to_new_World!}</strong></p>
-<h2 id="2-Caesar"><a href="#2-Caesar" class="headerlink" title="2.Caesar"></a>2.Caesar</h2><p><strong>题目：oknqdbqmoq{kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz}</strong></p>
+<h3 id="解题过程"><a class="header-anchor" href="#解题过程">¶</a>解题过程</h3>
+<p><s>也没什么结题过程</s><br>
+直接把题目复制黏贴进解码器中就可以得出结果：<br>
+<strong>cyberpeace{Welcome_to_new_World!}</strong></p>
+<h2 id="2-Caesar"><a class="header-anchor" href="#2-Caesar">¶</a>2.Caesar</h2>
+<p><strong>题目：oknqdbqmoq{kag_tmhq_xqmdzqp_omqemd_qzodkbfuaz}</strong></p>
 <p><strong>题目描述中又没有任何意义，所以还是不提取了</strong></p>
-<h3 id="Casear——凯撒密码的最大特点"><a href="#Casear——凯撒密码的最大特点" class="headerlink" title="Casear——凯撒密码的最大特点"></a>Casear——凯撒密码的最大特点</h3><p><strong>基本的格式是在的，比如说这个题目中，明显能看出答题的格式： xxxxxxx{xxxxxxxxxxxxxxxx}</strong></p>
+<h3 id="Casear——凯撒密码的最大特点"><a class="header-anchor" href="#Casear——凯撒密码的最大特点">¶</a>Casear——凯撒密码的最大特点</h3>
+<p><strong>基本的格式是在的，比如说这个题目中，明显能看出答题的格式： xxxxxxx{xxxxxxxxxxxxxxxx}</strong></p>
 <p><strong>解码器网址 <a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/kaisamima.php">https://www.qqxiuzi.cn/bianma/kaisamima.php</a></strong></p>
-<h3 id="解题过程-1"><a href="#解题过程-1" class="headerlink" title="解题过程"></a>解题过程</h3><p>  凯撒密码的密钥有几个得出的方法：</p>
+<h3 id="解题过程-v2"><a class="header-anchor" href="#解题过程-v2">¶</a>解题过程</h3>
+<p>凯撒密码的密钥有几个得出的方法：</p>
 <ol>
-<li><p>对齐： 已知题目中的flag格式第一个字母是c，则直接计算c与o之间的距离，不难得出是12</p>
+<li>
+<p>对齐： 已知题目中的flag格式第一个字母是c，则直接计算c与o之间的距离，不难得出是12</p>
 </li>
-<li><p>题目描述： 由于本题题目讲的<del>都是废话</del> 没有任何提示信息，所以没有例子</p>
+<li>
+<p>题目描述： 由于本题题目讲的<s>都是废话</s> 没有任何提示信息，所以没有例子</p>
 </li>
 </ol>
-<p>  之后直接将密文丢到解码器中，密钥设置12，即可得出结果：<br>  <strong>cyberpeace{you_have_learned_caesar_encryption}</strong></p>
-<h2 id="3-Morse"><a href="#3-Morse" class="headerlink" title="3.Morse"></a>3.Morse</h2><p><strong>题目：11 111 010 000 0 1010 111 100 0 00 000 000 111 00 10 1 0 010 0 000 1 00 10 110</strong></p>
+<p>之后直接将密文丢到解码器中，密钥设置12，即可得出结果：<br>
+<strong>cyberpeace{you_have_learned_caesar_encryption}</strong></p>
+<h2 id="3-Morse"><a class="header-anchor" href="#3-Morse">¶</a>3.Morse</h2>
+<p><strong>题目：11 111 010 000 0 1010 111 100 0 00 000 000 111 00 10 1 0 010 0 000 1 00 10 110</strong></p>
 <p><strong>题目描述中依然没有任何意义，还是不提取</strong></p>
-<h3 id="Morse——摩尔斯电码的特点"><a href="#Morse——摩尔斯电码的特点" class="headerlink" title="Morse——摩尔斯电码的特点"></a>Morse——摩尔斯电码的特点</h3><ol>
-<li>最开始的摩尔斯电码是由<strong>“滴  嗒”</strong>组成的，而在纸上的体现一般为**- .<strong>，变种可有多种，常见的有本题的</strong>1  0<strong>，</strong>-  * **,或是其他只表示两种状态的字符都有可能是摩尔斯电码</li>
+<h3 id="Morse——摩尔斯电码的特点"><a class="header-anchor" href="#Morse——摩尔斯电码的特点">¶</a>Morse——摩尔斯电码的特点</h3>
+<ol>
+<li>最开始的摩尔斯电码是由**“滴  嗒”<strong>组成的，而在纸上的体现一般为</strong>- .<strong>，变种可有多种，常见的有本题的</strong>1  0**，**-  * **,或是其他只表示两种状态的字符都有可能是摩尔斯电码</li>
 <li>摩尔斯电码中间的空隙可由<strong>空格、|、/</strong> 等符号对等</li>
 </ol>
 <p><strong>解码器网址 <a target="_blank" rel="noopener" href="http://www.txttool.com/wenben_morse.asp">http://www.txttool.com/wenben_morse.asp</a></strong></p>
-<h3 id="解题过程-2"><a href="#解题过程-2" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
+<h3 id="解题过程-v3"><a class="header-anchor" href="#解题过程-v3">¶</a>解题过程</h3>
+<ol>
 <li>由于1和0可以是嘀嗒的任意一个，所以尝试1为嘀，0位嗒，得出结果为：iskot  swtmoosmaetktoemau，明显不对</li>
 <li>尝试0为嘀，1为嗒，得出结果：<strong>morsecodeissointeresting</strong></li>
 </ol>
-<p>故，最后题目的flag为：<br><strong>cyberpeace{morsecodeissointeresting}</strong></p>
-<h2 id="4-幂数加密"><a href="#4-幂数加密" class="headerlink" title="4.幂数加密"></a>4.幂数加密</h2><p><strong>题目：8842101220480224404014224202480122</strong></p>
+<p>故，最后题目的flag为：<br>
+<strong>cyberpeace{morsecodeissointeresting}</strong></p>
+<h2 id="4-幂数加密"><a class="header-anchor" href="#4-幂数加密">¶</a>4.幂数加密</h2>
+<p><strong>题目：8842101220480224404014224202480122</strong></p>
 <p><strong>题目描述中仍然没有任何意义，还是不提取</strong></p>
-<h3 id="二进制幂数的定义"><a href="#二进制幂数的定义" class="headerlink" title="二进制幂数的定义"></a>二进制幂数的定义</h3><p>  二进制幂数加密通过二的几次方表示字母的序号来对信息加密。由二进制转换成十进制的时候，  还可以表示成2的N次方的形式。<br>例如：<br>  以<strong>d o</strong>作为例子，d对应4，o对应15<br>  4=2^2^,15=2^0^+2^1^+2^2^+2^3^<br>  所以<strong>d</strong>加密后为<strong>2</strong>，<strong>o</strong>加密后为<strong>0123</strong>，最后的密文为<strong>2 0123</strong><br>因此我们称这种加密方法为<strong>“二进制”的幂数加密</strong>。</p>
-<p>  下面介绍<strong>解密</strong><br>以上面的密文为例子：2^2^=4=d，2^0^ +2^1^ +2^2^ +2^3^=15=o,解得为d o</p>
-<h3 id="解题过程-3"><a href="#解题过程-3" class="headerlink" title="解题过程"></a>解题过程</h3><ol>
+<h3 id="二进制幂数的定义"><a class="header-anchor" href="#二进制幂数的定义">¶</a>二进制幂数的定义</h3>
+<p>二进制幂数加密通过二的几次方表示字母的序号来对信息加密。由二进制转换成十进制的时候，  还可以表示成2的N次方的形式。<br>
+例如：<br>
+以<strong>d o</strong>作为例子，d对应4，o对应15<br>
+4=2<sup>2</sup>,15=2<sup>0</sup>+2<sup>1</sup>+2<sup>2</sup>+2<sup>3</sup><br>
+所以<strong>d</strong>加密后为<strong>2</strong>，<strong>o</strong>加密后为<strong>0123</strong>，最后的密文为<strong>2 0123</strong><br>
+因此我们称这种加密方法为**“二进制”的幂数加密**。</p>
+<p>下面介绍<strong>解密</strong><br>
+以上面的密文为例子：2<sup>2</sup>=4=d，2<sup>0</sup> +2<sup>1</sup> +2<sup>2</sup> +2<sup>3</sup>=15=o,解得为d o</p>
+<h3 id="解题过程-v4"><a class="header-anchor" href="#解题过程-v4">¶</a>解题过程</h3>
+<ol>
 <li>由于flag为<strong>8位</strong>大写字母，而本题的密文中没有明显的间隔符，所以考虑<strong>0</strong>作为间隔符进行尝试，得出结果<strong>welldone</strong></li>
-<li>注意本题结果要为<strong>大写</strong><br>故，最后的flag为：<br> <strong>cyberpeace{WELLDOWN}</strong></li>
+<li>注意本题结果要为<strong>大写</strong><br>
+故，最后的flag为：<br>
+<strong>cyberpeace{WELLDOWN}</strong></li>
 </ol>
-<h2 id="5-Railfence"><a href="#5-Railfence" class="headerlink" title="5.Railfence"></a>5.Railfence</h2><p> <strong>题目： ccehgyaefnpeoobe{lcirg}epriec_ora_g</strong></p>
-<p> <strong>题目描述：<del>哔哔哔哔哔哔</del>，栅栏里面喂5只小鸡，<del>哔哔哔哔哔哔</del></strong></p>
-<h3 id="Railfence——栅栏密码"><a href="#Railfence——栅栏密码" class="headerlink" title="Railfence——栅栏密码"></a>Railfence——栅栏密码</h3><p>  一般的栅栏密码是<strong>“田字形”</strong>排列。我们把明文分成<strong>N个一组</strong>，然后每组一列，<strong>横向</strong>铺开，取<strong>每列第一个</strong>（也就是最上面）的元素，构成我们的密文。<br>  还有一种比较特殊的形状是<strong>“W型”</strong>排列。想象现在地上有一些W型构成的洞，你要在<strong>每个洞里插上一根木棍</strong>，以此来搭建你的栅栏，而这个木棍就是你要加密的信息。</p>
+<h2 id="5-Railfence"><a class="header-anchor" href="#5-Railfence">¶</a>5.Railfence</h2>
+<p><strong>题目： ccehgyaefnpeoobe{lcirg}epriec_ora_g</strong></p>
+<p><strong>题目描述：<s>哔哔哔哔哔哔</s>，栅栏里面喂5只小鸡，<s>哔哔哔哔哔哔</s></strong></p>
+<h3 id="Railfence——栅栏密码"><a class="header-anchor" href="#Railfence——栅栏密码">¶</a>Railfence——栅栏密码</h3>
+<p>一般的栅栏密码是**“田字形”<strong>排列。我们把明文分成</strong>N个一组**，然后每组一列，<strong>横向</strong>铺开，取<strong>每列第一个</strong>（也就是最上面）的元素，构成我们的密文。<br>
+还有一种比较特殊的形状是**“W型”<strong>排列。想象现在地上有一些W型构成的洞，你要在</strong>每个洞里插上一根木棍**，以此来搭建你的栅栏，而这个木棍就是你要加密的信息。</p>
 <p><strong>解码器网址 <a target="_blank" rel="noopener" href="http://www.metools.info/code/fence154.html">http://www.metools.info/code/fence154.html</a></strong></p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><ol>
+<h3 id="解题思路"><a class="header-anchor" href="#解题思路">¶</a>解题思路</h3>
+<ol>
 <li>首先从题目描述中得知，栅栏数位<strong>5</strong></li>
 <li>考虑使用最常见的<strong>田字</strong>栅栏，得出结果为：<strong>cebgccfe}_en{eohplprgecrayoii_aoreg</strong>，明显不对</li>
 <li>使用<strong>W型</strong>，得出结果为：<strong>cyberpeace{railfence-cipher-gogogo}</strong></li>

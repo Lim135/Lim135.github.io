@@ -377,30 +377,46 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="一、实验主机信息"><a href="#一、实验主机信息" class="headerlink" title="一、实验主机信息"></a>一、实验主机信息</h2><p><img src="https://img-blog.csdnimg.cn/20210710201615771.png#pic_center"></p>
-<h2 id="二、所使用的程序"><a href="#二、所使用的程序" class="headerlink" title="二、所使用的程序"></a>二、所使用的程序</h2><p>sctplib-1.0.4.exe、glib-1.2.zip 、wireshark<br><a target="_blank" rel="noopener" href="http://www.sctp.be/sctplib/">http://www.sctp.be/sctplib/</a><br>具体软件安装请见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wsywl/article/details/2600113?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162592157116780261936976%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=162592157116780261936976&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-2600113.pc_search_result_control_group&utm_term=Windows%20SCTP&spm=1018.2226.3001.4187">SCTP在windows下简单实现发包</a></p>
-<h2 id="三、程序安装"><a href="#三、程序安装" class="headerlink" title="三、程序安装"></a>三、程序安装</h2><p>1.将sctplib-1.0.4.exe和glib-1.2.zip下载到本地计算机上。 </p>
+                <h2 id="一、实验主机信息"><a class="header-anchor" href="#一、实验主机信息">¶</a>一、实验主机信息</h2>
+<p><img src="https://img-blog.csdnimg.cn/20210710201615771.png#pic_center" alt=""></p>
+<h2 id="二、所使用的程序"><a class="header-anchor" href="#二、所使用的程序">¶</a>二、所使用的程序</h2>
+<p>sctplib-1.0.4.exe、glib-1.2.zip 、wireshark<br>
+<a target="_blank" rel="noopener" href="http://www.sctp.be/sctplib/">http://www.sctp.be/sctplib/</a><br>
+具体软件安装请见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wsywl/article/details/2600113?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522162592157116780261936976%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=162592157116780261936976&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-2600113.pc_search_result_control_group&amp;utm_term=Windows%20SCTP&amp;spm=1018.2226.3001.4187">SCTP在windows下简单实现发包</a></p>
+<h2 id="三、程序安装"><a class="header-anchor" href="#三、程序安装">¶</a>三、程序安装</h2>
+<p>1.将sctplib-1.0.4.exe和glib-1.2.zip下载到本地计算机上。</p>
 <p>2.安装 sctplib-1.0.4.exe到本机器上，安装完后将glib-1.2.zip解压到它的安装目录下，例如：E:/Program Files/sctplib下面。</p>
 <p>3.这个SCTP的实现是在两个机器之间进行的，所以要另外一台机器也要和你自己安装相同的工具（以上两个）。</p>
-<h2 id="四、实验过程"><a href="#四、实验过程" class="headerlink" title="四、实验过程"></a>四、实验过程</h2><ol>
-<li>   由于Windows自带防火墙的存在，当带有防火墙的主机收到了SCTP的INIT信息后，防火墙会直接将该包丢弃，所以在实验开始前关闭两个主机的防火墙</li>
-<li>   S端先以管理员模式打开echo_server，C端在命令提示符窗口中打开echo_tool（先开S端，再开C端）</li>
-<li>   在C端命令中输入 echo_tool -d 192.168.1.108（S端IP），即可与S端建立连接，并可以在抓包软件中看到SCTP四握手，等待大约30秒即可收到SCTP的heartbeat报文与heartbeat_ACK报文</li>
+<h2 id="四、实验过程"><a class="header-anchor" href="#四、实验过程">¶</a>四、实验过程</h2>
+<ol>
+<li>由于Windows自带防火墙的存在，当带有防火墙的主机收到了SCTP的INIT信息后，防火墙会直接将该包丢弃，所以在实验开始前关闭两个主机的防火墙</li>
+<li>S端先以管理员模式打开echo_server，C端在命令提示符窗口中打开echo_tool（先开S端，再开C端）</li>
+<li>在C端命令中输入 echo_tool -d 192.168.1.108（S端IP），即可与S端建立连接，并可以在抓包软件中看到SCTP四握手，等待大约30秒即可收到SCTP的heartbeat报文与heartbeat_ACK报文</li>
 </ol>
-<p><img src="https://img-blog.csdnimg.cn/20210710202842728.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210710202842728.png" alt=""></p>
 <ol start="4">
-<li>   C端命令中输入echo_tool -d 192.168.1.108（S端IP）-n 1，即可在上述过程之外再抓到C端与S端互发的DATA数据块，其中双方的确认方式均为选择确认（确认模式固定，发包内容大小固定，可能无法改变？）</li>
+<li>
+<p>C端命令中输入echo_tool -d 192.168.1.108（S端IP）-n 1，即可在上述过程之外再抓到C端与S端互发的DATA数据块，其中双方的确认方式均为选择确认（确认模式固定，发包内容大小固定，可能无法改变？）</p>
+</li>
+<li>
+<p>由于程序设置的问题，无法主动正常断开链接，只能通过ctrl+c异常断开，故在3.4步骤后续中抓到的包为ICMP协议不可达（C段程序断开，协议信息无法送达）<br>
+<img src="https://img-blog.csdnimg.cn/20210710202819131.png" alt=""></p>
+</li>
+<li>
+<p>其他参数可由C端指令符中echo_tool/?获得其参数对应的作用</p>
+</li>
 </ol>
-<ol start="5">
-<li>由于程序设置的问题，无法主动正常断开链接，只能通过ctrl+c异常断开，故在3.4步骤后续中抓到的包为ICMP协议不可达（C段程序断开，协议信息无法送达）<br><img src="https://img-blog.csdnimg.cn/20210710202819131.png"></li>
-</ol>
-<ol start="6">
-<li>其他参数可由C端指令符中echo_tool/?获得其参数对应的作用</li>
-</ol>
-<h2 id="五、报文分析"><a href="#五、报文分析" class="headerlink" title="五、报文分析"></a>五、报文分析</h2><h3 id="1-SCTP报文格式"><a href="#1-SCTP报文格式" class="headerlink" title="1.SCTP报文格式"></a>1.SCTP报文格式</h3><p><img src="https://img-blog.csdnimg.cn/20210710202226325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/2021071020224385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
-<h3 id="2-SCTP四次握手"><a href="#2-SCTP四次握手" class="headerlink" title="2.SCTP四次握手"></a>2.SCTP四次握手</h3><p><img src="https://img-blog.csdnimg.cn/20210710202309221.png"><br><img src="https://img-blog.csdnimg.cn/20210710202313576.png"></p>
-<h3 id="3-SCTP-INIT报文"><a href="#3-SCTP-INIT报文" class="headerlink" title="3.SCTP INIT报文"></a>3.SCTP INIT报文</h3><h3 id="4-SCTP-INIT-ACK-数据报"><a href="#4-SCTP-INIT-ACK-数据报" class="headerlink" title="4.SCTP INIT-ACK 数据报"></a>4.SCTP INIT-ACK 数据报</h3><p>注：INIT中的验证标志位，因为还未接收到对方ACK中的初始标志，默认为0</p>
-<p><img src="https://img-blog.csdnimg.cn/20210710202938674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
+<h2 id="五、报文分析"><a class="header-anchor" href="#五、报文分析">¶</a>五、报文分析</h2>
+<h3 id="1-SCTP报文格式"><a class="header-anchor" href="#1-SCTP报文格式">¶</a>1.SCTP报文格式</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710202226325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/2021071020224385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="2-SCTP四次握手"><a class="header-anchor" href="#2-SCTP四次握手">¶</a>2.SCTP四次握手</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710202309221.png" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710202313576.png" alt=""></p>
+<h3 id="3-SCTP-INIT报文"><a class="header-anchor" href="#3-SCTP-INIT报文">¶</a>3.SCTP INIT报文</h3>
+<h3 id="4-SCTP-INIT-ACK-数据报"><a class="header-anchor" href="#4-SCTP-INIT-ACK-数据报">¶</a>4.SCTP INIT-ACK 数据报</h3>
+<p>注：INIT中的验证标志位，因为还未接收到对方ACK中的初始标志，默认为0</p>
+<p><img src="https://img-blog.csdnimg.cn/20210710202938674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""></p>
 <table>
 <thead>
 <tr>
@@ -409,7 +425,8 @@
 <th>意义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>初始标志</td>
 <td>4</td>
 <td>用于确定一对连接的值。这个值必须被放置到INIT的接收方发送的与该连接相关的每个SCTP分组中的验证标签字段中。初始标签允许除0以外的的任何值。如果在收到的INIT数据块中的启动标签为0，则接收方发送ABORT数据块中止该连接。</td>
@@ -445,25 +462,55 @@
 <td></td>
 </tr>
 <tr>
-<td><img src="https://img-blog.csdnimg.cn/20210710203718167.png"></td>
+<td><img src="https://img-blog.csdnimg.cn/20210710203718167.png" alt=""></td>
 <td></td>
 <td></td>
 </tr>
-</tbody></table>
-<p>IPv4地址（32bit无符号整数）：包含发送方端点的IPv4地址，采用二进制编码。<br>IPv6地址参数(6)<br> <img src="https://img-blog.csdnimg.cn/20210710203721988.png"></p>
-<p>IPv6地址(128bit的无符号整数)：包含发送方端点的IPv6地址，采用二进制编码。<br>注：多个地址参数体现SCTP的多宿主特点</p>
-<p>防止Cookie过期参数(9)<br>INIT的发送方应使用这个参数来建议INIT的接收方提供较长存活跨度的状态Cookie。<br> <img src="https://img-blog.csdnimg.cn/20210710203731358.png"></p>
-<p>建议的COOKIE存活跨度增量(32bit的无符号整数)，该参数用来向接收方指示发送方希望接收方为其缺省的COOKIE的存活跨度增加的毫秒数。<br>由于失效的cookie操作差错原因，前一次尝试与对等端建立连接失败后，又重新尝试连接建立时，这个任选参数应能由发送方添加到INIT数据块中。</p>
-<p>主机名地址(11)<br>INIT发送方使用这个参数把其主机名(在其IP地址的位置中)传递到对等层。这个对等层负责解析这个主机名，用这个参数可以使连接工作通过NAT box进行工作<br><img src="https://img-blog.csdnimg.cn/20210710203740742.png"></p>
+</tbody>
+</table>
+<p>IPv4地址（32bit无符号整数）：包含发送方端点的IPv4地址，采用二进制编码。<br>
+IPv6地址参数(6)<br>
+<img src="https://img-blog.csdnimg.cn/20210710203721988.png" alt=""></p>
+<p>IPv6地址(128bit的无符号整数)：包含发送方端点的IPv6地址，采用二进制编码。<br>
+注：多个地址参数体现SCTP的多宿主特点</p>
+<p>防止Cookie过期参数(9)<br>
+INIT的发送方应使用这个参数来建议INIT的接收方提供较长存活跨度的状态Cookie。<br>
+<img src="https://img-blog.csdnimg.cn/20210710203731358.png" alt=""></p>
+<p>建议的COOKIE存活跨度增量(32bit的无符号整数)，该参数用来向接收方指示发送方希望接收方为其缺省的COOKIE的存活跨度增加的毫秒数。<br>
+由于失效的cookie操作差错原因，前一次尝试与对等端建立连接失败后，又重新尝试连接建立时，这个任选参数应能由发送方添加到INIT数据块中。</p>
+<p>主机名地址(11)<br>
+INIT发送方使用这个参数把其主机名(在其IP地址的位置中)传递到对等层。这个对等层负责解析这个主机名，用这个参数可以使连接工作通过NAT box进行工作<br>
+<img src="https://img-blog.csdnimg.cn/20210710203740742.png" alt=""></p>
 <p>主机名：可变长度，该字段包含了按照RFC1123规定的“主机名句法”定义的主机名，主机名地址的解析不在本标准中规定，该参数中至少有一个非空的中止符包含在主机名字符串中，并且应包含长度。</p>
-<p>支持的地址类型(12)<br>NIT的发送方使用该参数列出其所支持的全部地址类型。<br> <img src="https://img-blog.csdnimg.cn/20210710203746711.png"></p>
+<p>支持的地址类型(12)<br>
+NIT的发送方使用该参数列出其所支持的全部地址类型。<br>
+<img src="https://img-blog.csdnimg.cn/20210710203746711.png" alt=""></p>
 <p>地址类型(16bit无符号整数)：该参数使用对应的地址类型的类型值(例如：IPv4=5，IPv6=6，主机名=11)</p>
-<p>实例分析：<br><img src="https://img-blog.csdnimg.cn/20210710203947402.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710203950593.png"></p>
-<p><img src="https://img-blog.csdnimg.cn/20210710204003960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>注：Parameter padding字段用于参数填充，使其对齐或成为8的整数倍（二进制)，能够进行差错检验和计算</p>
-<h3 id="5-SCTP-INIT-ACK-数据报"><a href="#5-SCTP-INIT-ACK-数据报" class="headerlink" title="5.SCTP INIT_ACK 数据报"></a>5.SCTP INIT_ACK 数据报</h3><p><img src="https://img-blog.csdnimg.cn/20210710204019396.png"><br><img src="https://img-blog.csdnimg.cn/20210710204031820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204044988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204055303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
-<h3 id="6-SCTP-COOKIE-ECHO数据报"><a href="#6-SCTP-COOKIE-ECHO数据报" class="headerlink" title="6.SCTP COOKIE_ECHO数据报"></a>6.SCTP COOKIE_ECHO数据报</h3><p><img src="https://img-blog.csdnimg.cn/20210710204120175.png"><br><img src="https://img-blog.csdnimg.cn/20210710204126771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204138482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204200538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
-<h3 id="7-SCTP-COOKIE-ACK-数据报"><a href="#7-SCTP-COOKIE-ACK-数据报" class="headerlink" title="7.SCTP COOKIE_ACK 数据报"></a>7.SCTP COOKIE_ACK 数据报</h3><p><img src="https://img-blog.csdnimg.cn/20210710204259953.png"><br><img src="https://img-blog.csdnimg.cn/20210710204304558.png"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204316753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204321868.png"></p>
-<h3 id="8-SCTP-SACK数据报"><a href="#8-SCTP-SACK数据报" class="headerlink" title="8.SCTP SACK数据报"></a>8.SCTP SACK数据报</h3><p><img src="https://img-blog.csdnimg.cn/20210710204330137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
+<p>实例分析：<br>
+<img src="https://img-blog.csdnimg.cn/20210710203947402.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710203950593.png" alt=""></p>
+<p><img src="https://img-blog.csdnimg.cn/20210710204003960.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+注：Parameter padding字段用于参数填充，使其对齐或成为8的整数倍（二进制)，能够进行差错检验和计算</p>
+<h3 id="5-SCTP-INIT-ACK-数据报"><a class="header-anchor" href="#5-SCTP-INIT-ACK-数据报">¶</a>5.SCTP INIT_ACK 数据报</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710204019396.png" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204031820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+报文实例：<br>
+<img src="https://img-blog.csdnimg.cn/20210710204044988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204055303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="6-SCTP-COOKIE-ECHO数据报"><a class="header-anchor" href="#6-SCTP-COOKIE-ECHO数据报">¶</a>6.SCTP COOKIE_ECHO数据报</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710204120175.png" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204126771.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+报文实例：<br>
+<img src="https://img-blog.csdnimg.cn/20210710204138482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204200538.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""></p>
+<h3 id="7-SCTP-COOKIE-ACK-数据报"><a class="header-anchor" href="#7-SCTP-COOKIE-ACK-数据报">¶</a>7.SCTP COOKIE_ACK 数据报</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710204259953.png" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204304558.png" alt=""><br>
+报文实例：<br>
+<img src="https://img-blog.csdnimg.cn/20210710204316753.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204321868.png" alt=""></p>
+<h3 id="8-SCTP-SACK数据报"><a class="header-anchor" href="#8-SCTP-SACK数据报">¶</a>8.SCTP SACK数据报</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710204330137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""></p>
 <table>
 <thead>
 <tr>
@@ -472,7 +519,8 @@
 <th>意义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>类型</td>
 <td>1</td>
 <td></td>
@@ -522,12 +570,30 @@
 <td>4</td>
 <td>用来指示一个在上一个SACK发送后收到的TSN重复的个数。每次一个接收者收到一个重复的TSN(在发送SACK前)，则把这个TSN加到重复的TSN列表中。</td>
 </tr>
-</tbody></table>
-<h3 id="9-SCTP-DATA块"><a href="#9-SCTP-DATA块" class="headerlink" title="9.SCTP DATA块"></a>9.SCTP DATA块</h3><p><img src="https://img-blog.csdnimg.cn/20210710204802405.png"><br><img src="https://img-blog.csdnimg.cn/20210710204824651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204832695.png"><br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204843818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204853199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>注：该SACK+DATA中的DATA未发生分片，且按序。</p>
+</tbody>
+</table>
+<h3 id="9-SCTP-DATA块"><a class="header-anchor" href="#9-SCTP-DATA块">¶</a>9.SCTP DATA块</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710204802405.png" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204824651.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204832695.png" alt=""><br>
+报文实例：<br>
+<img src="https://img-blog.csdnimg.cn/20210710204843818.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204853199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+注：该SACK+DATA中的DATA未发生分片，且按序。</p>
 <p>注：以下两个报文为另一次连接建立所抓到的，所以固定首部中的验证标志位与上面不同。</p>
-<h3 id="10-SCTP-HEARTBEAT块"><a href="#10-SCTP-HEARTBEAT块" class="headerlink" title="10.SCTP HEARTBEAT块"></a>10.SCTP HEARTBEAT块</h3><p><img src="https://img-blog.csdnimg.cn/2021071020490499.png"><br><img src="https://img-blog.csdnimg.cn/2021071020491226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br>（意义：用于检测连接对象是否已经断开）<br>报文实例：<br><img src="https://img-blog.csdnimg.cn/20210710204923861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710204930330.png"></p>
-<h3 id="11-SCTP-HEARTBEAT-ACK块"><a href="#11-SCTP-HEARTBEAT-ACK块" class="headerlink" title="11.SCTP HEARTBEAT_ACK块"></a>11.SCTP HEARTBEAT_ACK块</h3><p><img src="https://img-blog.csdnimg.cn/20210710204935222.png"><br><img src="https://img-blog.csdnimg.cn/20210710204947630.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"></p>
-<p>报文实例：<br><img src="https://img-blog.csdnimg.cn/2021071020501837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70"><br><img src="https://img-blog.csdnimg.cn/20210710205027750.png"></p>
+<h3 id="10-SCTP-HEARTBEAT块"><a class="header-anchor" href="#10-SCTP-HEARTBEAT块">¶</a>10.SCTP HEARTBEAT块</h3>
+<p><img src="https://img-blog.csdnimg.cn/2021071020490499.png" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/2021071020491226.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+（意义：用于检测连接对象是否已经断开）<br>
+报文实例：<br>
+<img src="https://img-blog.csdnimg.cn/20210710204923861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204930330.png" alt=""></p>
+<h3 id="11-SCTP-HEARTBEAT-ACK块"><a class="header-anchor" href="#11-SCTP-HEARTBEAT-ACK块">¶</a>11.SCTP HEARTBEAT_ACK块</h3>
+<p><img src="https://img-blog.csdnimg.cn/20210710204935222.png" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710204947630.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""></p>
+<p>报文实例：<br>
+<img src="https://img-blog.csdnimg.cn/2021071020501837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzUxMzc5ODg1,size_16,color_FFFFFF,t_70" alt=""><br>
+<img src="https://img-blog.csdnimg.cn/20210710205027750.png" alt=""></p>
 
                 
             </div>
