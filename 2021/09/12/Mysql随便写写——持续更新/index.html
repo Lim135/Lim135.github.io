@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: 攻防, Lim_XuK">
+    <meta name="keywords" content="Mysql随便写写——持续更新, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类: 攻防 | Lim_XuK</title>
+    <title>Mysql随便写写——持续更新 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -199,447 +199,578 @@
 
 </header>
 
-    <div class="bg-cover pd-header about-cover">
-    <div class="container">
-    <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                Lim_XuK
-                
-            </div>
+    
 
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: [ 
-                            
-                                "晨光起于白塔尖顶，终将铺满阴霾之地",
-                            
-                        ],
-                        startDelay: 500,
-                        typeSpeed: 100,
-                        loop: true,
-                        backSpeed: 100,
-                        showCursor: true
-                    });
-                </script>
-                
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Mysql随便写写——持续更新</h1>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-</script>
 
 
-    </div>
-</div>
-
-<main class="content">
+<main class="post-container content">
 
     
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
 
-<div id="category-cloud" class="container chip-container">
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
     <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-bookmark"></i>&nbsp;&nbsp;文章分类
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/web/">
+                                <span class="chip bg-color">web</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                                <span class="chip bg-color">学习记录</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
+                                攻防
+                            </a>
+                        
+                    </div>
+                    
+                </div>
             </div>
-            <div class="tag-chips">
+
+            <div class="post-info">
                 
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-09-12
+                </div>
                 
+
                 
-                <a href="/categories/%E9%9A%8F%E6%89%8B%E5%86%99%E5%86%99/" title="随手写写: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">随手写写
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
+
                 
+
                 
-                <a href="/categories/%E6%94%BB%E9%98%B2/" title="攻防: 7">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F5EEF8;">攻防
-                        <span class="tag-length">7</span>
-                    </span>
-                </a>
-                
+
                 
             </div>
         </div>
-    </div>
-</div>
+        <hr class="clearfix">
 
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="数据库操作"><a class="header-anchor" href="#数据库操作">¶</a>数据库操作</h2>
+<h3 id="命令行操作数据库"><a class="header-anchor" href="#命令行操作数据库">¶</a>命令行操作数据库</h3>
+<p>创建数据库 :  create database [if not exists] 数据库名;</p>
+<p>删除数据库 : drop database [if exists] 数据库名;</p>
+<p>查看数据库 : show databases;</p>
+<p>使用数据库 : use 数据库名;</p>
+<h3 id="创建数据表"><a class="header-anchor" href="#创建数据表">¶</a>创建数据表</h3>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 目标 : 创建一个school数据库
+-- 创建学生表(列,字段)
+-- 学号int 登录密码varchar(20) 姓名,性别varchar(2),出生日期(datatime),家庭住址,email
+-- 创建表之前 , 一定要先选择数据库
+
+CREATE TABLE IF NOT EXISTS &#96;student&#96; (
+&#96;id&#96; int(4) NOT NULL AUTO_INCREMENT COMMENT &#39;学号&#39;,
+&#96;name&#96; varchar(30) NOT NULL DEFAULT &#39;匿名&#39; COMMENT &#39;姓名&#39;,
+&#96;pwd&#96; varchar(20) NOT NULL DEFAULT &#39;123456&#39; COMMENT &#39;密码&#39;,
+&#96;sex&#96; varchar(2) NOT NULL DEFAULT &#39;男&#39; COMMENT &#39;性别&#39;,
+&#96;birthday&#96; datetime DEFAULT NULL COMMENT &#39;生日&#39;,
+&#96;address&#96; varchar(100) DEFAULT NULL COMMENT &#39;地址&#39;,
+&#96;email&#96; varchar(50) DEFAULT NULL COMMENT &#39;邮箱&#39;,
+PRIMARY KEY (&#96;id&#96;)
+) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>格式如下：</p>
+</blockquote>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">create table [if not exists] &#96;表名&#96;(
+   &#39;字段名1&#39; 列类型 [属性][索引][注释],
+   &#39;字段名2&#39; 列类型 [属性][索引][注释],
+  #...
+   &#39;字段名n&#39; 列类型 [属性][索引][注释]
+)[表类型][表字符集][注释];
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="数据字段属性"><a class="header-anchor" href="#数据字段属性">¶</a>数据字段属性</h3>
+<p>==UnSigned==</p>
+<p>无符号的</p>
+<p>声明该数据列不允许负数 .</p>
+<p>==ZEROFILL==</p>
+<p>0填充的</p>
+<p>不足位数的用0来填充 , 如int(3),5则为005</p>
+<p>==Auto_InCrement==</p>
+<p>自动增长的 , 每添加一条数据 , 自动在上一个记录数上加 1(默认)</p>
+<p>通常用于设置主键 , 且为整数类型</p>
+<p>可定义起始值和步长</p>
+<p>当前表设置步长(AUTO_INCREMENT=100) : 只影响当前表</p>
+<p>SET @@auto_increment_increment=5 ; 影响所有使用自增的表(全局)</p>
+<p>==NULL 和 NOT NULL==</p>
+<p>默认为NULL , 即没有插入该列的数值</p>
+<p>如果设置为NOT NULL , 则该列必须有值</p>
+<p>==DEFAULT==</p>
+<p>默认的</p>
+<p>用于设置默认值</p>
+<p>例如,性别字段,默认为&quot;男&quot; , 否则为 “女” ; 若无指定该列的值 , 则默认值为&quot;男&quot;的值</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">晚安，早点休息</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://Lim135.github.io/2021/09/12/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/09/12/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">晚安，早点休息</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/web/">
+                                    <span class="chip bg-color">web</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                                    <span class="chip bg-color">学习记录</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
 
     
 
-    <article id="articles" class="container articles">
-        <div class="row tags-posts">
+</div>
+
+                </div>
+            </div>
             
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/09/12/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Mysql随便写写——持续更新">
-                            
-                            <span class="card-title">Mysql随便写写——持续更新</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                随便写
-                            
-                        </div>
-                        <div class="publish-info">
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/09/12/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Mysql随便写写——持续更新">
+                        
+                        <span class="card-title">Mysql随便写写——持续更新</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            随便写
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2021-09-12
                             </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
                                     攻防
                                 </a>
-                                
-                                
-                            </span>
-                        </div>
+                            
+                            
+                        </span>
                     </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/web/">
-                            <span class="chip bg-color">web</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
-                            <span class="chip bg-color">学习记录</span>
-                        </a>
-                        
-                    </div>
-                    
                 </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/09/07/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84RSA/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="不深入而浅出的RSA">
-                            
-                            <span class="card-title">不深入而浅出的RSA</span>
-                        </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                随便谈谈RSA
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
                     
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Crypto/">
-                            <span class="chip bg-color">Crypto</span>
-                        </a>
-                        
-                        <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%81%E8%A7%A3/">
-                            <span class="chip bg-color">知识点见解</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-11/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-11">
-                            
-                            <span class="card-title">攻防世界-新手-Crypto-11</span>
-                        </div>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">学习记录</span>
                     </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                又是RSA，简单写写
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Crypto/">
-                            <span class="chip bg-color">Crypto</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                            <span class="chip bg-color">做题记录</span>
-                        </a>
-                        
-                    </div>
                     
                 </div>
+                
             </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-10">
-                            
-                            <span class="card-title">攻防世界-新手-Crypto-10</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                说着难度高，其实硬做还好
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Crypto/">
-                            <span class="chip bg-color">Crypto</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                            <span class="chip bg-color">做题记录</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-8~9题">
-                            
-                            <span class="card-title">攻防世界-新手-Crypto-8~9题</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                虽然新手，但是新
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Crypto/">
-                            <span class="chip bg-color">Crypto</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                            <span class="chip bg-color">做题记录</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-6~7题">
-                            
-                            <span class="card-title">攻防世界-新手-Crypto-6~7题</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                开始出现多重加密，不过也都是基于对密码形式的熟悉而得出的解密方法
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Crypto/">
-                            <span class="chip bg-color">Crypto</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                            <span class="chip bg-color">做题记录</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/09/05/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-1-5%E9%A2%98/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-1~5题">
-                            
-                            <span class="card-title">攻防世界-新手-Crypto-1~5题</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                攻防世界Crypto新手区的前几题，因为密钥比较直，所以放在一起写
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-05
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/Crypto/">
-                            <span class="chip bg-color">Crypto</span>
-                        </a>
-                        
-                        <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                            <span class="chip bg-color">做题记录</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
-    </article>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/07/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84RSA/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="不深入而浅出的RSA">
+                        
+                        <span class="card-title">不深入而浅出的RSA</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            随便谈谈RSA
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
+                                    攻防
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Crypto/">
+                        <span class="chip bg-color">Crypto</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%81%E8%A7%A3/">
+                        <span class="chip bg-color">知识点见解</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
 </main>
 
 
