@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mysql随便写写——持续更新, Lim_XuK">
+    <meta name="keywords" content="MySQL随便写写——持续更新, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mysql随便写写——持续更新 | Lim_XuK</title>
+    <title>MySQL随便写写——持续更新 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mysql随便写写——持续更新</h1>
+                    <h1 class="description center-align post-title">MySQL随便写写——持续更新</h1>
                 </div>
             </div>
         </div>
@@ -429,6 +429,143 @@ PRIMARY KEY (&#96;id&#96;)
 <p>默认的</p>
 <p>用于设置默认值</p>
 <p>例如,性别字段,默认为&quot;男&quot; , 否则为 “女” ; 若无指定该列的值 , 则默认值为&quot;男&quot;的值</p>
+<h3 id="修改数据库"><a class="header-anchor" href="#修改数据库">¶</a>修改数据库</h3>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 修改表明 ALTER TABLE 旧表名 RENAME AS 新表名
+ALTER TABLE student RENAME AS student1
+
+-- 增加表的字段 ALTER TABLE 表名 ADD 字段名 列属性
+ALTER TABLE student1  ADD  age INT(11)
+
+-- 修改表的字段 （重命名，修改约束）
+-- ALTER TABLE 表名  MODIFY  字段名 列属性
+ALTER TABLE student1  MODIFY  age VARCHAR(11)  --  修改约束
+-- ALTER TABLE 表名  change 旧名字 新名字  列属性
+ALTER TABLE student1  CHANGE  age age1 INT(11) -- 字段重命名
+
+-- 删除表的字段
+-- ALTER TABLE 表名  DROP  字段名
+ALTER TABLE student1 DROP age1
+
+-- 删除表(如果表存在再删除）
+DROP TABLE IF EXISTS student1
+&#x2F;*
+语法：DROP TABLE [IF EXISTS] 表名
+
+- IF EXISTS为可选 , 判断是否存在该数据表
+- 如删除不存在的数据表会抛出错误
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="DML语言"><a class="header-anchor" href="#DML语言">¶</a>DML语言</h2>
+<p><strong>数据库意义</strong> ： 数据存储、数据管理</p>
+<p><strong>管理数据库数据方法：</strong></p>
+<ul>
+<li>通过SQLyog等管理工具管理数据库数据</li>
+<li>通过<strong>DML语句</strong>管理数据库数据</li>
+</ul>
+<p><strong>DML语言</strong>  ：数据操作语言</p>
+<ul>
+<li>
+<p>用于操作数据库对象中所包含的数据</p>
+</li>
+<li>
+<p>包括 :</p>
+</li>
+<li>
+<ul>
+<li>INSERT (添加数据语句)</li>
+<li>UPDATE (更新数据语句)</li>
+<li>DELETE (删除数据语句)</li>
+</ul>
+</li>
+</ul>
+<h3 id="添加数据"><a class="header-anchor" href="#添加数据">¶</a>添加数据</h3>
+<blockquote>
+<p>INSERT INTO 表名[(字段1,字段2,字段3,…)] VALUES(‘值1’,‘值2’,‘值3’)</p>
+</blockquote>
+<p><strong>插入语句</strong><br>
+<strong>INSERT INTO 表名[(字段1,字段2,字段3,…)] VALUES(‘值1’),(‘值2’),(‘值3’)</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token punctuation">`</span>student1<span class="token punctuation">`</span><span class="token punctuation">(</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'哦跑时间'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>一般写插入语句，我们一定要确定数据和字段一一对应</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token punctuation">`</span>student1<span class="token punctuation">`</span><span class="token punctuation">(</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token punctuation">,</span><span class="token punctuation">`</span>sex<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'张三'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'历史'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'王五'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'琪琪'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>不加表名的插入  需要一一对应</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> <span class="token punctuation">`</span>student1<span class="token punctuation">`</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token string">'dd'</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'2000'</span><span class="token punctuation">,</span><span class="token string">'2000'</span><span class="token punctuation">,</span><span class="token string">'20'</span><span class="token punctuation">,</span><span class="token string">'20'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210912202922.jpg" alt=""></p>
+<h3 id="修改数据"><a class="header-anchor" href="#修改数据">¶</a>修改数据</h3>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 修改学员名字，带了简介</span>
+<span class="token keyword">UPDATE</span> <span class="token punctuation">`</span>student1<span class="token punctuation">`</span> <span class="token keyword">SET</span> <span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token operator">=</span> <span class="token string">'哈哈'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">2</span>
+
+<span class="token comment">-- 修改信息不带where，会更改所有表</span>
+<span class="token keyword">UPDATE</span> <span class="token punctuation">`</span>student1<span class="token punctuation">`</span> <span class="token keyword">SET</span> <span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token operator">=</span> <span class="token string">'哈哈'</span> 
+
+<span class="token comment">-- 修改多个属性，用都好隔开</span>
+<span class="token keyword">UPDATE</span> <span class="token punctuation">`</span>student1<span class="token punctuation">`</span> <span class="token keyword">SET</span> <span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token operator">=</span> <span class="token string">'xixi'</span> <span class="token punctuation">,</span>email <span class="token operator">=</span> <span class="token string">'123123'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 语法</span>
+<span class="token comment">-- UPDATE 表名 SET column_name=value [,column_name2=value2,...] [WHERE condition];</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意 :</strong></p>
+<ul>
+<li>column_name 为要更改的数据列</li>
+<li>value 为修改后的数据 , 可以为变量 , 具体指 , 表达式或者嵌套的SELECT结果</li>
+<li>condition 为筛选条件 , 如不指定则修改该表的所有列数据</li>
+</ul>
+<h3 id="删除数据"><a class="header-anchor" href="#删除数据">¶</a>删除数据</h3>
+<blockquote>
+<p>DELETE命令</p>
+</blockquote>
+<p>语法：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> 表名 <span class="token punctuation">[</span><span class="token keyword">WHERE</span> condition<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注意：condition为筛选条件 , 如不指定则删除该表的所有列数据</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 删除最后一个数据</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> grade <span class="token keyword">WHERE</span> gradeid <span class="token operator">=</span> <span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>TRUNCATE命令</p>
+</blockquote>
+<p>作用：用于完全清空表数据 , 但表结构 , 索引 , 约束等不变 ;</p>
+<p>语法：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">TRUNCATE</span> <span class="token punctuation">[</span><span class="token keyword">TABLE</span><span class="token punctuation">]</span> table_name<span class="token punctuation">;</span>
+
+<span class="token comment">-- 清空年级表</span>
+<span class="token keyword">TRUNCATE</span> grade<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意：区别于DELETE命令</strong></p>
+<ul>
+<li>
+<p>相同 : 都能删除数据 , 不删除表结构 , 但TRUNCATE速度更快</p>
+</li>
+<li>
+<p>不同 :</p>
+</li>
+<li>
+<ul>
+<li>使用TRUNCATE TABLE 重新设置AUTO_INCREMENT计数器</li>
+<li>使用TRUNCATE TABLE不会对事务有影响 （事务后面会说）</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建一个测试表</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>test<span class="token punctuation">`</span> <span class="token punctuation">(</span>
+<span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">INT</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+<span class="token punctuation">`</span>coll<span class="token punctuation">`</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">INNODB</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8
+
+<span class="token comment">-- 插入几个测试数据</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test<span class="token punctuation">(</span>coll<span class="token punctuation">)</span> <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token string">'row1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'row2'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token string">'row3'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 删除表数据(不带where条件的delete)</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> test<span class="token punctuation">;</span>
+<span class="token comment">-- 结论:如不指定Where则删除该表的所有列数据,自增当前值依然从原来基础上进行,会记录日志.</span>
+
+<span class="token comment">-- 删除表数据(truncate)</span>
+<span class="token keyword">TRUNCATE</span> <span class="token keyword">TABLE</span> test<span class="token punctuation">;</span>
+<span class="token comment">-- 结论:truncate删除数据,自增当前值会恢复到初始值重新开始;不会记录日志.</span>
+
+<span class="token comment">-- 同样使用DELETE清空不同引擎的数据库表数据.重启数据库服务后</span>
+<span class="token comment">-- InnoDB : 自增列从初始值重新开始 (因为是存储在内存中,断电即失)</span>
+<span class="token comment">-- MyISAM : 自增列依然从上一个自增数据基础上开始 (存在文件中,不会丢失)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>我是分隔符</p>
+</blockquote>
+<h2 id="后记"><a class="header-anchor" href="#后记">¶</a>后记</h2>
+<p>学习“狂神说MySQL”的记录</p>
 
                 
             </div>
@@ -553,15 +690,15 @@ PRIMARY KEY (&#96;id&#96;)
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Mysql随便写写——持续更新">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="MySQL随便写写——持续更新">
                         
-                        <span class="card-title">Mysql随便写写——持续更新</span>
+                        <span class="card-title">MySQL随便写写——持续更新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            随便写
+                            随便写写吧
                         
                     </div>
                     <div class="publish-info">
