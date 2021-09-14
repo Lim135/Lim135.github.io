@@ -353,7 +353,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-13
+                    2021-09-14
                 </div>
                 
 
@@ -834,6 +834,101 @@
 <span class="token keyword">WHERE</span> subjectname<span class="token operator">=</span><span class="token string">'JAVA第一学年'</span>
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> StudentResult <span class="token keyword">DESC</span>
 <span class="token keyword">LIMIT</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span>  <span class="token comment">-- 从零条开始，每页10条</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="MySQL函数"><a class="header-anchor" href="#MySQL函数">¶</a>MySQL函数</h2>
+<h3 id="常用函数"><a class="header-anchor" href="#常用函数">¶</a>常用函数</h3>
+<p><strong>数据函数</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> ABS<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*绝对值*/</span>
+<span class="token keyword">SELECT</span> CEILING<span class="token punctuation">(</span><span class="token number">9.4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/*向上取整*/</span>
+<span class="token keyword">SELECT</span> FLOOR<span class="token punctuation">(</span><span class="token number">9.4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">/*向下取整*/</span>
+<span class="token keyword">SELECT</span> RAND<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*随机数,返回一个0-1之间的随机数*/</span>
+<span class="token keyword">SELECT</span> SIGN<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/*符号函数: 负数返回-1,正数返回1,0返回0*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>字符串函数</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> CHAR_LENGTH<span class="token punctuation">(</span><span class="token string">'狂神说坚持就能成功'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/*返回字符串包含的字符数*/</span>
+<span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span><span class="token string">'我'</span><span class="token punctuation">,</span><span class="token string">'爱'</span><span class="token punctuation">,</span><span class="token string">'程序'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*合并字符串,参数可以有多个*/</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">INSERT</span><span class="token punctuation">(</span><span class="token string">'我爱编程helloworld'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'超级热爱'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*替换字符串,从某个位置开始替换某个长度*/</span>
+<span class="token keyword">SELECT</span> LOWER<span class="token punctuation">(</span><span class="token string">'KuangShen'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/*小写*/</span>
+<span class="token keyword">SELECT</span> UPPER<span class="token punctuation">(</span><span class="token string">'KuangShen'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/*大写*/</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">LEFT</span><span class="token punctuation">(</span><span class="token string">'hello,world'</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">/*从左边截取*/</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">RIGHT</span><span class="token punctuation">(</span><span class="token string">'hello,world'</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*从右边截取*/</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">REPLACE</span><span class="token punctuation">(</span><span class="token string">'狂神说坚持就能成功'</span><span class="token punctuation">,</span><span class="token string">'坚持'</span><span class="token punctuation">,</span><span class="token string">'努力'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*替换字符串*/</span>
+<span class="token keyword">SELECT</span> SUBSTR<span class="token punctuation">(</span><span class="token string">'狂神说坚持就能成功'</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/*截取字符串,开始和长度*/</span>
+<span class="token keyword">SELECT</span> REVERSE<span class="token punctuation">(</span><span class="token string">'狂神说坚持就能成功'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">/</span><span class="token operator">*</span>反转
+
+<span class="token comment">-- 查询姓周的同学,改成邹</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">REPLACE</span><span class="token punctuation">(</span>studentname<span class="token punctuation">,</span><span class="token string">'周'</span><span class="token punctuation">,</span><span class="token string">'邹'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> 新名字
+<span class="token keyword">FROM</span> student <span class="token keyword">WHERE</span> studentname <span class="token operator">LIKE</span> <span class="token string">'周%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>日期和时间函数</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">CURRENT_DATE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">/*获取当前日期*/</span>
+<span class="token keyword">SELECT</span> CURDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">/*获取当前日期*/</span>
+<span class="token keyword">SELECT</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">/*获取当前日期和时间*/</span>
+<span class="token keyword">SELECT</span> LOCALTIME<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">/*获取当前日期和时间*/</span>
+<span class="token keyword">SELECT</span> SYSDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">/*获取当前日期和时间*/</span>
+
+<span class="token comment">-- 获取年月日,时分秒</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">YEAR</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">MONTH</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DAY</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">HOUR</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">MINUTE</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">SECOND</span><span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>系统信息函数</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> VERSION<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/*版本*/</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">USER</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">/*用户*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="聚合函数"><a class="header-anchor" href="#聚合函数">¶</a>聚合函数</h3>
+<table>
+<thead>
+<tr>
+<th>函数名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COUNT()</td>
+<td>返回满足Select条件的记录总和数，如 select count(*) 【不建议使用 *，效率低】</td>
+</tr>
+<tr>
+<td>SUM()</td>
+<td>返回数字字段或表达式列作统计，返回一列的总和。</td>
+</tr>
+<tr>
+<td>AVG()</td>
+<td>通常为数值字段或表达列作统计，返回一列的平均值</td>
+</tr>
+<tr>
+<td>MAX()</td>
+<td>可以为数值字段，字符字段或表达式列作统计，返回最大的值。</td>
+</tr>
+<tr>
+<td>MIN()</td>
+<td>可以为数值字段，字符字段或表达式列作统计，返回最小的值。</td>
+</tr>
+</tbody>
+</table>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 聚合函数</span>
+<span class="token comment">/*COUNT:非空的*/</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span>studentname<span class="token punctuation">)</span> <span class="token keyword">FROM</span> student<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> student<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> student<span class="token punctuation">;</span>  <span class="token comment">/*推荐*/</span>
+
+<span class="token comment">-- 从含义上讲，count(1) 与 count(*) 都表示对全部数据行的查询。</span>
+<span class="token comment">-- count(字段) 会统计该字段在表中出现的次数，忽略字段为null 的情况。即不统计字段为null 的记录。</span>
+<span class="token comment">-- count(*) 包括了所有的列，相当于行数，在统计结果的时候，包含字段为null 的记录；</span>
+<span class="token comment">-- count(1) 用1代表代码行，在统计结果的时候，包含字段为null 的记录 。</span>
+<span class="token comment">/*
+很多人认为count(1)执行的效率会比count(*)高，原因是count(*)会存在全表扫描，而count(1)可以针对一个字段进行查询。其实不然，count(1)和count(*)都会对全表进行扫描，统计所有记录的条数，包括那些为null的记录，因此，它们的效率可以说是相差无几。而count(字段)则与前两者不同，它会统计该字段不为null的记录条数。
+
+下面它们之间的一些对比：
+
+1）在表没有主键时，count(1)比count(*)快
+2）有主键时，主键作为计算条件，count(主键)效率最高；
+3）若表格只有一个字段，则count(*)效率较高。
+*/</span>
+
+<span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>StudentResult<span class="token punctuation">)</span> <span class="token keyword">AS</span> 总和 <span class="token keyword">FROM</span> result<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>StudentResult<span class="token punctuation">)</span> <span class="token keyword">AS</span> 平均分 <span class="token keyword">FROM</span> result<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>StudentResult<span class="token punctuation">)</span> <span class="token keyword">AS</span> 最高分 <span class="token keyword">FROM</span> result<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>StudentResult<span class="token punctuation">)</span> <span class="token keyword">AS</span> 最低分 <span class="token keyword">FROM</span> result<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>我是分隔符</p>
 </blockquote>
@@ -865,7 +960,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/13/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/09/13/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
+                    <a href="http://Lim135.github.io/2021/09/14/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/09/14/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -959,7 +1054,7 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/09/13/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                <a href="/2021/09/14/Mysql%E9%9A%8F%E4%BE%BF%E5%86%99%E5%86%99%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                     <div class="card-image">
                         
                         
@@ -976,7 +1071,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-14
                             </span>
                         <span class="publish-author">
                             
