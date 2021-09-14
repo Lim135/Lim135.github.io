@@ -929,6 +929,34 @@
 <span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>StudentResult<span class="token punctuation">)</span> <span class="token keyword">AS</span> 平均分 <span class="token keyword">FROM</span> result<span class="token punctuation">;</span>
 <span class="token keyword">SELECT</span> <span class="token function">MAX</span><span class="token punctuation">(</span>StudentResult<span class="token punctuation">)</span> <span class="token keyword">AS</span> 最高分 <span class="token keyword">FROM</span> result<span class="token punctuation">;</span>
 <span class="token keyword">SELECT</span> <span class="token function">MIN</span><span class="token punctuation">(</span>StudentResult<span class="token punctuation">)</span> <span class="token keyword">AS</span> 最低分 <span class="token keyword">FROM</span> result<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="数据库用户管理"><a class="header-anchor" href="#数据库用户管理">¶</a>数据库用户管理</h2>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建用户 CREATE USER 用户名 IDENTIFIED BY '密码'</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">USER</span> wanan IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'123456'</span>
+
+<span class="token comment">-- 修改当前用户密码</span>
+<span class="token keyword">SET</span> PASSWORD <span class="token operator">=</span> PASSWORD<span class="token punctuation">(</span><span class="token string">'123456'</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- 修改制定用户名密码</span>
+<span class="token keyword">SET</span> PASSWORD <span class="token keyword">FOR</span> wanan <span class="token operator">=</span> PASSWORD<span class="token punctuation">(</span><span class="token string">'1111'</span><span class="token punctuation">)</span>
+
+<span class="token comment">-- 重命名</span>
+<span class="token keyword">RENAME</span> <span class="token keyword">USER</span> wanan <span class="token keyword">TO</span> zaoan
+
+
+<span class="token comment">-- 用户授权  grant  ALL PRIVILEGES  (全部权限)   库.表  to 用户</span>
+<span class="token comment">-- 除了给别人授权，其他的都能做</span>
+<span class="token keyword">GRANT</span> <span class="token keyword">ALL</span> <span class="token keyword">PRIVILEGES</span> <span class="token keyword">ON</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span>  <span class="token keyword">TO</span> zaoan 
+
+<span class="token comment">-- 查看权限</span>
+<span class="token keyword">SHOW</span> GRANTS <span class="token keyword">FOR</span> zaoan
+<span class="token keyword">SHOW</span> GRANTS <span class="token keyword">FOR</span> root<span class="token variable">@localhost</span>
+
+<span class="token comment">-- 撤销权限 REVOKE  撤销权限 on 库.表  FROM  用户</span>
+<span class="token keyword">REVOKE</span> <span class="token keyword">ALL</span> <span class="token keyword">PRIVILEGES</span> <span class="token keyword">ON</span> <span class="token operator">*</span><span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span> zaoan
+
+<span class="token comment">-- 删除用户</span>
+<span class="token keyword">DROP</span> zaoan<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>我是分隔符</p>
 </blockquote>
