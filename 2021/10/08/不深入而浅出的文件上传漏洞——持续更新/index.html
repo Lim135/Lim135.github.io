@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="不深入而浅出SQL注入, Lim_XuK">
+    <meta name="keywords" content="不深入而浅出的文件上传漏洞——持续更新, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>不深入而浅出SQL注入 | Lim_XuK</title>
+    <title>不深入而浅出的文件上传漏洞——持续更新 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">不深入而浅出SQL注入</h1>
+                    <h1 class="description center-align post-title">不深入而浅出的文件上传漏洞——持续更新</h1>
                 </div>
             </div>
         </div>
@@ -353,7 +353,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-23
+                    2021-10-08
                 </div>
                 
 
@@ -377,98 +377,35 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-什么是SQL"><a class="header-anchor" href="#1-什么是SQL">¶</a>1.什么是SQL</h2>
-<p>结构化查询语言（Structured Query Language）简称<strong>SQL</strong></p>
-<p>我们用SQL语言控制数据库操作</p>
-<h2 id="2-什么是SQL注入"><a class="header-anchor" href="#2-什么是SQL注入">¶</a>2.什么是SQL注入</h2>
-<p>用户恶意提交的<strong>参数、语句</strong>，能够被后台数据库<strong>解析、执行</strong></p>
-<h2 id="3-SQL注入原理"><a class="header-anchor" href="#3-SQL注入原理">¶</a>3.SQL注入原理</h2>
-<p>针对SQL注入的攻击行为可描述为：</p>
-<p>在与用户交互的程序中（如web网页）,非法用户通过可控参数注入SQL语法,将恶意SQL语句输入拼接到原本设计好的SQL语句中，破坏原有SQL语法结构，执行了与原定计划不同的行为，达到程序编写时意料之外结果的攻击行为。</p>
-<p>其本质就是使用了字符串拼接方式构造SQL语句，并且对于用户输入检查不充分,导致SQL语句将用户提交的非法数据当作语句的一部分来执行，从而造成了SQL注入</p>
-<h2 id="4-SQL注入条件"><a class="header-anchor" href="#4-SQL注入条件">¶</a>4.SQL注入条件</h2>
+                <h2 id="什么叫WebShell"><a class="header-anchor" href="#什么叫WebShell">¶</a>什么叫WebShell</h2>
+<p>WebShell，简称网页后门，简单说就是运行在web上的远程控制程序</p>
+<p>webShell其实就是一张网页，由PHP、JSP、ASP、ASP.NET等这类web应用程序语言开发，但webShell并不具备常见网页的功能，例如登录、注册、信息展示等功能，一般会具备文件管理、端口扫描、提权、获取系统信息等功能。</p>
+<p><strong>常见的WebShell</strong></p>
+<p>大马、小马、各种马…等</p>
+<p>拥有较完整功能的webshell，我们一般称为<code>大马</code>。</p>
+<p>功能简易的webshell称为<code>小马</code>。</p>
+<p>除此之外还存在<code>一句话木马、菜刀马、脱库马</code>等等的名词，是对于webShell功能或者特性的简称</p>
+<h3 id="WebShell之PHP一句话木马解读"><a class="header-anchor" href="#WebShell之PHP一句话木马解读">¶</a>WebShell之PHP一句话木马解读</h3>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span> @<span class="token keyword">eval</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>$_POST[x]: 获取 POST请求参数中X的值。例如POST请求中传x=phpinfo();，那么 $_POST[x]就等同于phpinfo();<br>
+eval（）将字符串当做PHP代码去执行。例如 eval(‘phpinfo();’)，其中 phpinfo();会被当做PHP代码去执行。<br>
+所以实际上的传递过程是这样的</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span> @<span class="token keyword">eval</span><span class="token punctuation">(</span><span class="token function">phpinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="常用的一句话木马"><a class="header-anchor" href="#常用的一句话木马">¶</a>常用的一句话木马</h3>
+<p>ASP：</p>
+<pre class="line-numbers language-asp" data-language="asp"><code class="language-asp">&lt;%eval request(&quot;x&quot;)%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="http://ASP.NET">ASP.NET</a>:</p>
+<pre class="line-numbers language-asp" data-language="asp"><code class="language-asp">&lt;%@ Page Language&#x3D;&quot;Jscript&quot;%&gt;&lt;%eval (Request.Item[&quot;x&quot;],&quot;unsafe&quot;);%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>本质都一样，就是上传一个能输入代码的后端代码</p>
+</blockquote>
+<h2 id="文件上传漏洞概述"><a class="header-anchor" href="#文件上传漏洞概述">¶</a>文件上传漏洞概述</h2>
+<p>指用户上床了一个可执行的脚本文件，并通过此文件获取了执行服务器端命令的能力。一般出现在文件上传功能下，如头像更改，附录上传，文章编辑等等</p>
+<h3 id="文件上传功能的底层逻辑"><a class="header-anchor" href="#文件上传功能的底层逻辑">¶</a>文件上传功能的底层逻辑</h3>
 <ol>
-<li>用户能够控制输入</li>
-<li>原本程序要执行的代码，拼接了用户输入的数据</li>
+<li>文件上传功能的作用是将本地文件上传至服务器上进行保存</li>
+<li>如果出现上传路径，我们可以通过该路径进行访问，那么我们就能在服务器上操作这个文件了</li>
 </ol>
-<h2 id="5-SQL注入类型"><a class="header-anchor" href="#5-SQL注入类型">¶</a>5.SQL注入类型</h2>
-<h3 id="5-1数字型注入"><a class="header-anchor" href="#5-1数字型注入">¶</a>5.1数字型注入</h3>
-<p><strong>输入的参数为整型时，如：ID、年龄等，如果存在注入漏洞，这认为其为数字型注入</strong></p>
-<h4 id="5-1-1检测方式"><a class="header-anchor" href="#5-1-1检测方式">¶</a>5.1.1检测方式</h4>
-<p><strong>URL输入 and 1=1 / and 1=2 回显页面不同(整形判断)</strong></p>
-<p>因为当我们输入 and 1=1时，后台执行 SQL 语句：</p>
-<p>如：select * from &lt;表名&gt; where id = x and 1=1</p>
-<p>没有语法错误且逻辑判断为正确，所以返回正常。</p>
-<p>当输入 and 1=2时，后台执行 SQL 语句：</p>
-<p>select * from &lt;表名&gt; where id = x and 1=2</p>
-<p>语句被带进数据库进行查询，虽然没有语法错误但是逻辑判断为假，所以返回错误，这时候我们就可以基本确定页面存在SQl注入。</p>
-<h4 id="5-1-2数字型注入的利用"><a class="header-anchor" href="#5-1-2数字型注入的利用">¶</a>5.1.2数字型注入的利用</h4>
-<ol>
-<li>
-<p>判断注入点：</p>
-<p>加and 1=1 页面正常，and 1=2 页面异常或者报错，如果页面报错，说明后台数据库处理了我们输入的数据，那么能极有可能存在数值型SQL注入</p>
-</li>
-<li>
-<p>判断原有查询语句的<strong>列数</strong>：</p>
-<p>select company,ordernumber from 表 order by 1   （注：数值累加，直到报错后，得到原先库的列数）</p>
-</li>
-<li>
-<p>确定显示位：</p>
-<p><a target="_blank" rel="noopener" href="http://localhost/sqleasy/news.php?newsid=0">http://localhost/sqleasy/news.php?newsid=0</a> union select 1,<strong>2</strong>,3,<strong>4</strong> --+（2.4位输出）</p>
-<p>URL地址栏里的注释要用 --+</p>
-<p>将原有数据置0，不让原来的数据正常输出影响需要获得的数据的显示</p>
-</li>
-<li>
-<p>数据收集与整合;</p>
-<p><a target="_blank" rel="noopener" href="http://127.0.0.1/sqleasy/news.php?newsid=0">http://127.0.0.1/sqleasy/news.php?newsid=0</a> union select 1,<strong>(select user())</strong>,3,<strong>database()</strong>（注：database（）获取库名）</p>
-<p>得到database（）后，一步步搜索关于flag信息（group_concat函数，让所有信息整合在一行）</p>
-<p>将原先select 1,<strong>(select user())</strong>,3,<strong>database()</strong>，改为select 1,2,3,xxxxx.</p>
-<ol>
-<li>数据库名：select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA</li>
-<li>表名：select group_concat(TABLE_NAME) from information_schema.TABLE where TABLE_SCHEMA=‘数据库名’</li>
-<li>列名： select group_concat(column_NAME) from information_schema.columns where TABLE_SCHEMA=‘数据库名’ and table_name=‘表名’</li>
-<li>值：select group_concat(列名) from 数据库名.表名</li>
-</ol>
-</li>
-</ol>
-<h3 id="5-2字符型注入"><a class="header-anchor" href="#5-2字符型注入">¶</a>5.2字符型注入</h3>
-<p><strong>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号或其它特殊符号来闭合，而字符串一般需要通过特殊符号，如单引号来闭合的。</strong></p>
-<h4 id="5-2-1-检测方式"><a class="header-anchor" href="#5-2-1-检测方式">¶</a>5.2.1 检测方式</h4>
-<p>正常的URL：<a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs-master/?id=1">http://127.0.0.1/sqli-labs-master/?id=1</a><br>
-1左右是有单引号包裹住的 我们在URL栏输入原本语句的单引号不会显示，如果我们输入的是这样子：?id=1’ --+<br>
-而后台会这样子显示 ：id=‘1’ --+’<br>
-所以我们可以这样子 ?id=1’ 攻击语句 --+’<br>
-本来id='1’是这样子的<br>
-后来我们在id='1 攻击语句 '#</p>
-<p>如果我们输入1’ 那么id是这样子的 id=‘1’’ 这样子语句就形成不了闭合了，会报错，如果报错了，证明这条语句成功被带进数据库查询,存在字符型注入</p>
-<h4 id="5-2-2-闭合方法"><a class="header-anchor" href="#5-2-2-闭合方法">¶</a>5.2.2 闭合方法</h4>
-<ol>
-<li>.原来的基础上再继续输入多一个引号，也就是 <code>1'' --&gt; '1' ''</code></li>
-<li>使用“#”符号来注释后面的单引号</li>
-<li>使用–+来注释后面的单引号</li>
-</ol>
-<h4 id="5-2-2字符型注入的利用"><a class="header-anchor" href="#5-2-2字符型注入的利用">¶</a>5.2.2字符型注入的利用</h4>
-<p>前端URL:<a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs/Less-3/?id='1">http://127.0.0.1/sqli-labs/Less-3/?id='1</a></p>
-<p>在1后添加 单引号、括号,使其闭合，然后添加and 1=2让前面的select查询语句逻辑错误，使用后面的select语句</p>
-<p><a target="_blank" rel="noopener" href="http://127.0.0.1/sqli-labs/Less-3/?id=1">http://127.0.0.1/sqli-labs/Less-3/?id=1</a>’) and 1=2 union select 1,database(),user() --+</p>
-<h2 id="6-SQL注入绕过"><a class="header-anchor" href="#6-SQL注入绕过">¶</a>6.SQL注入绕过</h2>
-<h3 id="6-1对于关键字绕过"><a class="header-anchor" href="#6-1对于关键字绕过">¶</a>6.1对于关键字绕过</h3>
-<p>如对and进行过滤，我们可以尝试：<br>
-1.对于and,or的绕过可以尝试一下&amp;&amp;,||,异或特殊符号注入<br>
-2.使用注释符绕过，比如: /<em>!and</em>/ uni/<strong>/on se/</strong>/lect<br>
-3.大小写绕过: ANd UniOn SeleCt<br>
-4.双关键字绕过:ununionion seselectlect<br>
-5.关键字替换（在关键字中间可插入将会被WAF过滤的字符） – 例如SELECT可插入变成a&lt;nd，一旦插入字符被过滤，&lt;它将作为and传递。</p>
-<p>###6.2大小写混合</p>
-<p><a target="_blank" rel="noopener" href="https://mp.csdn.net/index.php?id=-15">https://mp.csdn.net/index.php?id=-15</a> <strong>uNIoN sELecT</strong> 1,2,3,4</p>
-<h3 id="6-3替换关键词"><a class="header-anchor" href="#6-3替换关键词">¶</a>6.3替换关键词</h3>
-<h4 id="6-1URL编码"><a class="header-anchor" href="#6-1URL编码">¶</a>6.1URL编码</h4>
-<p>如在Chrome中输入一个链接非保留字的字符浏览器会对其URL编码如空格变为%20、单引号%27、左括号%28、右括号%29</p>
-<p>普通的URL编码可能无法实现绕过，不过存在某种情况比如URL编码只进行了一次解码过滤，那么这时候我们就可以用两次URL编码进行绕过</p>
-<h4 id="6-2十六进制编码"><a class="header-anchor" href="#6-2十六进制编码">¶</a>6.2十六进制编码</h4>
-<p>如对后台针对单引号或者关键字进行处理，那么我们就可以使用16进制，把下面的**‘glbimreb21’**变为0x676c62696d7265623231,就可以不需要单引号包裹着变量进行简单的绕过了，在我们用 <strong>16进制进行绕过时，16进制前面要加0x!</strong></p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">转换前：?id<span class="token operator">=</span><span class="token operator">-</span><span class="token number">55</span><span class="token string">' union%20select%201,group_concat(table_name),3 from information_schema.tables where table_schema='</span>glbimreb21' <span class="token comment">--+</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">转换后：?id<span class="token operator">=</span><span class="token operator">-</span><span class="token number">55</span>' <span class="token keyword">union</span><span class="token operator">%</span><span class="token number">20</span>select<span class="token operator">%</span><span class="token number">201</span><span class="token punctuation">,</span>group_concat<span class="token punctuation">(</span>table_name<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">3</span> <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span><span class="token keyword">tables</span> <span class="token keyword">where</span> table_schema<span class="token operator">=</span><span class="token number">0x676c62696d7265623231</span><span class="token comment">--+</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
                 
             </div>
@@ -495,7 +432,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/23/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84SQL%E6%B3%A8%E5%85%A5%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/09/23/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84SQL%E6%B3%A8%E5%85%A5%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
+                    <a href="http://Lim135.github.io/2021/10/08/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/10/08/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -584,29 +521,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/09/30/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                <a href="/2021/10/08/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="一些些web的做题记录——持续更新">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="不深入而浅出的文件上传漏洞——持续更新">
                         
-                        <span class="card-title">一些些web的做题记录——持续更新</span>
+                        <span class="card-title">不深入而浅出的文件上传漏洞——持续更新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            边看边做
+                            随便学学文件WebShell
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -619,19 +557,16 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                        <span class="chip bg-color">做题记录</span>
-                    </a>
                     
                     <a href="/tags/web/">
                         <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/misc/">
-                        <span class="chip bg-color">misc</span>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
                 </div>
@@ -645,24 +580,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/15/Crypto-%E7%99%BD%E5%AB%96%E8%AE%B0%E5%BD%95/">
+                <a href="/2021/10/07/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84SQL%E6%B3%A8%E5%85%A5%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Crypto_白嫖记录">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="不深入而浅出SQL注入">
                         
-                        <span class="card-title">Crypto_白嫖记录</span>
+                        <span class="card-title">不深入而浅出SQL注入</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            随便谈谈RSA
+                            随便学学SQL
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-07
                             </span>
                         <span class="publish-author">
                             
@@ -679,12 +614,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Crypto/">
-                        <span class="chip bg-color">Crypto</span>
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
                     </a>
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
-                        <span class="chip bg-color">学习记录</span>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
                 </div>
