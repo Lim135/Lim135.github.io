@@ -521,6 +521,15 @@ eval（）将字符串当做PHP代码去执行。例如 eval(‘phpinfo();’)�
 <span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token variable">$Extension</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这段代码是引发漏洞的关键，HTML代码中有一个隐藏标签<code>&lt;input type = &quot;hidden&quot; name=&quot;Extension&quot; value=&quot;up&quot;/&gt;</code>，这是文件上传时的默认文件夹，而我们对此参数是可控的，比如：使用BS将value改为pentest.asp，并上传一句话图片木马，程序收到文件后，发现服务期不存在pentest.asp目录，则会创立此目录表，将一句话木马文件插入，如果web容器是IIS6.0，者会被执行</p>
+<h4 id="截断上传攻击"><a class="header-anchor" href="#截断上传攻击">¶</a>截断上传攻击</h4>
+<p>截断上传在ASP程序中最常见</p>
+<pre class="line-numbers language-asp" data-language="asp"><code class="language-asp">&lt;%
+ username &#x3D; request(&quot;username&quot;)
+ Response.write username
+ %&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这两句代码，用于接收username值并输出，如果在访问URL时: <a target="_blank" rel="noopener" href="http://www.xxser.com/?username=xxser%00admin%EF%BC%8C">http://www.xxser.com/?username=xxser admin，</a></p>
+<p>则输出时只会显示xxser，可以发现在%000之后的字符串都被截断了，这就是截断上传的原理</p>
+<p>所以在遇到有对.php过滤的时候，或是白名单中有没有.php时，可以尝试上传<code>xxxser.php%00.jpg</code>用来绕过asp</p>
 
                 
             </div>
@@ -640,19 +649,19 @@ eval（）将字符串当做PHP代码去执行。例如 eval(‘phpinfo();’)�
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/10/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                <a href="/2021/10/10/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="不深入而浅出的文件包含漏洞——持续更新">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="一些些web的做题记录——持续更新">
                         
-                        <span class="card-title">不深入而浅出的文件包含漏洞——持续更新</span>
+                        <span class="card-title">一些些web的做题记录——持续更新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            边看边做
                         
                     </div>
                     <div class="publish-info">
@@ -661,11 +670,31 @@ eval（）将字符串当做PHP代码去执行。例如 eval(‘phpinfo();’)�
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            晚安，早点休息
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
+                                    攻防
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">做题记录</span>
+                    </a>
+                    
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
+                    </a>
+                    
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
+                    </a>
+                    
                 </div>
                 
             </div>
