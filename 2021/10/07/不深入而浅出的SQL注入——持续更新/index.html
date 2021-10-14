@@ -675,6 +675,41 @@
 <li>快速检查应用程序中所有存在显式使用数据项的功能以及可能存在隐式使用数据项的功能。寻找所有能够表明是由输入引发了问题的异常行为，比如数据库错误消息、HTTP 500状态代码、更隐秘的错误消息、受损的功能、丢失或毁坏的数据等。</li>
 <li>对于识别出来的每个潜在问题，尝试开发一种概念验证攻击来确认是否存在SQL注入漏洞。请注意，有缺陷的持久数据可能以间接受到攻击的方式(例如，整型转换错误或后续数据验证失败)来引发异常条件。尝试使用两个引号标识来提供相同的输入并查看异常是否消失。尝试使用数据库专用的结构(比如字符串连接函数和版本标识)来确认正在修改SQL查询。如果不返回异常条件（例如，不返回查询结果或者任何错误消息），<strong>使用基于时间延迟技术</strong>来确定漏洞存在</li>
 </ol>
+<h3 id="12-3-二次注入"><a class="header-anchor" href="#12-3-二次注入">¶</a>12.3 二次注入</h3>
+<p>首先，假设我们注册了两个用户：</p>
+<p>用户①名字为“csdner”，密码是“csdner123456”；</p>
+<p>用户②名字为“csndner’–” ，密码是“csdner1111”。</p>
+<p>请注意，此处的用户②的名字就是sql注入有效负载，它没有被转义或者截断，而是按照原样保存在了数据库中。</p>
+<p>然后，我们登陆用户②，并修改它的密码为“csdn222”。注意此时登陆的是用户②。因此，我们为此用户名构造密码更改查询</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span> users
+<span class="token keyword">SET</span> password<span class="token operator">=</span><span class="token string">'csdn222'</span>
+<span class="token keyword">WHERE</span> username<span class="token operator">=</span><span class="token string">'csdner'</span><span class="token comment">--' and password='csdn1111'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>记住此时被查询的是用户②。但是，因为在SQL中，–是开启注释的标志，这样子的话，不知不觉中被更改密码的成了用</p>
+<p>户①（实际上，上面的代码已经自动被CSDN当做注释处理了，恰好成了注入的样子）</p>
+<p>也就是说，现在的查询语句长下面这个样子：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span> users
+<span class="token keyword">SET</span> password<span class="token operator">=</span><span class="token string">'csdn222'</span>
+<span class="token keyword">WHERE</span> username<span class="token operator">=</span><span class="token string">'csdner'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>查询导致更新用户“csdner”的密码，而不是“csdner’- - ” 因此成功执行二阶sql注入。</p>
+<p>注：在数据新插入时不会发生错误，因为插入时是以二元组方式进行插入的，所以不会被注释</p>
+<p>1正常来说无法通过注入来登录admin，因为用户输入会被转义<br>
+2注册admin ’ –<br>
+3登录admin ’ --转义成admin(反斜杠)’ --，则登录的是admin’ –</p>
+<h3 id="约束攻击"><a class="header-anchor" href="#约束攻击">¶</a>约束攻击</h3>
+<p><strong>PHP mysql_real_escape_string() 函数</strong><br>
+mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。<br>
+下列字符受影响：<br>
+\x00<br>
+\n<br>
+\r<br>
+<br>
+’<br>
+&quot;<br>
+\x1a<br>
+如果成功，则该函数返回被转义的字符串。如果失败，则返回 false。</p>
+<p>在sql执行字符串处理的时候，字符串末尾的空格符都会被删除，以下两个字符串结果相等<br>
+SELECT * FROM users WHERE username='vampire     ';<br>
+SELECT * FROM users WHERE username=‘vampire’;</p>
 
                 
             </div>

@@ -357,7 +357,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-10
+                    2021-10-14
                 </div>
                 
 
@@ -604,6 +604,72 @@ os<span class="token punctuation">.</span>system<span class="token punctuation">
 <p>链接成功后进入服务器端，在html文件夹下发现了flag.php，打开就是需要的</p>
 <h4 id="法二：直接构造一句话图片木马"><a class="header-anchor" href="#法二：直接构造一句话图片木马">¶</a>法二：直接构造一句话图片木马</h4>
 <p>将一句话木马的格式改为.jpg，打开BS上传，绕过前端JS过滤后，在BS将.jpg后缀改为.php后缀即可，之后再用蚁剑链接步骤同上即可找到flag.php</p>
+<h3 id="bugku—文建上传"><a class="header-anchor" href="#bugku—文建上传">¶</a>bugku—文建上传</h3>
+<p>很无语，纯黑盒，试了半天试不出来，后面看别人的wp才知道</p>
+<p>先上后端源码</p>
+<pre class="line-numbers language-php+HTML" data-language="php+HTML"><code class="language-php+HTML">&lt;html&gt;
+&lt;body&gt;
+&lt;?php 
+$flag &#x3D; &quot;flag&#123;test&#125;&quot;
+?&gt;
+&lt;form action&#x3D;&quot;index.php&quot; method&#x3D;&quot;post&quot; enctype&#x3D;&quot;multipart&#x2F;form-data&quot;&gt;
+My name is margin,give me a image file not a php&lt;br&gt;
+&lt;br&gt;
+&lt;input type&#x3D;&quot;file&quot; name&#x3D;&quot;file&quot; id&#x3D;&quot;file&quot; &#x2F;&gt; 
+&lt;input type&#x3D;&quot;submit&quot; name&#x3D;&quot;submit&quot; value&#x3D;&quot;Submit&quot; &#x2F;&gt;
+&lt;&#x2F;form&gt;
+&lt;?php
+function global_filter()&#123;
+	$type &#x3D;  $_SERVER[&quot;CONTENT_TYPE&quot;];
+	if (strpos($type,&quot;multipart&#x2F;form-data&quot;) !&#x3D;&#x3D; False)&#123;
+		$file_ext &#x3D;  substr($_FILES[&quot;file&quot;][&quot;name&quot;], strrpos($_FILES[&quot;file&quot;][&quot;name&quot;], &#39;.&#39;)+1);
+        $file_ext &#x3D; strtolower($file_ext);
+		if (stripos($file_ext,&quot;php&quot;) !&#x3D;&#x3D; False)&#123;
+			die(&quot;Invalid File&lt;br &#x2F;&gt;&quot;);
+		&#125;
+	&#125;
+&#125;
+?&gt;
+
+&lt;?php
+
+global_filter();
+if ((stripos($_FILES[&quot;file&quot;][&quot;type&quot;],&#39;image&#39;)!&#x3D;&#x3D; False) &amp;&amp; ($_FILES[&quot;file&quot;][&quot;size&quot;] &lt; 10*1024*1024))&#123;
+	if ($_FILES[&quot;file&quot;][&quot;error&quot;] &#x3D;&#x3D; 0)&#123;
+		$file_ext &#x3D;  substr($_FILES[&quot;file&quot;][&quot;name&quot;], strrpos($_FILES[&quot;file&quot;][&quot;name&quot;], &#39;.&#39;)+1);
+        $file_ext &#x3D; strtolower($file_ext);
+        $allowexts &#x3D; array(&#39;jpg&#39;,&#39;gif&#39;,&#39;jpeg&#39;,&#39;bmp&#39;,&#39;php4&#39;);
+        if(!in_array($file_ext,$allowexts))&#123;
+            die(&quot;give me a image file not a php&quot;);
+        &#125;
+		$_FILES[&quot;file&quot;][&quot;name&quot;]&#x3D;&quot;bugku&quot;.date(&#39;dHis&#39;).&quot;_&quot;.rand(1000,9999).&quot;.&quot;.$file_ext;
+
+	    if (file_exists(&quot;upload&#x2F;&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]))&#123;
+	    	echo $_FILES[&quot;file&quot;][&quot;name&quot;] . &quot; already exists. &lt;br &#x2F;&gt;&quot;;
+	    &#125;
+	    else&#123;
+	    	if (!file_exists(&#39;.&#x2F;upload&#x2F;&#39;))&#123;
+	    		mkdir (&quot;.&#x2F;upload&#x2F;&quot;);
+                system(&quot;chmod 777 &#x2F;var&#x2F;www&#x2F;html&#x2F;upload&quot;);
+	    	&#125;
+	    	move_uploaded_file($_FILES[&quot;file&quot;][&quot;tmp_name&quot;],&quot;upload&#x2F;&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;]);
+                echo &quot;Upload Success&lt;br&gt;&quot;;
+                $filepath &#x3D; &quot;upload&#x2F;&quot; . $_FILES[&quot;file&quot;][&quot;name&quot;];
+	      	echo &quot;Stored in: &quot; .&quot;&lt;a href&#x3D;&#39;&quot; . $filepath . &quot;&#39; target&#x3D;&#39;_blank&#39;&gt;&quot; . $filepath . &quot;&lt;br &#x2F;&gt;&quot;;
+	    &#125;
+	&#125;
+&#125;
+else&#123;
+	if($_FILES[&quot;file&quot;][&quot;size&quot;] &gt; 0)&#123;
+		echo &quot;You was catched! :) &lt;br &#x2F;&gt;&quot;;
+	&#125;
+&#125;
+?&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>两个过滤，第一个CONTENT_TYPE信息过滤，需要让CONTENT_TYPE信息不等于’multipart/form-data‘但也不能改变其原意，所以考虑将字母改为大写</p>
+<p>第二个是白名单<code>$allowexts = array('jpg','gif','jpeg','bmp','php4');</code> ,只允许上面5个通过，所以考虑上传jpg，而后改为php4</p>
 <h2 id="bugku—shell"><a class="header-anchor" href="#bugku—shell">¶</a>bugku—shell</h2>
 <p>提示：</p>
 <blockquote>
@@ -614,7 +680,176 @@ os<span class="token punctuation">.</span>system<span class="token punctuation">
 <p><strong>assert()函数</strong></p>
 <p>assert()函数在PHP中用来判断一个表达式是否成立，返回真或假。如果直接将PHP代码传入也会被执行。</p>
 <p>所以我们直接?s=system(‘ls’)等一些列步骤获取flag</p>
-<h2 id=""><a class="header-anchor" href="#">¶</a></h2>
+<h2 id="bugku—login1"><a class="header-anchor" href="#bugku—login1">¶</a>bugku—login1</h2>
+<p>看到有注册框的首先想到二次注入，但是发现没有修改密码的框，根据题目提示，应该是SQL约束注入，具体原理放在SQL博客中了</p>
+<p>直接在注册框注册<code>admin  </code>（有空格），密码随意，然后进入主界面，输入admin与密码即可进入后台获取flag</p>
+<h2 id="bugku—前女友、备份是个好习惯、MD5、各种绕过哟"><a class="header-anchor" href="#bugku—前女友、备份是个好习惯、MD5、各种绕过哟">¶</a>bugku—前女友、备份是个好习惯、MD5、各种绕过哟</h2>
+<p>两个题都是md5碰撞的题目</p>
+<p><strong>先前女友</strong></p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'v1'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'v2'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'v3'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token variable">$v1</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'v1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$v2</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'v2'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token variable">$v3</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'v3'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$v1</span> <span class="token operator">!=</span> <span class="token variable">$v2</span> <span class="token operator">&amp;&amp;</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$v1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$v2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token variable">$v3</span><span class="token punctuation">,</span> <span class="token variable">$flag</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>用get请求获得v1,v2,v3三个值，v1不等于v2但是md5的v1要等于v2，v3要不等于flag，才能返回</p>
+<p>md5和strcmp是无法处理数组的，所以我们可以直接传入三个数组，全部返回NULL，就可以通过</p>
+<p>URL：?v1[]=something&amp;v2[]=anything&amp;v3[]=nothing</p>
+<p><strong>备份是个好习惯</strong></p>
+<p>按照题目 备份是个好习惯，是让我们寻找 .bak文件的，也就是说</p>
+<p>存在某个文件的.bak文件可以访问，那就试试 <a target="_blank" rel="noopener" href="http://120.24.86.145:8002/web16/index.php.bak%EF%BC%8C%E5%B0%B1%E6%8B%BF%E5%88%B0%E4%BA%86%E6%8F%90%E7%A4%BA%E6%96%87%E4%BB%B6">http://120.24.86.145:8002/web16/index.php.bak，就拿到了提示文件</a></p>
+<p>打开</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">include_once</span> “flag<span class="token operator">.</span>php”<span class="token punctuation">;</span>
+<span class="token function">ini_set</span><span class="token punctuation">(</span>“display_errors”<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token function">strstr</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span>‘<span class="token constant">REQUEST_URI</span>’<span class="token punctuation">]</span><span class="token punctuation">,</span> ‘<span class="token operator">?</span>’<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token function">substr</span><span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$str</span> <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span>‘key’<span class="token punctuation">,</span>”<span class="token punctuation">,</span><span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">parse_str</span><span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$key1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">echo</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$key2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$key1</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$key2</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$key1</span> <span class="token operator">!==</span> <span class="token variable">$key2</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+<span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token operator">.</span>”取得flag”<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>key1不等于key2，但是md5值相等，所以传入数组就行</p>
+<p><strong>MD5</strong></p>
+<p>php在处理哈希字符串时，会把每一个以“0E”或“0e”开头的哈希值都解释为0，<br>
+所以如果两个不同的密码经过哈希以后，其哈希值都是以“0e”开头的，那么php将会认为他们都相同，都是0</p>
+<p>利用这一漏洞，输入一个哈希后以“0e”开头的字符串，php会解释为0，如果数据库中存在这种哈希值以“0e”开头的密码的恶化，他就可以以这个用户的身份登陆进去，尽管并没有真正的密码</p>
+<p>常用的以0e开头的md5和原值：<br>
+s878926199a<br>
+0e545993274517709034328855841020<br>
+s155964671a<br>
+0e342768416822451524974117254469<br>
+s214587387a<br>
+0e848240448830537924465865611904<br>
+s214587387a<br>
+0e848240448830537924465865611904<br>
+s878926199a<br>
+0e545993274517709034328855841020<br>
+s1091221200a<br>
+0e940624217856561557816327384675<br>
+s1885207154a<br>
+0e509367213418206700842008763514<br>
+s1502113478a<br>
+0e861580163291561247404381396064<br>
+s1885207154a<br>
+0e509367213418206700842008763514<br>
+s1836677006a<br>
+0e481036490867661113260034900752<br>
+s155964671a<br>
+0e342768416822451524974117254469<br>
+s1184209335a<br>
+0e072485820392773389523109082030<br>
+s1665632922a<br>
+0e731198061491163073197128363787<br>
+s1502113478a<br>
+0e861580163291561247404381396064<br>
+s1836677006a<br>
+0e481036490867661113260034900752<br>
+s1091221200a<br>
+0e940624217856561557816327384675<br>
+s155964671a<br>
+0e342768416822451524974117254469<br>
+s1502113478a<br>
+0e861580163291561247404381396064<br>
+s155964671a<br>
+0e342768416822451524974117254469<br>
+s1665632922a<br>
+0e731198061491163073197128363787<br>
+s155964671a<br>
+0e342768416822451524974117254469<br>
+s1091221200a<br>
+0e940624217856561557816327384675<br>
+s1836677006a<br>
+0e481036490867661113260034900752<br>
+s1885207154a<br>
+0e509367213418206700842008763514<br>
+s532378020a<br>
+0e220463095855511507588041205815<br>
+s878926199a<br>
+0e545993274517709034328855841020<br>
+s1091221200a<br>
+0e940624217856561557816327384675<br>
+s214587387a<br>
+0e848240448830537924465865611904<br>
+s1502113478a<br>
+0e861580163291561247404381396064<br>
+s1091221200a<br>
+0e940624217856561557816327384675<br>
+s1665632922a<br>
+0e731198061491163073197128363787<br>
+s1885207154a<br>
+0e509367213418206700842008763514<br>
+s1836677006a<br>
+0e481036490867661113260034900752<br>
+s1665632922a<br>
+0e731198061491163073197128363787<br>
+s878926199a<br>
+0e545993274517709034328855841020<br>
+<strong>各种绕过哟</strong></p>
+<p>上原码</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'flag.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">urldecode</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$flag</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'flag&#123;xxxxxxxxxxxxxxxxxx&#125;'</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'uname'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'passwd'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'uname'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'passwd'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">print</span> <span class="token string single-quoted-string">'passwd can not be uname.'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">sha1</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'uname'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token function">sha1</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'passwd'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string single-quoted-string">'margin'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'Flag: '</span><span class="token operator">.</span><span class="token variable">$flag</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">else</span>
+
+        <span class="token keyword">print</span> <span class="token string single-quoted-string">'sorry!'</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">&#125;</span> </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>知道，id，uname两个值是通过get获取，passwd通过post获取，之后看过滤</p>
+<p>uname的sha1要等于passwdsha1，但这两个值不能相等。</p>
+<p>所以构造id=margin，passwd和uname为不相等的两个数组即可，原理与md5数组失效同理</p>
+<h2 id="bugku—file-get-contents"><a class="header-anchor" href="#bugku—file-get-contents">¶</a>bugku—file_get_contents</h2>
+<p>上原码</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">extract</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token variable">$ac</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+<span class="token variable">$f</span> <span class="token operator">=</span> <span class="token function">trim</span><span class="token punctuation">(</span><span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$fn</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$ac</span> <span class="token operator">===</span> <span class="token variable">$f</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">echo</span> <span class="token string double-quoted-string">"&lt;p>This is flag:"</span> <span class="token operator">.</span><span class="token string double-quoted-string">" <span class="token interpolation"><span class="token variable">$flag</span></span>&lt;/p>"</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">else</span>
+<span class="token punctuation">&#123;</span>
+<span class="token keyword">echo</span> <span class="token string double-quoted-string">"&lt;p>sorry!&lt;/p>"</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这里涉及到一个<code>file_get_contents()</code>函数,而这个函数是可以绕过的</p>
+<p>绕过方式有多种：</p>
+<ul>
+<li>使用<code>php://input</code>伪协议绕过<br>
+① 将要GET的参数?xxx=php://input<br>
+② 用post方法传入想要<code>file_get_contents()</code>函数返回的值</li>
+<li>用<code>data://</code>伪协议绕过<br>
+将url改为：?xxx=data://text/plain;base64,想要<code>file_get_contents()</code>函数返回的值的base64编码<br>
+或者将url改为：?xxx=data:text/plain,(url编码的内容)</li>
+</ul>
+<h2 id="bugku—文件包含2"><a class="header-anchor" href="#bugku—文件包含2">¶</a>bugku—文件包含2</h2>
+<p>名字是文件包含，就直接用文件包含做吧，新建一个内容为</p>
+ <script language=php>system("ls")</script> 
+<p>的jpg图片，上传，一个一个去找，最后再…/…/…/目录下找到flag，cat一下就好了</p>
+<p>不过看评论好像能用木马图片上传，不过翻了翻csdn好像没人这么做。。。就算了吧</p>
 
                 
             </div>
@@ -641,7 +876,7 @@ os<span class="token punctuation">.</span>system<span class="token punctuation">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/10/10/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/10/10/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
+                    <a href="http://Lim135.github.io/2021/10/14/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">http://Lim135.github.io/2021/10/14/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -734,81 +969,29 @@ os<span class="token punctuation">.</span>system<span class="token punctuation">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/10/11/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                <a href="/2021/10/14/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="不深入而浅出的文件包含漏洞——持续更新">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="一些些web的做题记录——持续更新">
                         
-                        <span class="card-title">不深入而浅出的文件包含漏洞——持续更新</span>
+                        <span class="card-title">一些些web的做题记录——持续更新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            还是随便学学
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-11
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%94%BB%E9%98%B2/" class="post-category">
-                                    攻防
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/web/">
-                        <span class="chip bg-color">web</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/10/08/%E4%B8%8D%E6%B7%B1%E5%85%A5%E8%80%8C%E6%B5%85%E5%87%BA%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="不深入而浅出的文件上传漏洞——持续更新">
-                        
-                        <span class="card-title">不深入而浅出的文件上传漏洞——持续更新</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            随便学学文件WebShell
+                            边看边做
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-14
                             </span>
                         <span class="publish-author">
                             
@@ -822,15 +1005,77 @@ os<span class="token punctuation">.</span>system<span class="token punctuation">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">做题记录</span>
+                    </a>
                     
                     <a href="/tags/web/">
                         <span class="chip bg-color">web</span>
                     </a>
                     
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/12/%E5%86%99%E4%B8%AAJava%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%AC%94%E8%AE%B0%E5%90%A7%E2%80%A6%E2%80%A6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="写个Java多线程的笔记吧……">
+                        
+                        <span class="card-title">写个Java多线程的笔记吧……</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            有点乱……想整一下，只基于书上和老师讲的，
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%9A%8F%E6%89%8B%E5%86%99%E5%86%99/" class="post-category">
+                                    随手写写
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                        <span class="chip bg-color">多线程</span>
                     </a>
                     
                 </div>
