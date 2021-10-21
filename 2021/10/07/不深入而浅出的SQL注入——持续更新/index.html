@@ -29,7 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Lim_XuK" type="application/atom+xml">
+</head>
 
 
 
@@ -582,7 +583,7 @@
 <p>将原先select 1,<strong>(select user())</strong>,3,<strong>database()</strong>，改为select 1,2,3,xxxxx.</p>
 <ol>
 <li>数据库名：select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA</li>
-<li>表名：select group_concat(TABLE_NAME) from information_schema.TABLE where TABLE_SCHEMA=‘数据库名’</li>
+<li>表名：select group_concat(TABLE_NAME) from information_schema.TABLES where TABLE_SCHEMA=‘数据库名’</li>
 <li>列名： select group_concat(column_NAME) from information_schema.columns where TABLE_SCHEMA=‘数据库名’ and table_name=‘表名’</li>
 <li>值：select group_concat(列名) from 数据库名.表名</li>
 </ol>

