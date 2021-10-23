@@ -358,7 +358,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-16
+                    2021-10-23
                 </div>
                 
 
@@ -384,7 +384,7 @@
             <div id="articleContent">
                 <h2 id="前记"><a class="header-anchor" href="#前记">¶</a>前记</h2>
 <blockquote>
-<p>挺火的，本来进了决赛了，然后下午有另一个比赛耽误了，结果那个比赛TM的服务器人数过载了，进不去，早知道去打AWD了服了</p>
+<p>本来想早点写的，但是还是想把最后两个WEB题做出来再写</p>
 </blockquote>
 <h2 id="WEB"><a class="header-anchor" href="#WEB">¶</a>WEB</h2>
 <h3 id="贪吃蛇"><a class="header-anchor" href="#贪吃蛇">¶</a>贪吃蛇</h3>
@@ -450,8 +450,37 @@ xxxxxxxxxxxxxxxxxx
 index.php?action=auth&amp;key=1&amp;hashed_key=47f05d367b0c32e438fb63e6cf4a5f35c2aa2f90dc7543f8a41a0f95ce8a40a313ab5cf36134a2068c4c969cb50db776</p>
 <p>之后就能看到flag</p>
 <blockquote>
-<p>之后快结束的时候又发了两题，但是来不及看了QAQ</p>
+<p>之后快结束的时候又发了两题，但是来不及看了</p>
 </blockquote>
+<h3 id="一佰块都不给我"><a class="header-anchor" href="#一佰块都不给我">¶</a>一佰块都不给我</h3>
+<p>打开是乱七八糟的字母图，没啥用，F12里面也没东西</p>
+<p>之后用御剑扫一扫，扫出来一个</p>
+<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/1.png" alt=""></p>
+<p>呃虽然之前一直看到robots.txt这个文件，但是一直不知道是干嘛的，所以去查了一下</p>
+<p>robots.txt是网站管理者写给爬虫的一封信，里面描述了网站管理者不希望爬虫做的事，比如：</p>
+<ul>
+<li>不要访问某个文件、文件夹</li>
+<li>禁止某些爬虫的访问</li>
+<li>限制爬虫访问网站的频率</li>
+</ul>
+<p>一个自觉且善意的爬虫，应该在抓取网页之前，先阅读robots.txt，了解并执行网站管理者制定的爬虫规则。</p>
+<blockquote>
+<p>好家伙</p>
+</blockquote>
+<p>然后打开robots.txt</p>
+<pre class="line-numbers language-none"><code class="language-none">User-agent: *
+Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>disallow的地址是index.php1，我们打开</p>
+<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/2.png" alt=""></p>
+<p>注意到</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$a</span> <span class="token operator">=</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'ctf'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'ctf'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>PHP语言，GET请求。所以构造payload</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token operator">?</span>ctf<span class="token operator">=</span>phpinfo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后就能找到flag</p>
+<h3 id="神奇的CMS"><a class="header-anchor" href="#神奇的CMS">¶</a>神奇的CMS</h3>
+<p>打开，有个login界面，查了一下，CMS的登陆界面不要太相信SQL注入，所以尝试一下爆破密码，发现登陆是admin,admin123然后就进了admin界面</p>
+<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/3.png" alt=""></p>
+<p>呃然后就卡住了，雀食不太会，等后面再琢磨琢磨</p>
 <h2 id="MISC"><a class="header-anchor" href="#MISC">¶</a>MISC</h2>
 <h3 id="Base64转图片"><a class="header-anchor" href="#Base64转图片">¶</a>Base64转图片</h3>
 <p>记得没错的话，题目用010打开后，应该是一串Base64编码，然后把它都进Base64转图片里面，就会生成一个二维码，那个二维码扫完就是一个base64加密的字符串，再解码就好了</p>
@@ -488,7 +517,7 @@ index.php?action=auth&amp;key=1&amp;hashed_key=47f05d367b0c32e438fb63e6cf4a5f35c
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/10/16/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">http://Lim135.github.io/2021/10/16/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/</a>
+                    <a href="http://Lim135.github.io/2021/10/23/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">http://Lim135.github.io/2021/10/23/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -586,7 +615,7 @@ index.php?action=auth&amp;key=1&amp;hashed_key=47f05d367b0c32e438fb63e6cf4a5f35c
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/10/16/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">
+                <a href="/2021/10/23/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">
                     <div class="card-image">
                         
                         
@@ -603,7 +632,7 @@ index.php?action=auth&amp;key=1&amp;hashed_key=47f05d367b0c32e438fb63e6cf4a5f35c
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-23
                             </span>
                         <span class="publish-author">
                             
