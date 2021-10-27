@@ -382,7 +382,7 @@
 <p>开发人员将可重复使用的函数写到单个文件中，在使用某些函数时会直接调用这个文件，而调用这个文件的过程被称作包含</p>
 <p>开发人员都希望代码更加灵活，就会将包含的文件设置为变量，用来调度。但也有可能调用一个恶意文件，造成文件包含漏洞</p>
 <h3 id="PHP包含"><a class="header-anchor" href="#PHP包含">¶</a>PHP包含</h3>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//找不到被包含的文件时智慧产生警告（E_WARNING)，并停止脚本</span>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//找不到被包含的文件时只会产生警告（E_WARNING)，并停止脚本</span>
 <span class="token keyword">include_once</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//与include类似，唯一区别是如果该文件中的代码已经被包含，就不会再次包含</span>
 <span class="token keyword">require</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//找不到文件会报知名错误（E_COMPILE_ERROR)</span>
 <span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">//同样</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
